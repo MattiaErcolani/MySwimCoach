@@ -105,7 +105,7 @@ public class RichiestaSchedaGui {
             stage.setScene(new Scene(root));
             stage.show();
         } catch (Exception e) {
-            e.printStackTrace();
+            Stampa.errorPrint(e.getMessage());
         }
     }
 }

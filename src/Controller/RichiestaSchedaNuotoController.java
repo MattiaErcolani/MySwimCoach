@@ -89,7 +89,7 @@ public class RichiestaSchedaNuotoController {
         try {
             richiestaDao.updateStato(idRichiesta, nuovoStato);
         } catch (SQLException e) {
-            e.printStackTrace();
+            Stampa.errorPrint(e.getMessage());
         }
     }
 }

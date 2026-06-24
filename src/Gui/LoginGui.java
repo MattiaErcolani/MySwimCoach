@@ -66,7 +66,7 @@ public class LoginGui {
             stage.show();
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Stampa.errorPrint(e.getMessage());
             errorLabel.setText("Errore nel caricamento: " + e.getMessage());
         }
     }
@@ -84,7 +84,7 @@ public class LoginGui {
             stage.show();
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Stampa.errorPrint(e.getMessage());
             errorLabel.setText("Errore nel caricamento: " + e.getMessage());
         }
     }
@@ -102,7 +102,7 @@ public class LoginGui {
             stage.show();
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Stampa.errorPrint(e.getMessage());
             errorLabel.setText("Errore nel caricamento: " + e.getMessage());
         }
     }

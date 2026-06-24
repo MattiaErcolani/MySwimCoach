@@ -39,7 +39,7 @@ public class RegistrazioneGui {
             stage.show();
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Stampa.errorPrint(e.getMessage());
         }
     }
 }
