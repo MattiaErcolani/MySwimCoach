@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import Other.Stampa;
 
 import java.util.List;
 

@@ -6,6 +6,8 @@ import Exceptions.UtenteNonPresenteException;
 import Model.RichiestaSchedaNuotoModel;
 import Other.FactoryDao;
 import Other.StatoRichiestaScheda;
+import Other.Stampa;
+
 
 import java.sql.SQLException;
 import java.util.ArrayList;
