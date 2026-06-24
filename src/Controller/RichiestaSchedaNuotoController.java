@@ -91,7 +91,8 @@ public class RichiestaSchedaNuotoController {
         try {
             richiestaDao.updateStato(idRichiesta, nuovoStato);
         } catch (SQLException e) {
-            Stampa.errorPrint(e.getMessage());
+            e.printStackTrace()
+;
         }
     }
 }

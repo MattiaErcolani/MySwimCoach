@@ -83,7 +83,8 @@ public class RegistrazioneUtenteGui {
             stage.show();
 
         } catch (Exception e) {
-            Stampa.errorPrint(e.getMessage());
+            e.printStackTrace()
+;
         }
     }
 }

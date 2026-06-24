@@ -98,7 +98,8 @@ public class VisualizzaRichiesteUtenteGui {
             stage.setScene(new Scene(root));
             stage.show();
         } catch (Exception e) {
-            Stampa.errorPrint(e.getMessage());
+            e.printStackTrace()
+;
         }
     }
 }

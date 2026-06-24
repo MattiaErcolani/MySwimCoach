@@ -41,7 +41,8 @@ public class RegistrazioneGui {
             stage.show();
 
         } catch (Exception e) {
-            Stampa.errorPrint(e.getMessage());
+            e.printStackTrace()
+;
         }
     }
 }

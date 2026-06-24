@@ -55,7 +55,8 @@ public class Connect {
             password = prop.getProperty("PASSWORD") ;
 
         } catch (IOException e){
-            Stampa.errorPrint(e.getMessage());
+            e.printStackTrace()
+;
         }
     }
 
