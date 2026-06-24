@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="800.0"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Gui.RegistrazioneGui"
+            style="-fx-background-color: #0A1628;">
+
+    <!-- PANNELLO SINISTRO -->
+    <Rectangle layoutX="0" layoutY="0" width="320" height="500" fill="#0A1628"/>
+
+    <Text text="MySwimCoach" layoutX="60" layoutY="200"
+          fill="white" strokeType="OUTSIDE" strokeWidth="0.0">
+        <font><Font name="System Bold" size="24.0"/></font>
+    </Text>
+    <Text text="Il tuo allenatore di nuoto personale"
+          layoutX="55" layoutY="225" fill="#90A4AE"
+          strokeType="OUTSIDE" strokeWidth="0.0">
+        <font><Font size="12.0"/></font>
+    </Text>
+
+    <ImageView layoutX="48" layoutY="243" fitWidth="200" fitHeight="160" preserveRatio="true">
+        <image>
+            <Image url="@/Images/LogoNuotatore2.png"/>
+        </image>
+    </ImageView>
+
+    <!-- SEPARATORE -->
+    <Line startX="0" startY="0" endX="0" endY="500"
+          layoutX="320" stroke="#1E3A5F"/>
+
+    <!-- PANNELLO DESTRO -->
+    <Rectangle layoutX="320" layoutY="0" width="480" height="500" fill="#0D1F3C"/>
+
+    <!-- Titolo -->
+    <Text text="Benvenuto!" layoutX="380" layoutY="160"
+          fill="white" strokeType="OUTSIDE" strokeWidth="0.0">
+        <font><Font name="System Bold" size="24.0"/></font>
+    </Text>
+    <Text text="Scegli il tuo ruolo per registrarti"
+          layoutX="380" layoutY="182" fill="#90A4AE"
+          strokeType="OUTSIDE" strokeWidth="0.0">
+        <font><Font size="13.0"/></font>
+    </Text>
+
+    <!-- Bottone Utente -->
+    <Button fx:id="btnUtente" layoutX="380" layoutY="230"
+            prefWidth="360" prefHeight="80"
+            text="Sono un Utente"
+            onMouseClicked="#goToRegistrazioneUtente"
+            style="-fx-background-color: #0A1628; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 10; -fx-border-color: #1565C0; -fx-border-radius: 10; -fx-border-width: 1.5; -fx-cursor: hand;">
+        <font><Font size="16.0"/></font>
+    </Button>
+
+
+    <!-- Bottone Istruttore -->
+    <Button fx:id="btnIstruttore" layoutX="380" layoutY="340"
+            prefWidth="360" prefHeight="80"
+            text="Sono un Istruttore"
+            onMouseClicked="#goToRegistrazioneIstruttore"
+            style="-fx-background-color: #0A1628; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 10; -fx-border-color: #1565C0; -fx-border-radius: 10; -fx-border-width: 1.5; -fx-cursor: hand;">
+        <font><Font size="16.0"/></font>
+    </Button>
+
+
+    <!-- Link torna al login -->
+    <Text text="Hai già un account?" layoutX="390" layoutY="455"
+          fill="#90A4AE" strokeType="OUTSIDE" strokeWidth="0.0">
+        <font><Font size="12.0"/></font>
+    </Text>
+    <Hyperlink fx:id="loginLink" layoutX="520" layoutY="441"
+               text="Accedi"
+               onMouseClicked="#goToLogin"
+               style="-fx-text-fill: #64B5F6; -fx-border-color: transparent; -fx-font-size: 12px;"/>
+
+</AnchorPane>

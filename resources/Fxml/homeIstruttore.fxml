@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="800.0"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Gui.HomeIstruttoreGui"
+            style="-fx-background-color: #0D1F3C;">
+
+    <!-- SIDEBAR -->
+    <Rectangle layoutX="0" layoutY="0" width="220" height="500" fill="#0A1628"/>
+
+    <!-- Logo -->
+    <ImageView layoutX="60" layoutY="20" fitWidth="100" fitHeight="80" preserveRatio="true">
+        <image>
+            <Image url="@/Images/LogoNuotatore2.png"/>
+        </image>
+    </ImageView>
+    <Text text="MySwimCoach" layoutX="40" layoutY="115"
+          fill="white" strokeType="OUTSIDE" strokeWidth="0.0">
+        <font><Font name="System Bold" size="16.0"/></font>
+    </Text>
+
+    <!-- Saluto -->
+    <Text fx:id="welcomeText" text="Ciao, Coach!" layoutX="20" layoutY="150"
+          fill="#90A4AE" strokeType="OUTSIDE" strokeWidth="0.0">
+        <font><Font size="12.0"/></font>
+    </Text>
+
+    <!-- Menu -->
+    <Button fx:id="btnVisualizzaSchede" layoutX="20" layoutY="180"
+            prefWidth="180" prefHeight="40"
+            text="📋 Visualizza Schede"
+            onMouseClicked="#showVisualizzaSchede"
+            style="-fx-background-color: #1565C0; -fx-text-fill: white; -fx-font-size: 13px; -fx-background-radius: 8; -fx-cursor: hand; -fx-alignment: CENTER_LEFT;">
+    </Button>
+
+    <Button fx:id="btnRichieste" layoutX="20" layoutY="228"
+            prefWidth="180" prefHeight="40"
+            text="📨 Richieste Schede"
+            onMouseClicked="#showRichieste"
+            style="-fx-background-color: #0D1F3C; -fx-text-fill: white; -fx-font-size: 13px; -fx-background-radius: 8; -fx-cursor: hand; -fx-alignment: CENTER_LEFT; -fx-border-color: #1E3A5F; -fx-border-radius: 8;">
+    </Button>
+
+    <Button fx:id="btnCreaScheda" layoutX="20" layoutY="276"
+            prefWidth="180" prefHeight="40"
+            text="➕ Crea Scheda"
+            onMouseClicked="#showCreaScheda"
+            style="-fx-background-color: #0D1F3C; -fx-text-fill: white; -fx-font-size: 13px; -fx-background-radius: 8; -fx-cursor: hand; -fx-alignment: CENTER_LEFT; -fx-border-color: #1E3A5F; -fx-border-radius: 8;">
+    </Button>
+
+    <Button fx:id="btnAssegnaScheda" layoutX="20" layoutY="324"
+            prefWidth="180" prefHeight="40"
+            text="🎯 Assegna Scheda"
+            onMouseClicked="#showAssegnaScheda"
+            style="-fx-background-color: #0D1F3C; -fx-text-fill: white; -fx-font-size: 13px; -fx-background-radius: 8; -fx-cursor: hand; -fx-alignment: CENTER_LEFT; -fx-border-color: #1E3A5F; -fx-border-radius: 8;">
+    </Button>
+
+    <Button fx:id="btnRimuoviScheda" layoutX="20" layoutY="372"
+            prefWidth="180" prefHeight="40"
+            text="🗑 Rimuovi Assegnazione"
+            onMouseClicked="#showRimuoviScheda"
+            style="-fx-background-color: #0D1F3C; -fx-text-fill: white; -fx-font-size: 13px; -fx-background-radius: 8; -fx-cursor: hand; -fx-alignment: CENTER_LEFT; -fx-border-color: #1E3A5F; -fx-border-radius: 8;">
+    </Button>
+
+    <!-- Logout -->
+    <Button fx:id="btnLogout" layoutX="20" layoutY="440"
+            prefWidth="180" prefHeight="40"
+            text="🚪 Logout"
+            onMouseClicked="#handleLogout"
+            style="-fx-background-color: transparent; -fx-text-fill: #EF5350; -fx-font-size: 13px; -fx-border-color: #EF5350; -fx-border-radius: 8; -fx-background-radius: 8; -fx-cursor: hand;">
+    </Button>
+
+    <!-- AREA CENTRALE -->
+    <ImageView layoutX="430" layoutY="120" fitWidth="220" fitHeight="180" preserveRatio="true">
+        <image>
+            <Image url="@/Images/LogoNuotatore2.png"/>
+        </image>
+    </ImageView>
+
+    <Text text="MySwimCoach" layoutX="430" layoutY="330"
+          fill="white" strokeType="OUTSIDE" strokeWidth="0.0">
+        <font><Font name="System Bold" size="24.0"/></font>
+    </Text>
+    <Text text="Seleziona un'opzione dal menu per iniziare"
+          layoutX="380" layoutY="355" fill="#90A4AE"
+          strokeType="OUTSIDE" strokeWidth="0.0">
+        <font><Font size="13.0"/></font>
+    </Text>
+
+</AnchorPane>

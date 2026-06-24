@@ -1,0 +1,59 @@
+package Pattern;
+import Bean.UtenteLoggatoBean;
+import java.util.ArrayDeque;
+import java.util.Deque;
+public class StateMachineImpl implements StateMachine{
+    private Deque<AbstractState> cronologiaStati;
+    private AbstractState currentState;
+    private UtenteLoggatoBean utenteloggatobean;
+
+    public StateMachineImpl(){
+        this.cronologiaStati = new ArrayDeque<>();
+        this.currentState = new InitialState();
+    }
+
+    public void start(){
+        this.currentState = new InitialState();
+        goNext();
+    }
+    public void goNext(){
+        if(currentState!=null){
+            this.currentState.action(this);
+        }
+
+    }
+    public void goBack(){
+        if(currentState!=null){
+            this.currentState.exit(this);
+            this.currentState=cronologiaStati.pop();
+            this.currentState.entry(this);
+        }
+    }
+    public void transition(AbstractState nextState) {
+        if (currentState != null) {
+            currentState.exit(this);
+            cronologiaStati.push(currentState);
+        }
+        currentState = nextState;
+        currentState.entry(this);
+    }
+
+
+
+    public UtenteLoggatoBean getUtenteloggatobean() {
+        return utenteloggatobean;
+    }
+    public void setUtenteloggatobean(UtenteLoggatoBean utenteloggatobean) {
+        this.utenteloggatobean = utenteloggatobean;
+    }
+
+
+    public AbstractState getState(){
+        return currentState;
+    }
+
+    public void setState(){
+        this.currentState = null;
+    }
+
+}

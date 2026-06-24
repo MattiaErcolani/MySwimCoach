@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="800.0"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Gui.RegistrazioneUtenteGui"
+            style="-fx-background-color: #0A1628;">
+
+    <!-- PANNELLO SINISTRO -->
+    <Rectangle layoutX="0" layoutY="0" width="320" height="500" fill="#0A1628"/>
+
+    <Text text="MySwimCoach" layoutX="60" layoutY="200"
+          fill="white" strokeType="OUTSIDE" strokeWidth="0.0">
+        <font><Font name="System Bold" size="24.0"/></font>
+    </Text>
+    <Text text="Il tuo allenatore di nuoto personale"
+          layoutX="55" layoutY="225" fill="#90A4AE"
+          strokeType="OUTSIDE" strokeWidth="0.0">
+        <font><Font size="12.0"/></font>
+    </Text>
+
+    <ImageView layoutX="48" layoutY="243" fitWidth="200" fitHeight="160" preserveRatio="true">
+        <image>
+            <Image url="@/Images/LogoNuotatore2.png"/>
+        </image>
+    </ImageView>
+
+    <!-- SEPARATORE -->
+    <Line startX="0" startY="0" endX="0" endY="500"
+          layoutX="320" stroke="#1E3A5F"/>
+
+    <!-- PANNELLO DESTRO -->
+    <Rectangle layoutX="320" layoutY="0" width="480" height="500" fill="#0D1F3C"/>
+
+    <!-- Titolo -->
+    <Text text="Registrazione Utente" layoutX="370" layoutY="55"
+          fill="white" strokeType="OUTSIDE" strokeWidth="0.0">
+        <font><Font name="System Bold" size="22.0"/></font>
+    </Text>
+    <Text text="Inserisci i tuoi dati per iniziare"
+          layoutX="370" layoutY="76" fill="#90A4AE"
+          strokeType="OUTSIDE" strokeWidth="0.0">
+        <font><Font size="12.0"/></font>
+    </Text>
+
+    <!-- Nome -->
+    <Text text="NOME" layoutX="370" layoutY="105"
+          fill="#90A4AE" strokeType="OUTSIDE" strokeWidth="0.0">
+        <font><Font size="11.0"/></font>
+    </Text>
+    <TextField fx:id="nomeField" layoutX="370" layoutY="111"
+               prefWidth="170" prefHeight="36"
+               promptText="Mario"
+               style="-fx-background-color: #0A1628; -fx-text-fill: white; -fx-prompt-text-fill: #455A75; -fx-border-color: #1E3A5F; -fx-border-radius: 8; -fx-background-radius: 8;"/>
+
+    <!-- Cognome -->
+    <Text text="COGNOME" layoutX="555" layoutY="105"
+          fill="#90A4AE" strokeType="OUTSIDE" strokeWidth="0.0">
+        <font><Font size="11.0"/></font>
+    </Text>
+    <TextField fx:id="cognomeField" layoutX="555" layoutY="111"
+               prefWidth="170" prefHeight="36"
+               promptText="Rossi"
+               style="-fx-background-color: #0A1628; -fx-text-fill: white; -fx-prompt-text-fill: #455A75; -fx-border-color: #1E3A5F; -fx-border-radius: 8; -fx-background-radius: 8;"/>
+
+    <!-- Email -->
+    <Text text="EMAIL" layoutX="370" layoutY="165"
+          fill="#90A4AE" strokeType="OUTSIDE" strokeWidth="0.0">
+        <font><Font size="11.0"/></font>
+    </Text>
+    <TextField fx:id="emailField" layoutX="370" layoutY="171"
+               prefWidth="360" prefHeight="36"
+               promptText="nome@email.com"
+               style="-fx-background-color: #0A1628; -fx-text-fill: white; -fx-prompt-text-fill: #455A75; -fx-border-color: #1E3A5F; -fx-border-radius: 8; -fx-background-radius: 8;"/>
+
+    <!-- Password -->
+    <Text text="PASSWORD" layoutX="370" layoutY="225"
+          fill="#90A4AE" strokeType="OUTSIDE" strokeWidth="0.0">
+        <font><Font size="11.0"/></font>
+    </Text>
+    <PasswordField fx:id="passwordField" layoutX="370" layoutY="231"
+                   prefWidth="170" prefHeight="36"
+                   promptText="••••••••"
+                   style="-fx-background-color: #0A1628; -fx-text-fill: white; -fx-prompt-text-fill: #455A75; -fx-border-color: #1E3A5F; -fx-border-radius: 8; -fx-background-radius: 8;"/>
+
+    <!-- Età -->
+    <Text text="ETÀ" layoutX="555" layoutY="225"
+          fill="#90A4AE" strokeType="OUTSIDE" strokeWidth="0.0">
+        <font><Font size="11.0"/></font>
+    </Text>
+    <TextField fx:id="ageField" layoutX="555" layoutY="231"
+               prefWidth="170" prefHeight="36"
+               promptText="25"
+               style="-fx-background-color: #0A1628; -fx-text-fill: white; -fx-prompt-text-fill: #455A75; -fx-border-color: #1E3A5F; -fx-border-radius: 8; -fx-background-radius: 8;"/>
+
+    <!-- Livello -->
+    <Text text="LIVELLO" layoutX="370" layoutY="285"
+          fill="#90A4AE" strokeType="OUTSIDE" strokeWidth="0.0">
+        <font><Font size="11.0"/></font>
+    </Text>
+    <ChoiceBox fx:id="livelloChoice" layoutX="370" layoutY="291"
+               prefWidth="360" prefHeight="36"
+               style="-fx-background-color: #0A1628; -fx-text-fill: white; -fx-border-color: #1E3A5F; -fx-border-radius: 8; -fx-background-radius: 8;"/>
+
+    <!-- Messaggio errore -->
+    <Label fx:id="errorLabel" layoutX="370" layoutY="345"
+           prefWidth="360" text=""
+           style="-fx-text-fill: #EF5350; -fx-font-size: 12px;"/>
+
+    <!-- Bottone Registrati -->
+    <Button fx:id="registratiButton" layoutX="370" layoutY="370"
+            prefWidth="360" prefHeight="42"
+            text="Registrati →"
+            onMouseClicked="#handleRegistrazione"
+            style="-fx-background-color: #1565C0; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 8; -fx-cursor: hand;">
+        <font><Font size="14.0"/></font>
+    </Button>
+
+    <!-- Link torna indietro -->
+    <Text text="Hai già un account?" layoutX="390" layoutY="435"
+          fill="#90A4AE" strokeType="OUTSIDE" strokeWidth="0.0">
+        <font><Font size="12.0"/></font>
+    </Text>
+    <Hyperlink fx:id="loginLink" layoutX="520" layoutY="421"
+               text="Accedi"
+               onMouseClicked="#goToLogin"
+               style="-fx-text-fill: #64B5F6; -fx-border-color: transparent; -fx-font-size: 12px;"/>
+
+</AnchorPane>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="800.0"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Gui.RimuoviSchedaGui"
+            style="-fx-background-color: #0A1628;">
+
+    <!-- PANNELLO SINISTRO -->
+    <Rectangle layoutX="0" layoutY="0" width="320" height="500" fill="#0A1628"/>
+
+    <Text text="MySwimCoach" layoutX="60" layoutY="200"
+          fill="white" strokeType="OUTSIDE" strokeWidth="0.0">
+        <font><Font name="System Bold" size="24.0"/></font>
+    </Text>
+    <Text text="Il tuo allenatore di nuoto personale"
+          layoutX="55" layoutY="225" fill="#90A4AE"
+          strokeType="OUTSIDE" strokeWidth="0.0">
+        <font><Font size="12.0"/></font>
+    </Text>
+
+    <ImageView layoutX="60" layoutY="235" fitWidth="200" fitHeight="160" preserveRatio="true">
+        <image>
+            <Image url="@/Images/LogoNuotatore2.png"/>
+        </image>
+    </ImageView>
+
+    <!-- SEPARATORE -->
+    <Line startX="0" startY="0" endX="0" endY="500"
+          layoutX="320" stroke="#1E3A5F"/>
+
+    <!-- PANNELLO DESTRO -->
+    <Rectangle layoutX="320" layoutY="0" width="480" height="500" fill="#0D1F3C"/>
+
+    <!-- Bottone torna indietro -->
+    <Button fx:id="btnTornaMenu" layoutX="370" layoutY="20"
+            prefWidth="100" prefHeight="32"
+            text="← Menu"
+            onMouseClicked="#tornaMenu"
+            style="-fx-background-color: transparent; -fx-text-fill: #64B5F6; -fx-font-size: 12px; -fx-border-color: #1E3A5F; -fx-border-radius: 6; -fx-background-radius: 6; -fx-cursor: hand;"/>
+
+    <!-- Titolo -->
+    <Text text="Rimuovi Assegnazione" layoutX="370" layoutY="80"
+          fill="white" strokeType="OUTSIDE" strokeWidth="0.0">
+        <font><Font name="System Bold" size="22.0"/></font>
+    </Text>
+
+    <ScrollPane layoutX="370" layoutY="100"
+                prefWidth="400" prefHeight="370"
+                style="-fx-background: #0D1F3C; -fx-background-color: transparent; -fx-border-color: transparent;">
+        <content>
+            <VBox fx:id="contentBox" spacing="10" style="-fx-padding: 5;"/>
+        </content>
+    </ScrollPane>
+
+</AnchorPane>

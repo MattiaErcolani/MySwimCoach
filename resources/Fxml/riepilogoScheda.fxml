@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="800.0"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Gui.RiepilogoSchedaGui"
+            style="-fx-background-color: #0A1628;">
+
+    <!-- PANNELLO SINISTRO -->
+    <Rectangle layoutX="0" layoutY="0" width="320" height="500" fill="#0A1628"/>
+
+    <Text text="MySwimCoach" layoutX="60" layoutY="200"
+          fill="white" strokeType="OUTSIDE" strokeWidth="0.0">
+        <font><Font name="System Bold" size="24.0"/></font>
+    </Text>
+    <Text text="Il tuo allenatore di nuoto personale"
+          layoutX="55" layoutY="225" fill="#90A4AE"
+          strokeType="OUTSIDE" strokeWidth="0.0">
+        <font><Font size="12.0"/></font>
+    </Text>
+
+    <ImageView layoutX="60" layoutY="235" fitWidth="200" fitHeight="160" preserveRatio="true">
+        <image>
+            <Image url="@/Images/LogoNuotatore2.png"/>
+        </image>
+    </ImageView>
+
+    <!-- SEPARATORE -->
+    <Line startX="0" startY="0" endX="0" endY="500"
+          layoutX="320" stroke="#1E3A5F"/>
+
+    <!-- PANNELLO DESTRO -->
+    <Rectangle layoutX="320" layoutY="0" width="480" height="500" fill="#0D1F3C"/>
+
+    <!-- Bottone torna indietro -->
+    <Button fx:id="btnTornaSchede" layoutX="370" layoutY="20"
+            prefWidth="140" prefHeight="32"
+            text="← Torna alle schede"
+            onMouseClicked="#tornaSchede"
+            style="-fx-background-color: transparent; -fx-text-fill: #64B5F6; -fx-font-size: 12px; -fx-border-color: #1E3A5F; -fx-border-radius: 6; -fx-background-radius: 6; -fx-cursor: hand;"/>
+
+    <!-- Bottone modifica -->
+    <Button fx:id="btnModifica" layoutX="520" layoutY="20"
+            prefWidth="100" prefHeight="32"
+            text="✏ Modifica"
+            onMouseClicked="#attivaModifica"
+            style="-fx-background-color: transparent; -fx-text-fill: #64B5F6; -fx-font-size: 12px; -fx-border-color: #1E3A5F; -fx-border-radius: 6; -fx-background-radius: 6; -fx-cursor: hand;"/>
+
+    <!-- Bottone elimina -->
+    <Button fx:id="btnElimina" layoutX="630" layoutY="20"
+            prefWidth="100" prefHeight="32"
+            text="🗑 Elimina"
+            onMouseClicked="#eliminaScheda"
+            style="-fx-background-color: transparent; -fx-text-fill: #EF5350; -fx-font-size: 12px; -fx-border-color: #EF5350; -fx-border-radius: 6; -fx-background-radius: 6; -fx-cursor: hand;"/>
+
+    <!-- Titolo -->
+    <Text fx:id="titoloScheda" text="Riepilogo Scheda" layoutX="370" layoutY="80"
+          fill="white" strokeType="OUTSIDE" strokeWidth="0.0">
+        <font><Font name="System Bold" size="22.0"/></font>
+    </Text>
+
+    <!-- Info scheda (modalità visualizzazione) -->
+    <Text fx:id="livelloText" text="" layoutX="370" layoutY="105"
+          fill="#90A4AE" strokeType="OUTSIDE" strokeWidth="0.0">
+        <font><Font size="12.0"/></font>
+    </Text>
+
+    <Text fx:id="durataText" text="" layoutX="370" layoutY="122"
+          fill="#90A4AE" strokeType="OUTSIDE" strokeWidth="0.0">
+        <font><Font size="12.0"/></font>
+    </Text>
+
+    <!-- Campi editabili (inizialmente invisibili) -->
+    <VBox fx:id="editBox" layoutX="370" layoutY="105" spacing="8" visible="false" managed="false">
+        <HBox spacing="10">
+            <VBox spacing="2">
+                <Text text="LIVELLO" fill="#90A4AE" strokeType="OUTSIDE" strokeWidth="0.0">
+                    <font><Font size="10.0"/></font>
+                </Text>
+                <ChoiceBox fx:id="livelloEditChoice" prefWidth="120" prefHeight="32"
+                           style="-fx-background-color: #0A1628; -fx-text-fill: white; -fx-border-color: #1E3A5F; -fx-border-radius: 8; -fx-background-radius: 8;"/>
+            </VBox>
+            <VBox spacing="2">
+                <Text text="DURATA" fill="#90A4AE" strokeType="OUTSIDE" strokeWidth="0.0">
+                    <font><Font size="10.0"/></font>
+                </Text>
+                <TextField fx:id="durataEditField" prefWidth="120" prefHeight="32"
+                           style="-fx-background-color: #0A1628; -fx-text-fill: white; -fx-border-color: #1E3A5F; -fx-border-radius: 8; -fx-background-radius: 8;"/>
+            </VBox>
+            <VBox spacing="2">
+                <Text text="DISTANZA" fill="#90A4AE" strokeType="OUTSIDE" strokeWidth="0.0">
+                    <font><Font size="10.0"/></font>
+                </Text>
+                <TextField fx:id="distanzaEditField" prefWidth="120" prefHeight="32"
+                           style="-fx-background-color: #0A1628; -fx-text-fill: white; -fx-border-color: #1E3A5F; -fx-border-radius: 8; -fx-background-radius: 8;"/>
+            </VBox>
+        </HBox>
+        <Button fx:id="btnSalvaModifiche" prefWidth="120" prefHeight="32"
+                text="💾 Salva"
+                onMouseClicked="#salvaModifiche"
+                style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 12px; -fx-background-radius: 8; -fx-cursor: hand;"/>
+    </VBox>
+
+    <!-- Lista esercizi -->
+    <Text text="Esercizi" layoutX="370" layoutY="215"
+          fill="white" strokeType="OUTSIDE" strokeWidth="0.0">
+        <font><Font name="System Bold" size="16.0"/></font>
+    </Text>
+
+    <ScrollPane layoutX="370" layoutY="225"
+                prefWidth="400" prefHeight="210"
+                style="-fx-background: #0D1F3C; -fx-background-color: transparent; -fx-border-color: transparent;">
+        <content>
+            <VBox fx:id="eserciziBox" spacing="10" style="-fx-padding: 5;"/>
+        </content>
+    </ScrollPane>
+
+    <!-- Aggiungi esercizio -->
+    <Button fx:id="btnAggiungiEsercizio" layoutX="370" layoutY="445"
+            prefWidth="200" prefHeight="36"
+            text="+ Aggiungi Esercizio"
+            onMouseClicked="#aggiungiEsercizio"
+            style="-fx-background-color: #1565C0; -fx-text-fill: white; -fx-font-size: 13px; -fx-background-radius: 8; -fx-cursor: hand;"/>
+
+    <Label fx:id="statusEsercizio" layoutX="370" layoutY="478" text="" style="-fx-font-size: 11px;"/>
+
+</AnchorPane>
