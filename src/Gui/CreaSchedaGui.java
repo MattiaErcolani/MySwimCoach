@@ -1,7 +1,7 @@
 package Gui;
 
 import bean.UtenteLoggatoBean;
-import Controller.SchedaNuotoController;
+import controller.SchedaNuotoController;
 import Model.EsercizioModel;
 import Model.SchedaNuotoModel;
 import javafx.fxml.FXML;

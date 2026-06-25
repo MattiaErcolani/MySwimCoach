@@ -2,7 +2,7 @@ package Gui;
 
 import bean.RichiestaSchedaNuotoBean;
 import bean.UtenteLoggatoBean;
-import Controller.RichiestaSchedaNuotoController;
+import controller.RichiestaSchedaNuotoController;
 import Dao.UserDao;
 import Model.UtenteLoggatoModel;
 import Other.FactoryDao;

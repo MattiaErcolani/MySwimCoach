@@ -2,7 +2,7 @@ package Gui;
 
 import bean.CredenzialiBean;
 import bean.UtenteLoggatoBean;
-import Controller.RegistrazioneController;
+import controller.RegistrazioneController;
 import Exceptions.EmailGiaInUsoException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

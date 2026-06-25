@@ -1,4 +1,4 @@
-package Controller;
+package controller;
 import Dao.UserDao;
 import Model.CredenzialiModel;
 import Model.UtenteLoggatoModel;

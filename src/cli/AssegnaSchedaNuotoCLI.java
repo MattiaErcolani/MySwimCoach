@@ -1,15 +1,15 @@
 package cli;
 
 import bean.UtenteLoggatoBean;
-import Controller.SchedaNuotoAssegnataController;
-import Controller.SchedaNuotoController;
+import controller.SchedaNuotoAssegnataController;
+import controller.SchedaNuotoController;
 import Model.SchedaNuotoAssegnataModel;
 import Model.SchedaNuotoModel;
 import Other.Stampa;
 import Pattern.AbstractState;
 import Pattern.StateMachineImpl;
 import bean.RichiestaSchedaNuotoBean;
-import Controller.RichiestaSchedaNuotoController;
+import controller.RichiestaSchedaNuotoController;
 import java.util.List;
 import java.util.Scanner;
 import Dao.UserDao;

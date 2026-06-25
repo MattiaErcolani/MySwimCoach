@@ -1,7 +1,7 @@
 package cli;
 
 import bean.UtenteLoggatoBean;
-import Controller.SchedaNuotoAssegnataController;
+import controller.SchedaNuotoAssegnataController;
 import Model.SchedaNuotoAssegnataModel;
 import Other.Stampa;
 import Pattern.AbstractState;

@@ -1,4 +1,4 @@
-package Controller;
+package controller;
 
 import bean.RichiestaSchedaNuotoBean;
 import Dao.RichiestaSchedaNuotoDao;

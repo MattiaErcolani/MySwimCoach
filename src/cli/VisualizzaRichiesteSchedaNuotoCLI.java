@@ -4,7 +4,7 @@ import java.util.List;
 
 import bean.RichiestaSchedaNuotoBean;
 import bean.UtenteLoggatoBean;
-import Controller.RichiestaSchedaNuotoController;
+import controller.RichiestaSchedaNuotoController;
 import Other.Stampa;
 import Other.StatoRichiestaScheda;
 import Pattern.AbstractState;

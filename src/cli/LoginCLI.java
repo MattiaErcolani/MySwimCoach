@@ -2,7 +2,7 @@ package cli;
 
 import bean.CredenzialiBean;
 import bean.UtenteLoggatoBean;
-import Controller.LoginController;
+import controller.LoginController;
 import Exceptions.CredenzialiSbagliateException;
 import Exceptions.UtenteNonPresenteException;
 import Pattern.AbstractState;

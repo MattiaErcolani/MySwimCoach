@@ -1,4 +1,4 @@
-package Controller;
+package controller;
 
 import Dao.UserDao;
 import bean.UtenteLoggatoBean;

@@ -2,9 +2,9 @@ package Gui;
 
 import bean.RichiestaSchedaNuotoBean;
 import bean.UtenteLoggatoBean;
-import Controller.RichiestaSchedaNuotoController;
-import Controller.SchedaNuotoAssegnataController;
-import Controller.SchedaNuotoController;
+import controller.RichiestaSchedaNuotoController;
+import controller.SchedaNuotoAssegnataController;
+import controller.SchedaNuotoController;
 import Dao.UserDao;
 import Model.SchedaNuotoAssegnataModel;
 import Model.SchedaNuotoModel;

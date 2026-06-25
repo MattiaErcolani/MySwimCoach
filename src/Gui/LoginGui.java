@@ -30,7 +30,7 @@ public class LoginGui {
 
         try {
             CredenzialiBean credenziali = new CredenzialiBean(email, password);
-            Controller.LoginController loginController = new Controller.LoginController();
+            controller.LoginController loginController = new controller.LoginController();
             UtenteLoggatoBean utente = loginController.login(credenziali);
 
             if (utente != null) {
