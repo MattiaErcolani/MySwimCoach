@@ -1,4 +1,4 @@
-package CLI;
+package cli;
 
 import bean.CredenzialiBean;
 import bean.UtenteLoggatoBean;

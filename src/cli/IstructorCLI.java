@@ -1,4 +1,4 @@
-package CLI;
+package cli;
 
 import bean.UtenteLoggatoBean;
 import Other.Stampa;
@@ -9,11 +9,11 @@ import Pattern.StateMachineImpl;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class UserCLI extends AbstractState {
+public class IstructorCLI extends AbstractState {
 
     protected UtenteLoggatoBean user;
 
-    public UserCLI(UtenteLoggatoBean user){
+    public IstructorCLI(UtenteLoggatoBean user) {
         this.user = user;
     }
 
@@ -29,7 +29,7 @@ public class UserCLI extends AbstractState {
         Scanner scan = new Scanner(System.in);
         int choice;
 
-        while(true) {
+        while(true){
             try{
                 choice = scan.nextInt();
 
@@ -37,18 +37,18 @@ public class UserCLI extends AbstractState {
                     case 0:
                         goNext(context, new InitialState()); // Logout
                         return;
-                    case 3:
-                        goNext(context, new SchedeUtenteMenuCLI(user)); // nuovo menu schede
+                    case 1:
+                        goNext(context, new SchedeIstruttoreMenuCLI(user)); // CLI intermedia per le schede
                         return;
                     default:
-                        Stampa.errorPrint("Input invalido. Scegliere un'opzione tra quelle disponibili: ");
+                        Stampa.errorPrint("Input invalido. Scegliere un'opzione valida.");
                         mostraSchermata();
                         break;
                 }
 
             } catch (InputMismatchException e){
-                Stampa.errorPrint("Input non valido. Per favore, inserisci un numero intero: ");
-                scan.nextLine(); // Pulisce il buffer
+                Stampa.errorPrint("Input non valido. Inserisci un numero intero.");
+                scan.nextLine(); // pulisce il buffer
                 mostraSchermata();
             }
         }
@@ -56,7 +56,7 @@ public class UserCLI extends AbstractState {
 
     @Override
     public void mostraSchermata(){
-        Stampa.println("   3. Gestione Schede Nuoto");
+        Stampa.println("   1. Gestione Schede");
         Stampa.println("   0. Logout");
         Stampa.print("Opzione scelta: ");
     }
@@ -64,7 +64,7 @@ public class UserCLI extends AbstractState {
     @Override
     public void stampaBenvenuto(){
         Stampa.println(" ");
-        Stampa.printlnBlu("-------------- HOME STUDENTE - SWIMAPP --------------");
-        Stampa.println("Ciao " + this.user.getNome() + ", scegli un'opzione:");
+        Stampa.printlnBlu("-------------- HOME ISTRUTTORE - MySwimCoach --------------");
+        Stampa.println("Bentornato Coach " + this.user.getNome() + "!");
     }
 }

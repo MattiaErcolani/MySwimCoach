@@ -1,7 +1,7 @@
 package Pattern;
 import Other.Stampa;
-import CLI.LoginCLI;
-import CLI.RegistrazioneCLI;
+import cli.LoginCLI;
+import cli.RegistrazioneCLI;
 
 import java.util.Scanner;
 
