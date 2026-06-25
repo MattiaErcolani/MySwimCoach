@@ -1,6 +1,6 @@
 package InMemory;
 
-import Dao.SchedaNuotoDao;
+import dao.SchedaNuotoDao;
 import Model.SchedaNuotoModel;
 import Model.EsercizioModel;
 import java.util.ArrayList;

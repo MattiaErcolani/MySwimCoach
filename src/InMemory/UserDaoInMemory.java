@@ -1,5 +1,5 @@
 package InMemory;
-import Dao.UserDao;
+import dao.UserDao;
 import Exceptions.CredenzialiSbagliateException;
 import Exceptions.EmailGiaInUsoException;
 import Exceptions.UtenteNonPresenteException;
@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class UserDaoInMemory implements UserDao {
 

@@ -1,6 +1,6 @@
 package controller;
 
-import Dao.SchedaNuotoAssegnataDao;
+import dao.SchedaNuotoAssegnataDao;
 import Model.SchedaNuotoAssegnataModel;
 import Other.FactoryDao;
 

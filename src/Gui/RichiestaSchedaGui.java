@@ -3,7 +3,7 @@ package Gui;
 import bean.RichiestaSchedaNuotoBean;
 import bean.UtenteLoggatoBean;
 import controller.RichiestaSchedaNuotoController;
-import Dao.UserDao;
+import dao.UserDao;
 import Model.UtenteLoggatoModel;
 import Other.FactoryDao;
 import Other.StatoRichiestaScheda;

@@ -1,6 +1,6 @@
 package controller;
 
-import Dao.UserDao;
+import dao.UserDao;
 import bean.UtenteLoggatoBean;
 import bean.CredenzialiBean;
 import Model.UtenteLoggatoModel;

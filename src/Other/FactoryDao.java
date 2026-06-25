@@ -1,6 +1,6 @@
 package Other;
 
-import Dao.*;
+import dao.*;
 import InMemory.*;
 
 public class FactoryDao {

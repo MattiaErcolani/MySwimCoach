@@ -1,6 +1,6 @@
 package InMemory;
 
-import Dao.RichiestaSchedaNuotoDao;
+import dao.RichiestaSchedaNuotoDao;
 import Model.RichiestaSchedaNuotoModel;
 import Other.StatoRichiestaScheda;
 

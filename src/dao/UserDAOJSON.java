@@ -1,4 +1,4 @@
-package Dao;
+package dao;
 import Exceptions.EmailGiaInUsoException;
 import Exceptions.UtenteNonPresenteException;
 import Exceptions.CredenzialiSbagliateException;
@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class UserDAOJSON implements UserDao {
     private static final String FILE_PATH = System.getProperty("user.home") + "/MySwimCoach_users.txt";

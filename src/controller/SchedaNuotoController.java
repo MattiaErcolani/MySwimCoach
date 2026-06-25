@@ -1,6 +1,6 @@
 package controller;
 
-import Dao.SchedaNuotoDao;
+import dao.SchedaNuotoDao;
 import Model.SchedaNuotoModel;
 import Model.EsercizioModel;
 import Other.FactoryDao;

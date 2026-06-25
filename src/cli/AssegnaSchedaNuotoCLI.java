@@ -12,7 +12,7 @@ import bean.RichiestaSchedaNuotoBean;
 import controller.RichiestaSchedaNuotoController;
 import java.util.List;
 import java.util.Scanner;
-import Dao.UserDao;
+import dao.UserDao;
 import Model.UtenteLoggatoModel;
 import Other.FactoryDao;
 

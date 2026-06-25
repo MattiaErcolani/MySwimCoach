@@ -5,7 +5,7 @@ import bean.UtenteLoggatoBean;
 import controller.RichiestaSchedaNuotoController;
 import controller.SchedaNuotoAssegnataController;
 import controller.SchedaNuotoController;
-import Dao.UserDao;
+import dao.UserDao;
 import Model.SchedaNuotoAssegnataModel;
 import Model.SchedaNuotoModel;
 import Model.UtenteLoggatoModel;
