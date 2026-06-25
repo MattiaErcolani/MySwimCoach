@@ -1,4 +1,4 @@
-package inMemory;
+package inmemory;
 import dao.UserDao;
 import exceptions.CredenzialiSbagliateException;
 import exceptions.EmailGiaInUsoException;

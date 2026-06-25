@@ -1,4 +1,4 @@
-package inMemory;
+package inmemory;
 
 import dao.SchedaNuotoAssegnataDao;
 import model.SchedaNuotoAssegnataModel;
