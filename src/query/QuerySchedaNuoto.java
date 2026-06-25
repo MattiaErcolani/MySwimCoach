@@ -1,8 +1,8 @@
-package Query;
+package query;
 
-import Model.SchedaNuotoModel;
+import model.SchedaNuotoModel;
 import Other.Stampa;
-import Model.EsercizioModel;
+import model.EsercizioModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;

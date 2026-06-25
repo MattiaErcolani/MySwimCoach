@@ -1,7 +1,6 @@
-package Query;
+package query;
 
-import Model.SchedaNuotoAssegnataModel;
-import Other.Stampa;
+import model.SchedaNuotoAssegnataModel;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

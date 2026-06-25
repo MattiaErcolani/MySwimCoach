@@ -1,6 +1,6 @@
-package Query;
+package query;
 
-import Model.UtenteLoggatoModel;
+import model.UtenteLoggatoModel;
 import Other.Stampa;
 import exceptions.CredenzialiSbagliateException;
 import exceptions.UtenteNonPresenteException;

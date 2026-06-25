@@ -1,6 +1,6 @@
 package dao;
 
-import Model.SchedaNuotoAssegnataModel;
+import model.SchedaNuotoAssegnataModel;
 import Other.Connect;
 import Other.Stampa;
 

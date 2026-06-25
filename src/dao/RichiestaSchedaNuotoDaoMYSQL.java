@@ -1,11 +1,11 @@
 package dao;
 
 import exceptions.UtenteNonPresenteException;
-import Model.RichiestaSchedaNuotoModel;
+import model.RichiestaSchedaNuotoModel;
 import Other.Connect;
 import Other.Stampa;
 import Other.StatoRichiestaScheda;
-import Query.QueryRichiesteSchedaNuoto;
+import query.QueryRichiesteSchedaNuoto;
 
 import java.sql.*;
 import java.util.ArrayList;

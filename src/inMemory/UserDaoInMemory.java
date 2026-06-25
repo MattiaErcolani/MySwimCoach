@@ -1,10 +1,10 @@
-package InMemory;
+package inMemory;
 import dao.UserDao;
 import exceptions.CredenzialiSbagliateException;
 import exceptions.EmailGiaInUsoException;
 import exceptions.UtenteNonPresenteException;
-import Model.CredenzialiModel;
-import Model.UtenteLoggatoModel;
+import model.CredenzialiModel;
+import model.UtenteLoggatoModel;
 import java.util.stream.Collectors;
 import java.util.HashMap;
 import java.util.Map;

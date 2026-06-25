@@ -1,5 +1,5 @@
-package Model;
-import Model.CredenzialiModel;
+package model;
+
 public class UtenteModel extends UtenteLoggatoModel {
     private int age;
     private String info;

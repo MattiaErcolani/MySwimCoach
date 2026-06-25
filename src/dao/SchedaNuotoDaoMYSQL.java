@@ -1,10 +1,10 @@
 package dao;
 
-import Model.SchedaNuotoModel;
+import model.SchedaNuotoModel;
 import Other.Connect;
 import Other.Stampa;
-import Query.QuerySchedaNuoto;
-import Model.EsercizioModel;
+import query.QuerySchedaNuoto;
+import model.EsercizioModel;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

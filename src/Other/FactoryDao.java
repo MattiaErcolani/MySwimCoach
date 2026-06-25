@@ -1,7 +1,7 @@
 package Other;
 
 import dao.*;
-import InMemory.*;
+import inMemory.*;
 
 public class FactoryDao {
 
@@ -41,7 +41,7 @@ public class FactoryDao {
 
     public static SchedaNuotoAssegnataDao getSchedaNuotoAssegnataDao() {
         // Se vuoi InMemory:
-        return new InMemory.SchedaNuotoAssegnataDaoInMemory();
+        return new inMemory.SchedaNuotoAssegnataDaoInMemory();
 
         // Se vuoi MySQL:
         // return new Dao.SchedaNuotoAssegnataDaoMYSQL();

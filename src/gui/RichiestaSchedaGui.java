@@ -4,7 +4,7 @@ import bean.RichiestaSchedaNuotoBean;
 import bean.UtenteLoggatoBean;
 import controller.RichiestaSchedaNuotoController;
 import dao.UserDao;
-import Model.UtenteLoggatoModel;
+import model.UtenteLoggatoModel;
 import Other.FactoryDao;
 import Other.StatoRichiestaScheda;
 import javafx.fxml.FXML;

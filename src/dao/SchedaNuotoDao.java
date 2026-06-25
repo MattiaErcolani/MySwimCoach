@@ -1,7 +1,7 @@
 package dao;
 
-import Model.EsercizioModel;
-import Model.SchedaNuotoModel;
+import model.EsercizioModel;
+import model.SchedaNuotoModel;
 import java.util.List;
 
 public interface SchedaNuotoDao {

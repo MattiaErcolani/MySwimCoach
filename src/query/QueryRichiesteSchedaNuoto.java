@@ -1,6 +1,6 @@
-package Query;
+package query;
 import exceptions.UtenteNonPresenteException;
-import Model.RichiestaSchedaNuotoModel;
+import model.RichiestaSchedaNuotoModel;
 import Other.Stampa;
 import Other.StatoRichiestaScheda;
 

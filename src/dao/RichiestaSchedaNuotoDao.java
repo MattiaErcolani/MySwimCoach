@@ -1,7 +1,7 @@
 package dao;
 
 import exceptions.UtenteNonPresenteException;
-import Model.RichiestaSchedaNuotoModel;
+import model.RichiestaSchedaNuotoModel;
 import Other.StatoRichiestaScheda;
 
 import java.sql.SQLException;

@@ -1,6 +1,5 @@
-package Model;
+package model;
 
-import Model.CredenzialiModel;
 public class UtenteLoggatoModel {
     private CredenzialiModel credenziali;
     private String Nome;

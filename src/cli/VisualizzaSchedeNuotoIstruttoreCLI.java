@@ -2,8 +2,8 @@ package cli;
 
 import bean.UtenteLoggatoBean;
 import controller.SchedaNuotoController;
-import Model.SchedaNuotoModel;
-import Model.EsercizioModel;
+import model.SchedaNuotoModel;
+import model.EsercizioModel;
 import Other.Stampa;
 import Pattern.AbstractState;
 import Pattern.StateMachineImpl;

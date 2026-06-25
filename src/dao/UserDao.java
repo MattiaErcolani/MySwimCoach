@@ -2,8 +2,8 @@ package dao;
 import exceptions.EmailGiaInUsoException;
 import exceptions.UtenteNonPresenteException;
 import exceptions.CredenzialiSbagliateException;
-import Model.UtenteLoggatoModel;
-import Model.CredenzialiModel;
+import model.UtenteLoggatoModel;
+import model.CredenzialiModel;
 import java.util.List;
 
 // uso interfaccia perchè devo solo chiamare i metodi

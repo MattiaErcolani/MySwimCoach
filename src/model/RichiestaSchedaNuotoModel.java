@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 import bean.SchedaNuotoBean;
 import bean.UtenteLoggatoBean;

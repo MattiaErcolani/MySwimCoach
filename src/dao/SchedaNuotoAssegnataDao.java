@@ -1,6 +1,6 @@
 package dao;
 
-import Model.SchedaNuotoAssegnataModel;
+import model.SchedaNuotoAssegnataModel;
 import java.util.List;
 
 public interface SchedaNuotoAssegnataDao {

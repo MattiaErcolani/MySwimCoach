@@ -1,8 +1,8 @@
-package InMemory;
+package inMemory;
 
 import dao.SchedaNuotoDao;
-import Model.SchedaNuotoModel;
-import Model.EsercizioModel;
+import model.SchedaNuotoModel;
+import model.EsercizioModel;
 import java.util.ArrayList;
 import java.util.List;
 

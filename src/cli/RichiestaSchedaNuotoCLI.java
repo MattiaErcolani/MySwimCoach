@@ -8,7 +8,7 @@ import Other.StatoRichiestaScheda;
 import Pattern.AbstractState;
 import Pattern.StateMachineImpl;
 import dao.UserDao;
-import Model.UtenteLoggatoModel;
+import model.UtenteLoggatoModel;
 import Other.FactoryDao;
 import java.util.List;
 import java.time.LocalDate;

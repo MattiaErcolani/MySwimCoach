@@ -3,8 +3,8 @@ package cli;
 import bean.UtenteLoggatoBean;
 import controller.SchedaNuotoAssegnataController;
 import controller.SchedaNuotoController;
-import Model.SchedaNuotoAssegnataModel;
-import Model.SchedaNuotoModel;
+import model.SchedaNuotoAssegnataModel;
+import model.SchedaNuotoModel;
 import Other.Stampa;
 import Pattern.AbstractState;
 import Pattern.StateMachineImpl;
@@ -13,7 +13,7 @@ import controller.RichiestaSchedaNuotoController;
 import java.util.List;
 import java.util.Scanner;
 import dao.UserDao;
-import Model.UtenteLoggatoModel;
+import model.UtenteLoggatoModel;
 import Other.FactoryDao;
 
 public class AssegnaSchedaNuotoCLI extends AbstractState {

@@ -1,6 +1,4 @@
-package Model;
-
-import Model.CredenzialiModel;
+package model;
 
 public class IstruttoreModel extends UtenteLoggatoModel {
     private CredenzialiModel credenziali;

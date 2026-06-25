@@ -1,7 +1,7 @@
-package InMemory;
+package inMemory;
 
 import dao.RichiestaSchedaNuotoDao;
-import Model.RichiestaSchedaNuotoModel;
+import model.RichiestaSchedaNuotoModel;
 import Other.StatoRichiestaScheda;
 
 import java.util.ArrayList;

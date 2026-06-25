@@ -1,8 +1,8 @@
 package controller;
 
 import dao.SchedaNuotoDao;
-import Model.SchedaNuotoModel;
-import Model.EsercizioModel;
+import model.SchedaNuotoModel;
+import model.EsercizioModel;
 import Other.FactoryDao;
 
 import java.util.List;
