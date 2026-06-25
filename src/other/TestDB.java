@@ -1,4 +1,4 @@
-package Other;
+package other;
 
 import java.sql.Connection;
 import java.sql.SQLException;

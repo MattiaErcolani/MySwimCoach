@@ -1,4 +1,4 @@
-package Pattern;
+package pattern;
 import bean.UtenteLoggatoBean;
 import java.util.ArrayDeque;
 import java.util.Deque;

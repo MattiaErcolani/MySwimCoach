@@ -3,9 +3,9 @@ package cli;
 import bean.UtenteLoggatoBean;
 import controller.SchedaNuotoAssegnataController;
 import model.SchedaNuotoAssegnataModel;
-import Other.Stampa;
-import Pattern.AbstractState;
-import Pattern.StateMachineImpl;
+import other.Stampa;
+import pattern.AbstractState;
+import pattern.StateMachineImpl;
 
 import java.util.List;
 import java.util.Scanner;

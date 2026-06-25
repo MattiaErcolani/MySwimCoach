@@ -9,7 +9,7 @@ import dao.UserDao;
 import model.SchedaNuotoAssegnataModel;
 import model.SchedaNuotoModel;
 import model.UtenteLoggatoModel;
-import Other.FactoryDao;
+import other.FactoryDao;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

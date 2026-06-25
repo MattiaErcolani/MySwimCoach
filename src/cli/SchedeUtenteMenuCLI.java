@@ -1,9 +1,9 @@
 package cli;
 
 import bean.UtenteLoggatoBean;
-import Other.Stampa;
-import Pattern.AbstractState;
-import Pattern.StateMachineImpl;
+import other.Stampa;
+import pattern.AbstractState;
+import pattern.StateMachineImpl;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

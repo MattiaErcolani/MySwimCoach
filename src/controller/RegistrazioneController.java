@@ -4,7 +4,7 @@ import model.CredenzialiModel;
 import model.UtenteLoggatoModel;
 import bean.UtenteLoggatoBean;
 import exceptions.EmailGiaInUsoException;
-import Other.FactoryDao;
+import other.FactoryDao;
 
 public class RegistrazioneController {
 

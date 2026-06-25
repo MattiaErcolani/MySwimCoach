@@ -5,9 +5,9 @@ import bean.UtenteLoggatoBean;
 import controller.LoginController;
 import exceptions.CredenzialiSbagliateException;
 import exceptions.UtenteNonPresenteException;
-import Pattern.AbstractState;
-import Pattern.StateMachineImpl;
-import Other.Stampa;
+import pattern.AbstractState;
+import pattern.StateMachineImpl;
+import other.Stampa;
 import java.util.Scanner;
 
 public class LoginCLI extends AbstractState {

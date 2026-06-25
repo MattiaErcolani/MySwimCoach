@@ -1,7 +1,7 @@
 package query;
 
 import model.SchedaNuotoModel;
-import Other.Stampa;
+import other.Stampa;
 import model.EsercizioModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;

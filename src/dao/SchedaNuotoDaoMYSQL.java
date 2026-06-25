@@ -1,8 +1,8 @@
 package dao;
 
 import model.SchedaNuotoModel;
-import Other.Connect;
-import Other.Stampa;
+import other.Connect;
+import other.Stampa;
 import query.QuerySchedaNuoto;
 import model.EsercizioModel;
 import java.sql.*;

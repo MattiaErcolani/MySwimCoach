@@ -4,9 +4,9 @@ import bean.UtenteLoggatoBean;
 import controller.SchedaNuotoController;
 import model.EsercizioModel;
 import model.SchedaNuotoModel;
-import Other.Stampa;
-import Pattern.AbstractState;
-import Pattern.StateMachineImpl;
+import other.Stampa;
+import pattern.AbstractState;
+import pattern.StateMachineImpl;
 
 import java.util.Scanner;
 

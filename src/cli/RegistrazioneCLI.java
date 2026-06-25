@@ -5,9 +5,9 @@ import bean.UtenteLoggatoBean;
 import controller.RegistrazioneController;
 import exceptions.EmailGiaInUsoException;
 import exceptions.EmailNonValidaException;
-import Pattern.AbstractState;
-import Pattern.StateMachineImpl;
-import Other.Stampa;
+import pattern.AbstractState;
+import pattern.StateMachineImpl;
+import other.Stampa;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 

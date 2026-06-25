@@ -2,7 +2,7 @@ package controller;
 
 import dao.SchedaNuotoAssegnataDao;
 import model.SchedaNuotoAssegnataModel;
-import Other.FactoryDao;
+import other.FactoryDao;
 
 import java.util.List;
 
