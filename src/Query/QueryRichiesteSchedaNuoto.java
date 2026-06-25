@@ -1,5 +1,5 @@
 package Query;
-import Exceptions.UtenteNonPresenteException;
+import exceptions.UtenteNonPresenteException;
 import Model.RichiestaSchedaNuotoModel;
 import Other.Stampa;
 import Other.StatoRichiestaScheda;

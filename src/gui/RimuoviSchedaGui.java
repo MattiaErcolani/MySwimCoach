@@ -1,4 +1,4 @@
-package Gui;
+package gui;
 
 import bean.UtenteLoggatoBean;
 import controller.SchedaNuotoAssegnataController;

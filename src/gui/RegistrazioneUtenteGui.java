@@ -1,9 +1,9 @@
-package Gui;
+package gui;
 
 import bean.CredenzialiBean;
 import bean.UtenteLoggatoBean;
 import controller.RegistrazioneController;
-import Exceptions.EmailGiaInUsoException;
+import exceptions.EmailGiaInUsoException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

@@ -9,7 +9,7 @@
 <AnchorPane prefHeight="500.0" prefWidth="800.0"
             xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="Gui.HomeUtenteGui"
+            fx:controller="gui.HomeUtenteGui"
             style="-fx-background-color: #0D1F3C;">
 
     <!-- SIDEBAR -->

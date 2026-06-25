@@ -2,7 +2,7 @@ package controller;
 
 import bean.RichiestaSchedaNuotoBean;
 import dao.RichiestaSchedaNuotoDao;
-import Exceptions.UtenteNonPresenteException;
+import exceptions.UtenteNonPresenteException;
 import Model.RichiestaSchedaNuotoModel;
 import Other.FactoryDao;
 import Other.StatoRichiestaScheda;

@@ -1,4 +1,4 @@
-package Exceptions;
+package exceptions;
 
 public class AggiornamentoStatoFallitoException extends RuntimeException {
     public AggiornamentoStatoFallitoException(String message) {

@@ -6,7 +6,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #0A1628;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.LoginGui">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #0A1628;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LoginGui">
 
     <!-- PANNELLO SINISTRO decorativo -->
     <Rectangle fill="#0A1628" height="500" layoutX="0" layoutY="0" width="320" />

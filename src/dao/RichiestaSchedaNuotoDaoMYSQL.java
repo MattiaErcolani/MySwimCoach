@@ -1,6 +1,6 @@
 package dao;
 
-import Exceptions.UtenteNonPresenteException;
+import exceptions.UtenteNonPresenteException;
 import Model.RichiestaSchedaNuotoModel;
 import Other.Connect;
 import Other.Stampa;

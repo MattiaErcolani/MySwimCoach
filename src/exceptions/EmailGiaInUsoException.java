@@ -1,4 +1,4 @@
-package Exceptions;
+package exceptions;
 
 public class EmailGiaInUsoException extends Exception {
     public EmailGiaInUsoException() {

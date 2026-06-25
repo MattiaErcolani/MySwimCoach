@@ -1,4 +1,4 @@
-package Exceptions;
+package exceptions;
 
 public class RichiestaSchedaNuotoNonTrovataException extends Exception {
     public RichiestaSchedaNuotoNonTrovataException(String message) {

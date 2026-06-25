@@ -3,7 +3,7 @@ import dao.UserDao;
 import Model.CredenzialiModel;
 import Model.UtenteLoggatoModel;
 import bean.UtenteLoggatoBean;
-import Exceptions.EmailGiaInUsoException;
+import exceptions.EmailGiaInUsoException;
 import Other.FactoryDao;
 
 public class RegistrazioneController {

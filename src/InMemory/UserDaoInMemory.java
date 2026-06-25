@@ -1,8 +1,8 @@
 package InMemory;
 import dao.UserDao;
-import Exceptions.CredenzialiSbagliateException;
-import Exceptions.EmailGiaInUsoException;
-import Exceptions.UtenteNonPresenteException;
+import exceptions.CredenzialiSbagliateException;
+import exceptions.EmailGiaInUsoException;
+import exceptions.UtenteNonPresenteException;
 import Model.CredenzialiModel;
 import Model.UtenteLoggatoModel;
 import java.util.stream.Collectors;

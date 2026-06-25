@@ -1,4 +1,4 @@
-package Gui;
+package gui;
 
 import bean.RichiestaSchedaNuotoBean;
 import bean.UtenteLoggatoBean;

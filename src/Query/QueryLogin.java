@@ -1,11 +1,10 @@
 package Query;
 
-import Model.CredenzialiModel;
 import Model.UtenteLoggatoModel;
 import Other.Stampa;
-import Exceptions.CredenzialiSbagliateException;
-import Exceptions.UtenteNonPresenteException;
-import Exceptions.EmailGiaInUsoException;
+import exceptions.CredenzialiSbagliateException;
+import exceptions.UtenteNonPresenteException;
+import exceptions.EmailGiaInUsoException;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

@@ -1,4 +1,4 @@
-package Exceptions;
+package exceptions;
 
 public class CredenzialiSbagliateException extends Exception {
     public CredenzialiSbagliateException(){
