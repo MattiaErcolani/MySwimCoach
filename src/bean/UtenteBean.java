@@ -1,4 +1,4 @@
-package Bean;
+package bean;
 
 public class UtenteBean extends UtenteLoggatoBean {
     private int age;

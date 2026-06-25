@@ -1,7 +1,7 @@
 package Gui;
 
-import Bean.RichiestaSchedaNuotoBean;
-import Bean.UtenteLoggatoBean;
+import bean.RichiestaSchedaNuotoBean;
+import bean.UtenteLoggatoBean;
 import Controller.RichiestaSchedaNuotoController;
 import Controller.SchedaNuotoAssegnataController;
 import Controller.SchedaNuotoController;
@@ -18,7 +18,6 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import Other.Stampa;
 
 import java.util.List;
 

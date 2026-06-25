@@ -1,7 +1,7 @@
 package Gui;
 
-import Bean.CredenzialiBean;
-import Bean.UtenteLoggatoBean;
+import bean.CredenzialiBean;
+import bean.UtenteLoggatoBean;
 import Controller.RegistrazioneController;
 import Exceptions.EmailGiaInUsoException;
 import javafx.fxml.FXML;
@@ -10,7 +10,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import Other.Stampa;
 
 public class RegistrazioneUtenteGui {
 

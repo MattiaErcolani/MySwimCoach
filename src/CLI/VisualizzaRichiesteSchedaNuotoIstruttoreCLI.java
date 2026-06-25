@@ -1,7 +1,7 @@
 package CLI;
 
-import Bean.RichiestaSchedaNuotoBean;
-import Bean.UtenteLoggatoBean;
+import bean.RichiestaSchedaNuotoBean;
+import bean.UtenteLoggatoBean;
 import Controller.RichiestaSchedaNuotoController;
 import Other.Stampa;
 import Pattern.AbstractState;

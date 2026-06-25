@@ -1,6 +1,6 @@
 package CLI;
 
-import Bean.UtenteLoggatoBean;
+import bean.UtenteLoggatoBean;
 import Controller.SchedaNuotoAssegnataController;
 import Model.SchedaNuotoAssegnataModel;
 import Other.Stampa;

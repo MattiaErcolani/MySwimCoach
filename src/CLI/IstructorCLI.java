@@ -1,6 +1,6 @@
 package CLI;
 
-import Bean.UtenteLoggatoBean;
+import bean.UtenteLoggatoBean;
 import Other.Stampa;
 import Pattern.AbstractState;
 import Pattern.InitialState;

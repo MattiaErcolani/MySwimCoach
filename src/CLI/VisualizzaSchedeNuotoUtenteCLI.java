@@ -1,9 +1,8 @@
 package CLI;
 
-import Bean.UtenteLoggatoBean;
+import bean.UtenteLoggatoBean;
 import Controller.SchedaNuotoAssegnataController;
 import Model.SchedaNuotoAssegnataModel;
-import Model.EsercizioModel;
 import Other.Stampa;
 import Pattern.AbstractState;
 import Pattern.StateMachineImpl;

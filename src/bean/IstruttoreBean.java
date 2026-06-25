@@ -1,4 +1,4 @@
-package Bean;
+package bean;
 
 public class IstruttoreBean extends UtenteLoggatoBean {
     // Campi privati come richiesto

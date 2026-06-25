@@ -1,5 +1,5 @@
 package Pattern;
-import Bean.UtenteLoggatoBean;
+import bean.UtenteLoggatoBean;
 import java.util.ArrayDeque;
 import java.util.Deque;
 public class StateMachineImpl implements StateMachine{

@@ -1,8 +1,7 @@
 package Gui;
 
-import Bean.UtenteLoggatoBean;
+import bean.UtenteLoggatoBean;
 import Controller.SchedaNuotoController;
-import Model.EsercizioModel;
 import Model.SchedaNuotoModel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import Other.Stampa;
 
 import java.util.List;
 

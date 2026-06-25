@@ -1,4 +1,4 @@
-package Bean;
+package bean;
 
 public class CredenzialiBean {
     //classe che gestisce le credenziali per il login

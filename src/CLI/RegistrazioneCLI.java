@@ -1,7 +1,7 @@
 package CLI;
 
-import Bean.CredenzialiBean;
-import Bean.UtenteLoggatoBean;
+import bean.CredenzialiBean;
+import bean.UtenteLoggatoBean;
 import Controller.RegistrazioneController;
 import Exceptions.EmailGiaInUsoException;
 import Exceptions.EmailNonValidaException;

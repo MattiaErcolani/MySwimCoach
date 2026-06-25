@@ -1,6 +1,6 @@
 package CLI;
 
-import Bean.UtenteLoggatoBean;
+import bean.UtenteLoggatoBean;
 import Controller.SchedaNuotoAssegnataController;
 import Controller.SchedaNuotoController;
 import Model.SchedaNuotoAssegnataModel;
@@ -8,9 +8,8 @@ import Model.SchedaNuotoModel;
 import Other.Stampa;
 import Pattern.AbstractState;
 import Pattern.StateMachineImpl;
-import Bean.RichiestaSchedaNuotoBean;
+import bean.RichiestaSchedaNuotoBean;
 import Controller.RichiestaSchedaNuotoController;
-import java.util.List;
 import java.util.List;
 import java.util.Scanner;
 import Dao.UserDao;

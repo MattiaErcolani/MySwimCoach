@@ -1,6 +1,6 @@
 package CLI;
 
-import Bean.UtenteLoggatoBean;
+import bean.UtenteLoggatoBean;
 import Controller.SchedaNuotoController;
 import Model.EsercizioModel;
 import Model.SchedaNuotoModel;

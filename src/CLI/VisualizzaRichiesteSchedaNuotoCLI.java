@@ -2,8 +2,8 @@ package CLI;
 
 import java.util.List;
 
-import Bean.RichiestaSchedaNuotoBean;
-import Bean.UtenteLoggatoBean;
+import bean.RichiestaSchedaNuotoBean;
+import bean.UtenteLoggatoBean;
 import Controller.RichiestaSchedaNuotoController;
 import Other.Stampa;
 import Other.StatoRichiestaScheda;

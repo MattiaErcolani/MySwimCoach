@@ -1,12 +1,11 @@
 package Controller;
 
-import Bean.RichiestaSchedaNuotoBean;
+import bean.RichiestaSchedaNuotoBean;
 import Dao.RichiestaSchedaNuotoDao;
 import Exceptions.UtenteNonPresenteException;
 import Model.RichiestaSchedaNuotoModel;
 import Other.FactoryDao;
 import Other.StatoRichiestaScheda;
-import Other.Stampa;
 
 
 import java.sql.SQLException;

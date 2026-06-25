@@ -1,7 +1,7 @@
 package Gui;
 
-import Bean.RichiestaSchedaNuotoBean;
-import Bean.UtenteLoggatoBean;
+import bean.RichiestaSchedaNuotoBean;
+import bean.UtenteLoggatoBean;
 import Controller.RichiestaSchedaNuotoController;
 import Dao.UserDao;
 import Model.UtenteLoggatoModel;
@@ -13,7 +13,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import Other.Stampa;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

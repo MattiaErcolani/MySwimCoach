@@ -1,8 +1,8 @@
 package Controller;
 
 import Dao.UserDao;
-import Bean.UtenteLoggatoBean;
-import Bean.CredenzialiBean;
+import bean.UtenteLoggatoBean;
+import bean.CredenzialiBean;
 import Model.UtenteLoggatoModel;
 import Model.CredenzialiModel;
 import Exceptions.CredenzialiSbagliateException;

@@ -2,10 +2,9 @@ package Controller;
 import Dao.UserDao;
 import Model.CredenzialiModel;
 import Model.UtenteLoggatoModel;
-import Bean.UtenteLoggatoBean;
+import bean.UtenteLoggatoBean;
 import Exceptions.EmailGiaInUsoException;
 import Other.FactoryDao;
-import Other.Stampa;
 
 public class RegistrazioneController {
 
