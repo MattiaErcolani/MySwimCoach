@@ -75,7 +75,7 @@ public class RichiestaSchedaNuotoCLI extends AbstractState {
                 return;
             }
 
-            Stampa.println("👨‍ Seleziona un istruttore:");
+            Stampa.println("Seleziona un istruttore:");
             for (int i = 0; i < istruttori.size(); i++) {
                 UtenteLoggatoModel ist = istruttori.get(i);
                 Stampa.println((i + 1) + ". " + ist.getNome() + " " + ist.getCognome());

@@ -129,7 +129,7 @@ public class AssegnaSchedaNuotoCLI extends AbstractState {
 
     @Override
     public void stampaBenvenuto() {
-        Stampa.printlnBlu("👨 Istruttore: " + istruttore.getNome());
+        Stampa.printlnBlu("Istruttore: " + istruttore.getNome());
         Stampa.println("Seleziona la scheda di nuoto da assegnare a un utente:");
     }
 }

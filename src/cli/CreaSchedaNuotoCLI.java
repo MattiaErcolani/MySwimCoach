@@ -98,6 +98,6 @@ public class CreaSchedaNuotoCLI extends AbstractState {
 
     @Override
     public void stampaBenvenuto() {
-        Stampa.println("👨‍ Istruttore: " + istruttore.getNome());
+        Stampa.println("Istruttore: " + istruttore.getNome());
     }
 }

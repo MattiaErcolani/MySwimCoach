@@ -77,6 +77,6 @@ public class RimuoviSchedaAssegnataCLI extends AbstractState {
 
     @Override
     public void stampaBenvenuto() {
-        Stampa.printlnBlu("👨‍ Istruttore: " + istruttore.getNome());
+        Stampa.printlnBlu("Istruttore: " + istruttore.getNome());
     }
 }
