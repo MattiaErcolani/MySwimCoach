@@ -1,15 +1,16 @@
 package other;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
-
-
-//classe implementa pattern singleton per istanziare connessione con database
+import java.util.logging.Logger;
 
 public class Connect {
+
+    private static final Logger logger = Logger.getLogger(Connect.class.getName());
 
     private String jdbc;
     private String user;
@@ -20,7 +21,6 @@ public class Connect {
 
     private Connect() {}
 
-    /** Singleton */
     public static synchronized Connect getInstance() {
         if (instance == null) {
             instance = new Connect();
@@ -30,34 +30,27 @@ public class Connect {
 
     public synchronized Connection getDBConnection() {
         try {
-            if (this.conn == null|| this.conn.isClosed()) {
+            if (this.conn == null || this.conn.isClosed()) {
                 getInfo();
                 this.conn = DriverManager.getConnection(jdbc, user, password);
-
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             Stampa.errorPrint(String.format("Error in Connect.java %s", e.getMessage()));
-
         }
         return this.conn;
     }
 
-
     private void getInfo() {
-        try(FileInputStream fileInputStream = new FileInputStream(PATH)) {
-
-            // carico dal file properties le informazioni necessarie alla connessione
-            Properties prop = new Properties() ;
+        try (FileInputStream fileInputStream = new FileInputStream(PATH)) {
+            Properties prop = new Properties();
             prop.load(fileInputStream);
 
-            jdbc = prop.getProperty("JDBC_URL") ;
-            user = prop.getProperty("USER") ;
-            password = prop.getProperty("PASSWORD") ;
+            jdbc = prop.getProperty("JDBC_URL");
+            user = prop.getProperty("USER");
+            password = prop.getProperty("PASSWORD");
 
-        } catch (IOException e){
-            e.printStackTrace()
-;
+        } catch (IOException e) {
+            logger.severe(e.getMessage());
         }
     }
-
 }
