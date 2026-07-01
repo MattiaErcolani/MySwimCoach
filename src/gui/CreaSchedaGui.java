@@ -15,8 +15,11 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class CreaSchedaGui {
+
+    private static final Logger logger = Logger.getLogger(CreaSchedaGui.class.getName());
 
     @FXML private TextField idSchedaField;
     @FXML private ChoiceBox<String> livelloSchedaChoice;
@@ -131,8 +134,7 @@ public class CreaSchedaGui {
             stage.setScene(new Scene(root));
             stage.show();
         } catch (Exception e) {
-            e.printStackTrace()
-;
+            logger.severe(e.getMessage());
         }
     }
 }
