@@ -13,8 +13,11 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 public class VisualizzaSchedeUtenteGui {
+
+    private static final Logger logger = Logger.getLogger(VisualizzaSchedeUtenteGui.class.getName());
 
     @FXML private VBox contentBox;
     @FXML private Button btnTornaMenu;
@@ -69,8 +72,7 @@ public class VisualizzaSchedeUtenteGui {
             stage.setScene(new Scene(root));
             stage.show();
         } catch (Exception e) {
-            e.printStackTrace()
-;
+            logger.severe(e.getMessage());
         }
     }
 }

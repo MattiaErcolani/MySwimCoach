@@ -11,8 +11,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+import java.util.logging.Logger;
 
 public class RegistrazioneIstruttoreGui {
+
+    private static final Logger logger = Logger.getLogger(RegistrazioneIstruttoreGui.class.getName());
 
     @FXML private TextField nomeField;
     @FXML private TextField cognomeField;
@@ -77,8 +80,7 @@ public class RegistrazioneIstruttoreGui {
             stage.show();
 
         } catch (Exception e) {
-            e.printStackTrace()
-;
+            logger.severe(e.getMessage());
         }
     }
 }

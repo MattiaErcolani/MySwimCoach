@@ -14,8 +14,11 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 public class VisualizzaRichiesteUtenteGui {
+
+    private static final Logger logger = Logger.getLogger(VisualizzaRichiesteUtenteGui.class.getName());
 
     @FXML private VBox contentBox;
     @FXML private Button btnTornaMenu;
@@ -97,8 +100,7 @@ public class VisualizzaRichiesteUtenteGui {
             stage.setScene(new Scene(root));
             stage.show();
         } catch (Exception e) {
-            e.printStackTrace()
-;
+            logger.severe(e.getMessage());
         }
     }
 }

@@ -18,8 +18,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.logging.Logger;
 
 public class RichiestaSchedaGui {
+
+    private static final Logger logger = Logger.getLogger(RichiestaSchedaGui.class.getName());
 
     @FXML private ChoiceBox<String> istruttoreChoice;
     @FXML private ChoiceBox<String> livelloChoice;
@@ -105,8 +108,7 @@ public class RichiestaSchedaGui {
             stage.setScene(new Scene(root));
             stage.show();
         } catch (Exception e) {
-            e.printStackTrace()
-;
+            logger.severe(e.getMessage());
         }
     }
 }

@@ -13,8 +13,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.util.logging.Logger;
 
 public class RiepilogoSchedaGui {
+
+    private static final Logger logger = Logger.getLogger(RiepilogoSchedaGui.class.getName());
 
     @FXML private Button btnAggiungiEsercizio;
     @FXML private Label statusEsercizio;
@@ -185,8 +188,7 @@ public class RiepilogoSchedaGui {
             stage.setScene(new Scene(root));
             stage.show();
         } catch (Exception e) {
-            e.printStackTrace()
-;
+            logger.severe(e.getMessage());
         }
     }
 }
