@@ -9,8 +9,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+import java.util.logging.Logger;
 
 public class LoginGui {
+
+    private static final Logger logger = Logger.getLogger(LoginGui.class.getName());
 
     @FXML private TextField emailField;
     @FXML private PasswordField passwordField;
@@ -67,8 +70,7 @@ public class LoginGui {
             stage.show();
 
         } catch (Exception e) {
-            e.printStackTrace()
-;
+            logger.severe(e.getMessage());
             errorLabel.setText("Errore nel caricamento: " + e.getMessage());
         }
     }
@@ -86,8 +88,7 @@ public class LoginGui {
             stage.show();
 
         } catch (Exception e) {
-            e.printStackTrace()
-;
+            logger.severe(e.getMessage());
             errorLabel.setText("Errore nel caricamento: " + e.getMessage());
         }
     }
@@ -105,10 +106,8 @@ public class LoginGui {
             stage.show();
 
         } catch (Exception e) {
-            e.printStackTrace()
-;
+            logger.severe(e.getMessage());
             errorLabel.setText("Errore nel caricamento: " + e.getMessage());
         }
     }
-
 }

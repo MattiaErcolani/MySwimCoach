@@ -8,8 +8,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.stage.Stage;
 
+import java.util.logging.Logger;
 
 public class RegistrazioneGui {
+
+    private static final Logger logger = Logger.getLogger(RegistrazioneGui.class.getName());
 
     @FXML private Button btnUtente;
     @FXML private Button btnIstruttore;
@@ -40,8 +43,7 @@ public class RegistrazioneGui {
             stage.show();
 
         } catch (Exception e) {
-            e.printStackTrace()
-;
+            logger.severe(e.getMessage());
         }
     }
 }

@@ -9,7 +9,11 @@ import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.util.logging.Logger;
+
 public class HomeUtenteGui {
+
+    private static final Logger logger = Logger.getLogger(HomeUtenteGui.class.getName());
 
     @FXML private Text welcomeText;
     @FXML private Button btnLogout;
@@ -59,8 +63,7 @@ public class HomeUtenteGui {
             stage.setScene(new Scene(root));
             stage.show();
         } catch (Exception e) {
-            e.printStackTrace()
-;
+            logger.severe(e.getMessage());
         }
     }
 }
