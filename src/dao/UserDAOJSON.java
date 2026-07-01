@@ -51,7 +51,7 @@ public class UserDAOJSON implements UserDao {
         if (istruttore != null) {
             istruttore.setNome(nome);
             istruttore.setCognome(cognome);
-            istruttore.getisIstructor();
+            istruttore.getIsIstructor();
             saveToFile();
         }
     }
@@ -90,7 +90,7 @@ public class UserDAOJSON implements UserDao {
                         c.getPassword() + "," +
                         user.getNome() + "," +
                         user.getCognome() + "," +
-                        user.getisIstructor();
+                        user.getIsIstructor();
 
                 writer.write(line);
                 writer.newLine();
@@ -103,7 +103,7 @@ public class UserDAOJSON implements UserDao {
     @Override
     public List<UtenteLoggatoModel> getIstruttori() {
         return users.values().stream()
-                .filter(u -> u.getisIstructor())
+                .filter(u -> u.getIsIstructor())
                 .collect(Collectors.toList());
     }
 

@@ -45,7 +45,7 @@ public class LoginController {
                 utenteloggatobean.setCognome(utenteloggatoModel.getCognome());
 
                 utenteloggatobean.setCredenziali(credenzialibean);
-                utenteloggatobean.setRuolo(utenteloggatoModel.getisIstructor());
+                utenteloggatobean.setRuolo(utenteloggatoModel.getIsIstructor());
                 return utenteloggatobean;
             }else {
                 Stampa.errorPrint("❌ Credenziali mancanti o errate");

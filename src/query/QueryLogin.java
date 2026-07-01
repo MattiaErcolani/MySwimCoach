@@ -56,7 +56,7 @@ public class QueryLogin {
             String password = registrazioneModel.getCredenziali().getPassword();
             String nome = registrazioneModel.getNome();
             String cognome = registrazioneModel.getCognome();
-            int ruolo = registrazioneModel.getisIstructor() ? 1 : 0;
+            int ruolo = registrazioneModel.getIsIstructor() ? 1 : 0;
             int age = registrazioneModel.getAge();
             String level = registrazioneModel.getLevel() != null ? registrazioneModel.getLevel() : "";
             String certificate = registrazioneModel.getCertificate() != null ? registrazioneModel.getCertificate() : "";
