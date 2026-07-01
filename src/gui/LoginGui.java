@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 public class LoginGui {
 
     private static final Logger logger = Logger.getLogger(LoginGui.class.getName());
+    private static final String ERRORE_CARICAMENTO = "Errore nel caricamento: ";
 
     @FXML private TextField emailField;
     @FXML private PasswordField passwordField;
@@ -71,7 +72,7 @@ public class LoginGui {
 
         } catch (Exception e) {
             logger.severe(e.getMessage());
-            errorLabel.setText("Errore nel caricamento: " + e.getMessage());
+            errorLabel.setText(ERRORE_CARICAMENTO + e.getMessage());
         }
     }
 
@@ -89,7 +90,7 @@ public class LoginGui {
 
         } catch (Exception e) {
             logger.severe(e.getMessage());
-            errorLabel.setText("Errore nel caricamento: " + e.getMessage());
+            errorLabel.setText(ERRORE_CARICAMENTO + e.getMessage());
         }
     }
 
@@ -107,7 +108,7 @@ public class LoginGui {
 
         } catch (Exception e) {
             logger.severe(e.getMessage());
-            errorLabel.setText("Errore nel caricamento: " + e.getMessage());
+            errorLabel.setText(ERRORE_CARICAMENTO + e.getMessage());
         }
     }
 }

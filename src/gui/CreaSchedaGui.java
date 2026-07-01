@@ -20,6 +20,9 @@ import java.util.logging.Logger;
 public class CreaSchedaGui {
 
     private static final Logger logger = Logger.getLogger(CreaSchedaGui.class.getName());
+    private static final String STILE_ERRORE = "-fx-text-fill: #EF5350;";
+    private static final String STILE_SUCCESSO = "-fx-text-fill: #4CAF50;";
+    private static final String STILE_CAMPO = "-fx-background-color: #0A1628; -fx-text-fill: white; -fx-prompt-text-fill: #455A75; -fx-border-color: #1E3A5F; -fx-border-radius: 8; -fx-background-radius: 8;";
 
     @FXML private TextField idSchedaField;
     @FXML private ChoiceBox<String> livelloSchedaChoice;
@@ -73,7 +76,7 @@ public class CreaSchedaGui {
                 eserciziBox.getChildren().remove(esercizioForm);
                 eserciziBox.getChildren().add(riepilogo);
             } catch (NumberFormatException ex) {
-                statusCreaScheda.setStyle("-fx-text-fill: #EF5350;");
+                statusCreaScheda.setStyle(STILE_ERRORE);
                 statusCreaScheda.setText("⚠ Distanza esercizio non valida");
             }
         });
@@ -91,7 +94,7 @@ public class CreaSchedaGui {
             int distanza = Integer.parseInt(distanzaField.getText().trim());
 
             if (idScheda.isEmpty()) {
-                statusCreaScheda.setStyle("-fx-text-fill: #EF5350;");
+                statusCreaScheda.setStyle(STILE_ERRORE);
                 statusCreaScheda.setText("Compila l'ID Scheda.");
                 return;
             }
@@ -105,11 +108,11 @@ public class CreaSchedaGui {
                 schedaController.insertEsercizio(idScheda, es);
             }
 
-            statusCreaScheda.setStyle("-fx-text-fill: #4CAF50;");
+            statusCreaScheda.setStyle(STILE_SUCCESSO);
             statusCreaScheda.setText("✅ Scheda creata con successo!");
 
         } catch (NumberFormatException ex) {
-            statusCreaScheda.setStyle("-fx-text-fill: #EF5350;");
+            statusCreaScheda.setStyle(STILE_ERRORE);
             statusCreaScheda.setText("Durata e distanza devono essere numeri.");
         }
     }
@@ -117,7 +120,7 @@ public class CreaSchedaGui {
     private TextField creaCampoTesto(String prompt) {
         TextField field = new TextField();
         field.setPromptText(prompt);
-        field.setStyle("-fx-background-color: #0A1628; -fx-text-fill: white; -fx-prompt-text-fill: #455A75; -fx-border-color: #1E3A5F; -fx-border-radius: 8; -fx-background-radius: 8;");
+        field.setStyle(STILE_CAMPO);
         return field;
     }
 

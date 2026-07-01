@@ -25,6 +25,9 @@ import java.util.logging.Logger;
 public class AssegnaSchedaGui {
 
     private static final Logger logger = Logger.getLogger(AssegnaSchedaGui.class.getName());
+    private static final String STILE_TESTO_SECONDARIO = "-fx-fill: #90A4AE; -fx-font-size: 12px;";
+    private static final String STILE_TESTO_TITOLO = "-fx-fill: white; -fx-font-weight: bold; -fx-font-size: 14px;";
+    private static final String STILE_CARD = "-fx-background-color: #0A1628; -fx-padding: 15; -fx-background-radius: 10; -fx-border-color: #1E3A5F; -fx-border-radius: 10; -fx-cursor: hand;";
 
     @FXML private VBox contentBox;
     @FXML private Button btnTornaMenu;
@@ -55,13 +58,13 @@ public class AssegnaSchedaGui {
             hasSchede = true;
 
             VBox card = new VBox(5);
-            card.setStyle("-fx-background-color: #0A1628; -fx-padding: 15; -fx-background-radius: 10; -fx-border-color: #1E3A5F; -fx-border-radius: 10; -fx-cursor: hand;");
+            card.setStyle(STILE_CARD);
 
             Text title = new Text("ID: " + s.getIdScheda() + " | Livello: " + s.getLivello());
-            title.setStyle("-fx-fill: white; -fx-font-weight: bold; -fx-font-size: 14px;");
+            title.setStyle(STILE_TESTO_TITOLO);
 
             Text details = new Text("Durata: " + s.getDurata() + " min | Distanza: " + s.getDistanzaTotale() + " m");
-            details.setStyle("-fx-fill: #90A4AE; -fx-font-size: 12px;");
+            details.setStyle(STILE_TESTO_SECONDARIO);
 
             card.getChildren().addAll(title, details);
             card.setOnMouseClicked(e -> mostraListaUtenti(s));
@@ -86,7 +89,7 @@ public class AssegnaSchedaGui {
         contentBox.getChildren().add(title);
 
         Text subtitle = new Text("Seleziona l'utente a cui assegnare:");
-        subtitle.setStyle("-fx-fill: #90A4AE; -fx-font-size: 12px;");
+        subtitle.setStyle(STILE_TESTO_SECONDARIO);
         contentBox.getChildren().add(subtitle);
 
         UserDao userDao = FactoryDao.getUserDAO();
@@ -110,13 +113,13 @@ public class AssegnaSchedaGui {
                         : "Sconosciuto";
 
                 VBox card = new VBox(5);
-                card.setStyle("-fx-background-color: #0A1628; -fx-padding: 15; -fx-background-radius: 10; -fx-border-color: #1E3A5F; -fx-border-radius: 10; -fx-cursor: hand;");
+                card.setStyle(STILE_CARD);
 
                 Text userTitle = new Text(nomeUtente + " (" + r.getEmailUser() + ")");
-                userTitle.setStyle("-fx-fill: white; -fx-font-weight: bold; -fx-font-size: 14px;");
+                userTitle.setStyle(STILE_TESTO_TITOLO);
 
                 Text userDetails = new Text("Livello: " + r.getLivelloUtente() + " | Stato: " + r.getStatus());
-                userDetails.setStyle("-fx-fill: #90A4AE; -fx-font-size: 12px;");
+                userDetails.setStyle(STILE_TESTO_SECONDARIO);
 
                 card.getChildren().addAll(userTitle, userDetails);
                 card.setOnMouseClicked(e -> assegna(scheda, r.getEmailUser()));
