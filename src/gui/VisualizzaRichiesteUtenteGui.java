@@ -19,6 +19,9 @@ import java.util.logging.Logger;
 public class VisualizzaRichiesteUtenteGui {
 
     private static final Logger logger = Logger.getLogger(VisualizzaRichiesteUtenteGui.class.getName());
+    private static final String STILE_TESTO_SECONDARIO = "-fx-fill: #90A4AE; -fx-font-size: 12px;";
+    private static final String STILE_TESTO_TITOLO = "-fx-fill: white; -fx-font-weight: bold; -fx-font-size: 14px;";
+    private static final String STILE_CARD = "-fx-background-color: #0A1628; -fx-padding: 15; -fx-background-radius: 10; -fx-border-color: #1E3A5F; -fx-border-radius: 10;";
 
     @FXML private VBox contentBox;
     @FXML private Button btnTornaMenu;
@@ -48,22 +51,22 @@ public class VisualizzaRichiesteUtenteGui {
 
             for (RichiestaSchedaNuotoBean r : richieste) {
                 VBox card = new VBox(6);
-                card.setStyle("-fx-background-color: #0A1628; -fx-padding: 15; -fx-background-radius: 10; -fx-border-color: #1E3A5F; -fx-border-radius: 10;");
+                card.setStyle(STILE_CARD);
 
                 Text title = new Text("ID Richiesta: " + r.getIdRichiesta());
-                title.setStyle("-fx-fill: white; -fx-font-weight: bold; -fx-font-size: 14px;");
+                title.setStyle(STILE_TESTO_TITOLO);
 
                 Text livello = new Text("Livello: " + r.getLivelloUtente());
-                livello.setStyle("-fx-fill: #90A4AE; -fx-font-size: 12px;");
+                livello.setStyle(STILE_TESTO_SECONDARIO);
 
                 Text istruttore = new Text("Istruttore: " + r.getEmailIstruttore());
-                istruttore.setStyle("-fx-fill: #90A4AE; -fx-font-size: 12px;");
+                istruttore.setStyle(STILE_TESTO_SECONDARIO);
 
                 Text info = new Text("Info: " + r.getInfo());
-                info.setStyle("-fx-fill: #90A4AE; -fx-font-size: 12px;");
+                info.setStyle(STILE_TESTO_SECONDARIO);
 
                 Text data = new Text("Data: " + r.getDataRichiesta());
-                data.setStyle("-fx-fill: #90A4AE; -fx-font-size: 12px;");
+                data.setStyle(STILE_TESTO_SECONDARIO);
 
                 Text stato = new Text("Stato: " + r.getStatus());
                 stato.setStyle("-fx-fill: " + getColoreStato(r.getStatus()) + "; -fx-font-size: 12px; -fx-font-weight: bold;");

@@ -5,15 +5,19 @@ import inmemory.*;
 
 public class FactoryDao {
 
+    private static final String MYSQL = "mysql";
+    private static final String MEMORY = "memory";
+    private static final String JSON = "json";
+
     private FactoryDao() {}
 
     public static UserDao getUserDAO() {
         String daoType = Config.getPersistenceType();
-        if ("mysql".equalsIgnoreCase(daoType)) {
+        if (MYSQL.equalsIgnoreCase(daoType)) {
             return new UserDaoMYSQL();
-        } else if ("json".equalsIgnoreCase(daoType)) {
+        } else if (JSON.equalsIgnoreCase(daoType)) {
             return new UserDAOJSON();
-        } else if ("memory".equalsIgnoreCase(daoType)) {
+        } else if (MEMORY.equalsIgnoreCase(daoType)) {
             return new UserDaoInMemory();
         }
         return null;
@@ -21,32 +25,25 @@ public class FactoryDao {
 
     public static RichiestaSchedaNuotoDao getRichiestaSchedaNuotoDao() {
         String daoType = Config.getPersistenceType();
-        if ("mysql".equalsIgnoreCase(daoType)) {
+        if (MYSQL.equalsIgnoreCase(daoType)) {
             return new RichiestaSchedaNuotoDaoMYSQL();
-        } else if ("memory".equalsIgnoreCase(daoType)) {
-            return new RichiestaSchedaNuotoDaoInMemory(); // se hai una versione in memoria
+        } else if (MEMORY.equalsIgnoreCase(daoType)) {
+            return new RichiestaSchedaNuotoDaoInMemory();
         }
         return null;
     }
 
     public static SchedaNuotoDao getSchedaNuotoDao() {
-        String daoType = Config.getPersistenceType(); // mysql o memory
-        if ("mysql".equalsIgnoreCase(daoType)) {
-            return new SchedaNuotoDaoMYSQL();  // Se implementerai il DAO MySQL
-        } else if ("memory".equalsIgnoreCase(daoType)) {
-            return new SchedaNuotoDaoInMemory(); // DAO InMemory
+        String daoType = Config.getPersistenceType();
+        if (MYSQL.equalsIgnoreCase(daoType)) {
+            return new SchedaNuotoDaoMYSQL();
+        } else if (MEMORY.equalsIgnoreCase(daoType)) {
+            return new SchedaNuotoDaoInMemory();
         }
         return null;
     }
 
     public static SchedaNuotoAssegnataDao getSchedaNuotoAssegnataDao() {
-        // Se vuoi InMemory:
-        return new inmemory.SchedaNuotoAssegnataDaoInMemory();
-
-        // Se vuoi MySQL:
-        // return new Dao.SchedaNuotoAssegnataDaoMYSQL();
+        return new SchedaNuotoAssegnataDaoInMemory();
     }
-
-
-
 }

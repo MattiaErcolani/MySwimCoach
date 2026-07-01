@@ -8,13 +8,13 @@ public class Config {
     private static final String CONFIG_FILE = "resources/resources/config.properties";
     private static final Properties properties = new Properties();
 
-    private static String persistenceType;// default
+    private static String persistenceType;
 
     public static void loadFromFile() {
-        Properties properties = new Properties();
-        try (FileInputStream fis = new FileInputStream("resources/resources/config.properties")) {
-            properties.load(fis);
-            persistenceType = properties.getProperty("persistence.type", "mysql");
+        Properties props = new Properties();
+        try (FileInputStream fis = new FileInputStream(CONFIG_FILE)) {
+            props.load(fis);
+            persistenceType = props.getProperty("persistence.type", "mysql");
         } catch (IOException e) {
             System.err.println("Errore lettura config.properties, uso default mysql");
         }
