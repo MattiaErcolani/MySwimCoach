@@ -2,32 +2,32 @@ package bean;
 
 public class CredenzialiBean {
     //classe che gestisce le credenziali per il login
-    private String Email;
-    private String Password;
+    private String email;
+    private String password;
 
     public CredenzialiBean(String mail, String password){
-        this.Email = mail;
-        this.Password = password;
+        this.email = mail;
+        this.password = password;
     }
 
     public CredenzialiBean(String mail){
-        this.Email = mail;
-        this.Password = null;
+        this.email = mail;
+        this.password = null;
     }
 
 
     public void setEmail(String Email) {
 
-        this.Email = Email;
+        this.email = Email;
     }
     public void setPassword(String Password){
-        this.Password = Password;
+        this.password = Password;
     }
 
     public String getEmail(){
-        return  Email;
+        return email;
     }
     public String getPassword(){
-        return Password;
+        return password;
     }
 }

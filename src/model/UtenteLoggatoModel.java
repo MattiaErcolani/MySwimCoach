@@ -2,44 +2,54 @@ package model;
 
 public class UtenteLoggatoModel {
     private CredenzialiModel credenziali;
-    private String Nome;
-    private String Cognome;
+    private String nome;
+    private String cognome;
     protected boolean isIstructor;
     private int age;
     private String level;
     private String certificate;
 
-    public UtenteLoggatoModel() {};
-    public UtenteLoggatoModel(CredenzialiModel credenziali, String Nome, String Cognome, boolean isIstructor){
+    public UtenteLoggatoModel() {}
+
+    public UtenteLoggatoModel(CredenzialiModel credenziali, String nome, String cognome, boolean isIstructor) {
         this.credenziali = credenziali;
-        this.Nome = Nome;
-        this.Cognome = Cognome;
+        this.nome = nome;
+        this.cognome = cognome;
         this.isIstructor = isIstructor;
     }
-    public CredenzialiModel getCredenziali(){
+
+    public CredenzialiModel getCredenziali() {
         return credenziali;
     }
+
     public void setCredenziali(CredenzialiModel credenziali) {
         this.credenziali = credenziali;
     }
-    public String getNome(){
-        return Nome;
+
+    public String getNome() {
+        return nome;
     }
-    public void setNome(String Nome) {
-        this.Nome = Nome;
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
-    public String getCognome(){
-        return Cognome;
+
+    public String getCognome() {
+        return cognome;
     }
-    public void setCognome(String Cognome) {
-        this.Cognome = Cognome;
+
+    public void setCognome(String cognome) {
+        this.cognome = cognome;
     }
-    public boolean getisIstructor(){
+
+    public boolean getIsIstructor() {
         return isIstructor;
     }
+
     public void setIstructor(boolean isIstructor) {
         this.isIstructor = isIstructor;
     }
+
     public int getAge() { return age; }
     public void setAge(int age) { this.age = age; }
 

@@ -1,50 +1,52 @@
 package bean;
 
-public class UtenteLoggatoBean{
+public class UtenteLoggatoBean {
     private CredenzialiBean credenzialiBean;
-    private String Nome;
-    private String Cognome;
+    private String nome;
+    private String cognome;
     protected boolean isIstructor;
 
-    public UtenteLoggatoBean(CredenzialiBean credenzialiBean, String Nome, String Cognome, boolean ruolo){
-        this.credenzialiBean=credenzialiBean;
-        this.Nome = Nome;
-        this.Cognome = Cognome;
+    public UtenteLoggatoBean(CredenzialiBean credenzialiBean, String nome, String cognome, boolean ruolo) {
+        this.credenzialiBean = credenzialiBean;
+        this.nome = nome;
+        this.cognome = cognome;
         this.isIstructor = ruolo;
     }
 
-    public UtenteLoggatoBean(CredenzialiBean credenzialiBean, String Nome, String Cognome){
-        this.credenzialiBean=credenzialiBean;
-        this.Nome = Nome;
-        this.Cognome = Cognome;
+    public UtenteLoggatoBean(CredenzialiBean credenzialiBean, String nome, String cognome) {
+        this.credenzialiBean = credenzialiBean;
+        this.nome = nome;
+        this.cognome = cognome;
     }
-    public CredenzialiBean getCredenziali(){
+
+    public CredenzialiBean getCredenziali() {
         return credenzialiBean;
     }
-    public void setCredenziali(CredenzialiBean credenzialiBean){
+
+    public void setCredenziali(CredenzialiBean credenzialiBean) {
         this.credenzialiBean = credenzialiBean;
     }
 
     public String getNome() {
-        return Nome;
+        return nome;
     }
 
-    public void setNome(String Nome) {
-        this.Nome = Nome;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getCognome() {
-        return Cognome;
+        return cognome;
     }
 
-    public void setCognome(String Cognome) {
-        this.Cognome = Cognome;
+    public void setCognome(String cognome) {
+        this.cognome = cognome;
     }
-
 
     public void setRuolo(boolean role) {
         this.isIstructor = role;
     }
+
     public boolean getRuolo() {
         return this.isIstructor;
     }
@@ -52,6 +54,4 @@ public class UtenteLoggatoBean{
     public boolean isIstructor() {
         return this.isIstructor;
     }
-
-
 }
