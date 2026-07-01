@@ -85,61 +85,67 @@ public class VisualizzaSchedeNuotoIstruttoreCLI extends AbstractState {
             scan.nextLine();
 
             switch (op) {
-                case 1 -> {
-                    Stampa.print("Nome esercizio: ");
-                    String nome = scan.nextLine();
-                    Stampa.print("Stile: ");
-                    String stile = scan.nextLine();
-                    Stampa.print("Distanza: ");
-                    int distanza = scan.nextInt();
-                    scan.nextLine();
-                    Stampa.print("Info: ");
-                    String info = scan.nextLine();
-                    scheda.getEsercizi().add(new EsercizioModel(nome, stile, distanza, info));
-                    Stampa.println("✅ Esercizio aggiunto!");
-                }
-                case 2 -> {
-                    Stampa.print("Numero esercizio da modificare: ");
-                    int idx = scan.nextInt() - 1;
-                    scan.nextLine();
-                    if (idx >= 0 && idx < scheda.getEsercizi().size()) {
-                        EsercizioModel e = scheda.getEsercizi().get(idx);
-                        Stampa.print("Nuovo nome (" + e.getNome() + "): ");
-                        String nome = scan.nextLine();
-                        if (!nome.isEmpty()) e.setNome(nome);
-                        Stampa.print("Nuovo stile (" + e.getStile() + "): ");
-                        String stile = scan.nextLine();
-                        if (!stile.isEmpty()) e.setStile(stile);
-                        Stampa.print("Nuova distanza (" + e.getDistanza() + "): ");
-                        String distanzaStr = scan.nextLine();
-                        if (!distanzaStr.isEmpty()) e.setDistanza(Integer.parseInt(distanzaStr));
-                        Stampa.print("Nuove info (" + e.getInfo() + "): ");
-                        String info = scan.nextLine();
-                        if (!info.isEmpty()) e.setInfo(info);
-                        Stampa.println("✅ Esercizio modificato!");
-                    } else {
-                        Stampa.println("❌ Numero esercizio non valido.");
-                    }
-                }
-                case 3 -> {
-                    Stampa.print("Numero esercizio da eliminare: ");
-                    int idx = scan.nextInt() - 1;
-                    scan.nextLine();
-                    if (idx >= 0 && idx < scheda.getEsercizi().size()) {
-                        scheda.getEsercizi().remove(idx);
-                        Stampa.println("✅ Esercizio eliminato!");
-                    } else {
-                        Stampa.println("❌ Numero esercizio non valido.");
-                    }
-                }
+                case 1 -> aggiungiEsercizio(scheda, scan);
+                case 2 -> modificaEsercizio(scheda, scan);
+                case 3 -> eliminaEsercizio(scheda, scan);
                 case 4 -> { return; }
                 default -> Stampa.println("❌ Scelta non valida.");
             }
         }
     }
 
+    private void aggiungiEsercizio(SchedaNuotoModel scheda, Scanner scan) {
+        Stampa.print("Nome esercizio: ");
+        String nome = scan.nextLine();
+        Stampa.print("Stile: ");
+        String stile = scan.nextLine();
+        Stampa.print("Distanza: ");
+        int distanza = scan.nextInt();
+        scan.nextLine();
+        Stampa.print("Info: ");
+        String info = scan.nextLine();
+        scheda.getEsercizi().add(new EsercizioModel(nome, stile, distanza, info));
+        Stampa.println("✅ Esercizio aggiunto!");
+    }
+
+    private void modificaEsercizio(SchedaNuotoModel scheda, Scanner scan) {
+        Stampa.print("Numero esercizio da modificare: ");
+        int idx = scan.nextInt() - 1;
+        scan.nextLine();
+        if (idx >= 0 && idx < scheda.getEsercizi().size()) {
+            EsercizioModel e = scheda.getEsercizi().get(idx);
+            Stampa.print("Nuovo nome (" + e.getNome() + "): ");
+            String nome = scan.nextLine();
+            if (!nome.isEmpty()) e.setNome(nome);
+            Stampa.print("Nuovo stile (" + e.getStile() + "): ");
+            String stile = scan.nextLine();
+            if (!stile.isEmpty()) e.setStile(stile);
+            Stampa.print("Nuova distanza (" + e.getDistanza() + "): ");
+            String distanzaStr = scan.nextLine();
+            if (!distanzaStr.isEmpty()) e.setDistanza(Integer.parseInt(distanzaStr));
+            Stampa.print("Nuove info (" + e.getInfo() + "): ");
+            String info = scan.nextLine();
+            if (!info.isEmpty()) e.setInfo(info);
+            Stampa.println("✅ Esercizio modificato!");
+        } else {
+            Stampa.println("❌ Numero esercizio non valido.");
+        }
+    }
+
+    private void eliminaEsercizio(SchedaNuotoModel scheda, Scanner scan) {
+        Stampa.print("Numero esercizio da eliminare: ");
+        int idx = scan.nextInt() - 1;
+        scan.nextLine();
+        if (idx >= 0 && idx < scheda.getEsercizi().size()) {
+            scheda.getEsercizi().remove(idx);
+            Stampa.println("✅ Esercizio eliminato!");
+        } else {
+            Stampa.println("❌ Numero esercizio non valido.");
+        }
+    }
+
     @Override
     public void stampaBenvenuto() {
-        Stampa.println("👨‍🏫 Visualizzazione e gestione schede per istruttore");
+        Stampa.println("Visualizzazione e gestione schede per istruttore");
     }
 }

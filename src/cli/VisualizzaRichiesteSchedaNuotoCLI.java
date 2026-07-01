@@ -53,7 +53,7 @@ public class VisualizzaRichiesteSchedaNuotoCLI extends AbstractState {
 
                     Stampa.println("👤 Nome: " + user.getNome() + " " + user.getCognome());
                     Stampa.println("🏊 Livello: " + r.getLivelloUtente());
-                    Stampa.println("👨‍🏫 Email Istruttore: " + r.getEmailIstruttore());
+                    Stampa.println("Email Istruttore: " + r.getEmailIstruttore());
                     Stampa.println("📝 Info: " + r.getInfo());
                     Stampa.println("📅 Data richiesta: " + r.getDataRichiesta());
                     Stampa.println("📧 Email Utente: " + r.getEmailUser());
