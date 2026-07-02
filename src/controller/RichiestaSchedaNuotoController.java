@@ -21,7 +21,7 @@ public class RichiestaSchedaNuotoController {
         this.richiestaDao = FactoryDao.getRichiestaSchedaNuotoDao();
     }
 
-    public void inserisciRichiesta(RichiestaSchedaNuotoBean bean) throws SQLException, UtenteNonPresenteException {
+    public void inserisciRichiesta(RichiestaSchedaNuotoBean bean) throws SQLException {
         RichiestaSchedaNuotoModel model = new RichiestaSchedaNuotoModel();
         model.setIdRichiesta(bean.getIdRichiesta());
         model.setNome(bean.getNome());

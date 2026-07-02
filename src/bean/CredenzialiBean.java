@@ -15,18 +15,18 @@ public class CredenzialiBean {
         this.password = null;
     }
 
-
-    public void setEmail(String Email) {
-
-        this.email = Email;
+    public void setEmail(String email) {
+        this.email = email;
     }
-    public void setPassword(String Password){
-        this.password = Password;
+
+    public void setPassword(String password){
+        this.password = password;
     }
 
     public String getEmail(){
         return email;
     }
+
     public String getPassword(){
         return password;
     }

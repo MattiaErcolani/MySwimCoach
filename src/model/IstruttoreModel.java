@@ -20,6 +20,7 @@ public class IstruttoreModel extends UtenteLoggatoModel {
         return certificate;
     }
 
+    @Override
     public void setCertificate(String certificate) {
         this.certificate = certificate;
     }

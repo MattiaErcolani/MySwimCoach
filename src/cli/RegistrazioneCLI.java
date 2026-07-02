@@ -77,8 +77,10 @@ public class RegistrazioneCLI extends AbstractState {
         }
     }
 
-    private boolean isValidEmail(String email) throws EmailNonValidaException {
-        return email != null && EMAIL_PATTERN.matcher(email).matches();
+    private void isValidEmail(String email) throws EmailNonValidaException {
+        if (email == null || !EMAIL_PATTERN.matcher(email).matches()) {
+            throw new EmailNonValidaException();
+        }
     }
 
     @Override

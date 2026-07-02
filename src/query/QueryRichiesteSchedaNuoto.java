@@ -1,4 +1,5 @@
 package query;
+
 import exceptions.UtenteNonPresenteException;
 import model.RichiestaSchedaNuotoModel;
 import other.Stampa;
@@ -41,7 +42,7 @@ public class QueryRichiesteSchedaNuoto {
         String sql = String.format(Query2.CERCA_RICHIESTE_USER, emailUser);
         ResultSet rs = stmt.executeQuery(sql);
 
-        if (!rs.isBeforeFirst()) { // nessuna riga trovata
+        if (!rs.isBeforeFirst()) {
             throw new UtenteNonPresenteException();
         }
 
@@ -64,7 +65,7 @@ public class QueryRichiesteSchedaNuoto {
 
     // --- Cancella richiesta ---
     public static void cancellaRichiestaSchedaNuoto(Statement stmt, int idRichiesta, String emailUser)
-            throws SQLException, UtenteNonPresenteException {
+            throws SQLException {
 
         String sql = String.format(Query2.CANCELLA_RICHIESTA_SCHEDA, idRichiesta, emailUser);
         stmt.executeUpdate(sql);
