@@ -7,6 +7,7 @@ import model.CredenzialiModel;
 import model.UtenteLoggatoModel;
 import other.Connect;
 import other.Stampa;
+import query.Query;
 import query.QueryLogin;
 import java.util.List;
 import java.util.ArrayList;
@@ -24,16 +25,18 @@ public class UserDaoMYSQL implements UserDao {
 
         try {
             Connection connection = Connect.getInstance().getDBConnection();
-
             String email = credenzialiModel.getEmail();
             String password = credenzialiModel.getPassword();
 
             QueryLogin.checkEmail(connection, email);
 
-            try (ResultSet rs = QueryLogin.loginUser(connection, email, password)) {
-                if (!rs.next()) {
-                    throw new CredenzialiSbagliateException();
-                } else {
+            try (PreparedStatement ps = connection.prepareStatement(Query.VERIFICA_USER)) {
+                ps.setString(1, email);
+                ps.setString(2, password);
+                try (ResultSet rs = ps.executeQuery()) {
+                    if (!rs.next()) {
+                        throw new CredenzialiSbagliateException();
+                    }
                     if (utenteloggatoModel.getCredenziali() == null) {
                         utenteloggatoModel.setCredenziali(new CredenzialiModel());
                     }
@@ -52,6 +55,7 @@ public class UserDaoMYSQL implements UserDao {
 
         return utenteloggatoModel;
     }
+
 
     @Override
     public void registrazioneMethod(UtenteLoggatoModel registrazioneModel) {
