@@ -65,10 +65,13 @@ public class QueryRichiesteSchedaNuoto {
 
     // --- Cancella richiesta ---
     public static void cancellaRichiestaSchedaNuoto(Statement stmt, int idRichiesta, String emailUser)
-            throws SQLException {
+            throws SQLException, UtenteNonPresenteException {
 
         String sql = String.format(Query2.CANCELLA_RICHIESTA_SCHEDA, idRichiesta, emailUser);
-        stmt.executeUpdate(sql);
+        int rowsAffected = stmt.executeUpdate(sql);
+        if (rowsAffected == 0) {
+            throw new UtenteNonPresenteException();
+        }
     }
 
     // --- Aggiorna stato della richiesta ---

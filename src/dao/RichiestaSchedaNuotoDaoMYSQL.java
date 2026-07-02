@@ -121,6 +121,7 @@ public class RichiestaSchedaNuotoDaoMYSQL implements RichiestaSchedaNuotoDao {
     }
 
     // Cancella richiesta
+    @Override
     public boolean deleteRichiesta(int idRichiesta, String emailUser)
             throws SQLException, UtenteNonPresenteException {
 
