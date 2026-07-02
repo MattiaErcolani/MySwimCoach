@@ -21,18 +21,16 @@ public class UserDaoMYSQL implements UserDao {
     @Override
     public UtenteLoggatoModel loginMethod(CredenzialiModel credenzialiModel) throws UtenteNonPresenteException, CredenzialiSbagliateException {
         UtenteLoggatoModel utenteloggatoModel = new UtenteLoggatoModel();
-        Statement stmt;
 
         try {
             Connection connection = Connect.getInstance().getDBConnection();
-            stmt = connection.createStatement();
 
             String email = credenzialiModel.getEmail();
             String password = credenzialiModel.getPassword();
 
-            QueryLogin.checkEmail(stmt, email);
+            QueryLogin.checkEmail(connection, email);
 
-            try (ResultSet rs = QueryLogin.loginUser(stmt, email, password)) {
+            try (ResultSet rs = QueryLogin.loginUser(connection, email, password)) {
                 if (!rs.next()) {
                     throw new CredenzialiSbagliateException();
                 } else {
@@ -57,42 +55,23 @@ public class UserDaoMYSQL implements UserDao {
 
     @Override
     public void registrazioneMethod(UtenteLoggatoModel registrazioneModel) {
-        try (Connection connection = Connect.getInstance().getDBConnection();
-             Statement stmt = connection.createStatement()) {
-            QueryLogin.registerUser(stmt, registrazioneModel);
-        } catch (SQLException e) {
-            logger.severe(ERRORE_DAO + e.getMessage());
-        }
+        Connection connection = Connect.getInstance().getDBConnection();
+        QueryLogin.registerUser(connection, registrazioneModel);
     }
 
     public void controllaEmailMethod(UtenteLoggatoModel registrazioneModel) throws EmailGiaInUsoException {
-        Statement stmt = null;
-
-        try (Connection connection = Connect.getInstance().getDBConnection()) {
-            stmt = connection.createStatement();
-            String email = registrazioneModel.getCredenziali().getEmail();
-            boolean emailInUse = QueryLogin.emailReg(stmt, email);
-            if (emailInUse) {
-                throw new EmailGiaInUsoException();
-            }
-        } catch (SQLException e) {
-            logger.severe(ERRORE_DAO + e.getMessage());
-        } finally {
-            closeResources(stmt, null);
+        Connection connection = Connect.getInstance().getDBConnection();
+        String email = registrazioneModel.getCredenziali().getEmail();
+        try {
+            QueryLogin.emailReg(connection, email);
+        } catch (EmailGiaInUsoException e) {
+            throw new EmailGiaInUsoException();
         }
     }
 
     public void registraIstruttoreMethod(String email, String nome, String cognome) {
-        Statement stmt = null;
-
-        try (Connection connection = Connect.getInstance().getDBConnection()) {
-            stmt = connection.createStatement();
-            QueryLogin.registraIstruttore(stmt, email, nome, cognome);
-        } catch (SQLException e) {
-            handleDAOException(e);
-        } finally {
-            closeResources(stmt, null);
-        }
+        Connection connection = Connect.getInstance().getDBConnection();
+        QueryLogin.registraIstruttore(connection, email, nome, cognome);
     }
 
     @Override
