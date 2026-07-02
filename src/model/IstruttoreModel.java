@@ -4,10 +4,10 @@ public class IstruttoreModel extends UtenteLoggatoModel {
     private CredenzialiModel credenziali;
     private String certificate;
     private String swimmingPool;
-    private float  serviceFee;
+    private float serviceFee;
     private int age;
 
-    public IstruttoreModel(){}
+    public IstruttoreModel() {}
 
     public IstruttoreModel(CredenzialiModel credenziali, String nome, String cognome, boolean isIstruttore,
                            String certificate, String swimmingPool, float serviceFee, int age) {
@@ -19,31 +19,38 @@ public class IstruttoreModel extends UtenteLoggatoModel {
         this.age = age;
     }
 
-    public String getCertificate(){
+    @Override
+    public String getCertificate() {
         return certificate;
     }
-    public void setCertificate(String certificate){
+
+    public void setCertificate(String certificate) {
         this.certificate = certificate;
     }
-    public String getSwimmingPool(){
+
+    public String getSwimmingPool() {
         return swimmingPool;
     }
-    public void setSwimmingPool(String swimmingPool){
+
+    public void setSwimmingPool(String swimmingPool) {
         this.swimmingPool = swimmingPool;
     }
-    public float getServiceFee(){
+
+    public float getServiceFee() {
         return serviceFee;
     }
+
     public void setServiceFee(float serviceFee) {
         this.serviceFee = serviceFee;
     }
+
+    @Override
     public int getAge() {
         return age;
     }
-    public void setAge(int age){
-        this.age=age;
+
+    @Override
+    public void setAge(int age) {
+        this.age = age;
     }
-
-
-
 }

@@ -12,26 +12,32 @@ public class UtenteModel extends UtenteLoggatoModel {
         this.level = level;
     }
 
+    @Override
     public int getAge() {
         return age;
     }
 
+    @Override
     public void setAge(int age) {
         this.age = age;
     }
+
 
     public String getInfo() {
         return info;
     }
 
+
     public void setInfo(String info) {
         this.info = info;
     }
 
+    @Override
     public String getLevel() {
         return level;
     }
 
+    @Override
     public void setLevel(String level) {
         this.level = level;
     }

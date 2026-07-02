@@ -3,8 +3,10 @@ package other;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 public class Config {
+    private static final Logger logger = Logger.getLogger(Config.class.getName());
     private static final String CONFIG_FILE = "resources/resources/config.properties";
     private static final Properties properties = new Properties();
 
@@ -16,7 +18,7 @@ public class Config {
             props.load(fis);
             persistenceType = props.getProperty("persistence.type", "mysql");
         } catch (IOException e) {
-            System.err.println("Errore lettura config.properties, uso default mysql");
+            logger.severe("Errore lettura config.properties, uso default mysql");
         }
     }
 

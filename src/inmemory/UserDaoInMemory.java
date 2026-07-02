@@ -42,8 +42,8 @@ public class UserDaoInMemory implements UserDao {
 
         String email = credenzialiModel.getEmail();
         String password = credenzialiModel.getPassword();
-        System.out.println("EMAIL CERCATA: [" + credenzialiModel.getEmail() + "]");
-        System.out.println("UTENTI DISPONIBILI: " + databaseUtenti.keySet());
+        logger.info("EMAIL CERCATA: [" + credenzialiModel.getEmail() + "]");
+        logger.info("UTENTI DISPONIBILI: " + databaseUtenti.keySet());
         // 1. Controlla se l'utente esiste
         if (!databaseUtenti.containsKey(email)) {
             throw new UtenteNonPresenteException();
@@ -58,6 +58,8 @@ public class UserDaoInMemory implements UserDao {
 
         return utente;
     }
+
+
 
     @Override
     public void registrazioneMethod(UtenteLoggatoModel registrazioneModel) {
