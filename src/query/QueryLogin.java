@@ -47,20 +47,6 @@ public class QueryLogin {
         }
     }
 
-    // ATTENZIONE: Ritornare un ResultSet aperto fuori dal blocco try-with-resources può generare altri avvisi (Resource Leak).
-    // È fortemente consigliato mappare i dati del ResultSet in un oggetto Model dentro questo metodo e chiudere il ResultSet.
-    public static ResultSet loginUser(Connection conn, String email, String password) throws CredenzialiSbagliateException {
-        // Esempio atteso in Query.java: public static final String VERIFICA_USER = "SELECT * FROM utenti WHERE email = ? AND password = ?";
-        try {
-            PreparedStatement pstmt = conn.prepareStatement(Query.VERIFICA_USER);
-            pstmt.setString(1, email);
-            pstmt.setString(2, password);
-
-            return pstmt.executeQuery();
-        } catch (SQLException e) {
-            throw new CredenzialiSbagliateException();
-        }
-    }
 
     public static void registerUser(Connection conn, UtenteLoggatoModel registrazioneModel) {
         // Esempio atteso in Query.java: public static final String REGISTRAZIONE = "INSERT INTO utenti (email, password, nome, cognome, ruolo, age, level, certificate) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
