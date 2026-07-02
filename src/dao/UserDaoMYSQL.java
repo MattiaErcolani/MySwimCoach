@@ -131,14 +131,14 @@ public class UserDaoMYSQL implements UserDao {
 
     @Override
     public UtenteLoggatoModel getUserByEmail(String email) {
-        Statement stmt = null;
         ResultSet rs = null;
+        String sql = "SELECT * FROM utenti WHERE email = ?";
 
-        try {
-            Connection connection = Connect.getInstance().getDBConnection();
-            stmt = connection.createStatement();
-            String sql = String.format("SELECT * FROM utenti WHERE email = '%s'", email);
-            rs = stmt.executeQuery(sql);
+        try (Connection connection = Connect.getInstance().getDBConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setString(1, email);
+            rs = ps.executeQuery();
 
             if (rs.next()) {
                 CredenzialiModel credenziali = new CredenzialiModel(
@@ -155,8 +155,6 @@ public class UserDaoMYSQL implements UserDao {
 
         } catch (SQLException e) {
             handleDAOException(e);
-        } finally {
-            closeResources(stmt, rs);
         }
 
         return null;
