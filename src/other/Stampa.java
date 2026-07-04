@@ -1,6 +1,6 @@
-package Other;
+package other;
 
-
+@SuppressWarnings("java:S106")
 public class Stampa {
 
     public static final String ANSI_RESET = "\u001B[0m";

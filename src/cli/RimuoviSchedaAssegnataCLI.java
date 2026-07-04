@@ -3,7 +3,7 @@ package cli;
 import bean.UtenteLoggatoBean;
 import controller.SchedaNuotoAssegnataController;
 import model.SchedaNuotoAssegnataModel;
-import Other.Stampa;
+import other.Stampa;
 import pattern.AbstractState;
 import pattern.StateMachineImpl;
 

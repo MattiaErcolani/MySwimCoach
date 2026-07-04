@@ -4,7 +4,7 @@ import bean.UtenteLoggatoBean;
 import controller.SchedaNuotoController;
 import model.SchedaNuotoModel;
 import model.EsercizioModel;
-import Other.Stampa;
+import other.Stampa;
 import pattern.AbstractState;
 import pattern.StateMachineImpl;
 

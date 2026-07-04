@@ -3,7 +3,7 @@ package controller;
 import dao.SchedaNuotoDao;
 import model.SchedaNuotoModel;
 import model.EsercizioModel;
-import Other.FactoryDao;
+import other.FactoryDao;
 
 import java.util.List;
 

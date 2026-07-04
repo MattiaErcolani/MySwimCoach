@@ -2,7 +2,7 @@ package query;
 
 import model.EsercizioModel;
 import model.SchedaNuotoModel;
-import Other.Stampa;
+import other.Stampa;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

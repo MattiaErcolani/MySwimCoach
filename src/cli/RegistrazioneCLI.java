@@ -7,7 +7,7 @@ import exceptions.EmailGiaInUsoException;
 import exceptions.EmailNonValidaException;
 import pattern.AbstractState;
 import pattern.StateMachineImpl;
-import Other.Stampa;
+import other.Stampa;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 

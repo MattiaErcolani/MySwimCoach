@@ -7,8 +7,8 @@ import model.UtenteLoggatoModel;
 import model.CredenzialiModel;
 import exceptions.CredenzialiSbagliateException;
 import exceptions.UtenteNonPresenteException;
-import Other.FactoryDao;
-import Other.Stampa;
+import other.FactoryDao;
+import other.Stampa;
 
 public class LoginController {
     private String nome;

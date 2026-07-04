@@ -2,7 +2,7 @@ package inmemory;
 
 import dao.RichiestaSchedaNuotoDao;
 import model.RichiestaSchedaNuotoModel;
-import Other.StatoRichiestaScheda;
+import other.StatoRichiestaScheda;
 
 import java.util.ArrayList;
 import java.util.List;

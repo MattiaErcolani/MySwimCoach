@@ -5,7 +5,7 @@ import controller.SchedaNuotoAssegnataController;
 import controller.SchedaNuotoController;
 import model.SchedaNuotoAssegnataModel;
 import model.SchedaNuotoModel;
-import Other.Stampa;
+import other.Stampa;
 import pattern.AbstractState;
 import pattern.StateMachineImpl;
 import bean.RichiestaSchedaNuotoBean;
@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Scanner;
 import dao.UserDao;
 import model.UtenteLoggatoModel;
-import Other.FactoryDao;
+import other.FactoryDao;
 
 public class AssegnaSchedaNuotoCLI extends AbstractState {
 

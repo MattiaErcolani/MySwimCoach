@@ -1,6 +1,6 @@
-import Other.Config;
-import Other.Connect;
-import Other.Stampa;
+import other.Config;
+import other.Connect;
+import other.Stampa;
 import pattern.StateMachineImpl;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
