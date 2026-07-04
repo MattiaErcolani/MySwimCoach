@@ -7,19 +7,19 @@ public class Query2 {
 
     public static final String INSERISCI_RICHIESTA_SCHEDA =
             "INSERT INTO richieste_scheda (id_richiesta, email_user, email_istruttore, livello_utente, info_aggiuntive, stato_richiesta, data_richiesta) " +
-                    "VALUES (%d, '%s', '%s', '%s', '%s', '%s', '%s')";
+                    "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
     public static final String CERCA_RICHIESTE_USER =
-            "SELECT * FROM richieste_scheda WHERE email_user = '%s'";
+            "SELECT * FROM richieste_scheda WHERE email_user = ?";
 
     public static final String CERCA_RICHIESTE_ISTRUTTORE =
-            "SELECT * FROM richieste_scheda WHERE email_istruttore = '%s'";
+            "SELECT * FROM richieste_scheda WHERE email_istruttore = ?";
 
     public static final String CANCELLA_RICHIESTA_SCHEDA =
-            "DELETE FROM richieste_scheda WHERE id_richiesta = %d AND email_user = '%s'";
+            "DELETE FROM richieste_scheda WHERE id_richiesta = ? AND email_user = ?";
 
     public static final String AGGIORNA_STATO_RICHIESTA =
-            "UPDATE richieste_scheda SET stato_richiesta = '%s' WHERE id_richiesta = %d";
+            "UPDATE richieste_scheda SET stato_richiesta = ? WHERE id_richiesta = ?";
 
     // Inserisce una nuova scheda
     public static final String INSERISCI_SCHEDA =

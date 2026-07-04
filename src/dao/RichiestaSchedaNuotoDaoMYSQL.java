@@ -10,23 +10,19 @@ import query.QueryRichiesteSchedaNuoto;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class RichiestaSchedaNuotoDaoMYSQL implements RichiestaSchedaNuotoDao {
 
+    private static final Logger logger = Logger.getLogger(RichiestaSchedaNuotoDaoMYSQL.class.getName());
+
     @Override
     public void insertRichiesta(RichiestaSchedaNuotoModel richiesta) throws SQLException {
-        Connection connection;
-        Statement stmt = null;
-
         try {
-            connection = Connect.getInstance().getDBConnection();
-            stmt = connection.createStatement();
-            QueryRichiesteSchedaNuoto.inserisciRichiesta(stmt, richiesta);
-
+            Connection connection = Connect.getInstance().getDBConnection();
+            QueryRichiesteSchedaNuoto.inserisciRichiesta(connection, richiesta);
         } catch (SQLException e) {
-            handleDAOException(e);
-        } finally {
-            closeResources(stmt, null);
+            logger.severe("RichiestaSchedaNuotoDAO: " + e.getMessage());
         }
     }
 
@@ -35,42 +31,12 @@ public class RichiestaSchedaNuotoDaoMYSQL implements RichiestaSchedaNuotoDao {
             throws SQLException, UtenteNonPresenteException {
 
         List<RichiestaSchedaNuotoModel> lista = new ArrayList<>();
-        Connection connection;
-        Statement stmt = null;
-        ResultSet rs = null;
+        Connection connection = Connect.getInstance().getDBConnection();
 
-        try {
-            connection = Connect.getInstance().getDBConnection();
-            stmt = connection.createStatement();
-            rs = QueryRichiesteSchedaNuoto.cercaRichiesteByEmailUser(stmt, emailUser);
-
+        try (ResultSet rs = QueryRichiesteSchedaNuoto.cercaRichiesteByEmailUser(connection, emailUser)) {
             while (rs.next()) {
-                RichiestaSchedaNuotoModel model = new RichiestaSchedaNuotoModel();
-                model.setIdRichiesta(rs.getInt("id_Richiesta"));
-                model.setLivelloUtente(rs.getString("livello_Utente"));
-                model.setEmailIstruttore(rs.getString("email_Istruttore"));
-                model.setEmailUser(rs.getString("email_User"));
-                model.setInfo(rs.getString("info_aggiuntive"));
-                model.setDataRichiesta(rs.getDate("data_Richiesta").toLocalDate());
-
-                // Controllo stato come in PrenotazioneDaoMYSQL
-                String statoDalDB = rs.getString("stato_richiesta");
-                if (statoDalDB != null) {
-                    try {
-                        model.setStatus(StatoRichiestaScheda.valueOf(statoDalDB.toUpperCase()));
-                    } catch (IllegalArgumentException e) {
-                        model.setStatus(StatoRichiestaScheda.INCORSO); // default sicuro
-                    }
-                } else {
-                    model.setStatus(StatoRichiestaScheda.INCORSO);
-                }
-
-                lista.add(model);
+                lista.add(mapResultSetToModel(rs));
             }
-
-        } finally {
-            if (rs != null) rs.close();
-            closeResources(stmt, rs);
         }
 
         return lista;
@@ -81,64 +47,31 @@ public class RichiestaSchedaNuotoDaoMYSQL implements RichiestaSchedaNuotoDao {
             throws SQLException, UtenteNonPresenteException {
 
         List<RichiestaSchedaNuotoModel> lista = new ArrayList<>();
-        Connection connection;
-        Statement stmt = null;
-        ResultSet rs = null;
+        Connection connection = Connect.getInstance().getDBConnection();
 
-        try {
-            connection = Connect.getInstance().getDBConnection();
-            stmt = connection.createStatement();
-            rs = QueryRichiesteSchedaNuoto.cercaRichiesteByEmailIstruttore(stmt, emailIstruttore);
-
+        try (ResultSet rs = QueryRichiesteSchedaNuoto.cercaRichiesteByEmailIstruttore(connection, emailIstruttore)) {
             while (rs.next()) {
-                RichiestaSchedaNuotoModel model = new RichiestaSchedaNuotoModel();
-                model.setIdRichiesta(rs.getInt("id_richiesta"));
-                model.setLivelloUtente(rs.getString("livello_utente"));
-                model.setEmailIstruttore(rs.getString("email_istruttore"));
-                model.setEmailUser(rs.getString("email_user"));
-                model.setInfo(rs.getString("info_aggiuntive"));
-                model.setDataRichiesta(rs.getDate("data_richiesta").toLocalDate());
-
-                String statoDalDB = rs.getString("stato_richiesta");
-                if (statoDalDB != null) {
-                    try {
-                        model.setStatus(StatoRichiestaScheda.valueOf(statoDalDB.toUpperCase()));
-                    } catch (IllegalArgumentException e) {
-                        model.setStatus(StatoRichiestaScheda.INCORSO);
-                    }
-                } else {
-                    model.setStatus(StatoRichiestaScheda.INCORSO);
-                }
-
-                lista.add(model);
+                lista.add(mapResultSetToModel(rs));
             }
-
-        } finally {
-            closeResources(stmt, rs);
         }
 
         return lista;
     }
 
-    // Cancella richiesta
     @Override
     public boolean deleteRichiesta(int idRichiesta, String emailUser)
             throws SQLException, UtenteNonPresenteException {
 
-        Connection connection;
-        Statement stmt = null;
+        Connection connection = Connect.getInstance().getDBConnection();
         boolean cancellata = false;
 
         try {
-            connection = Connect.getInstance().getDBConnection();
-            stmt = connection.createStatement();
-            QueryRichiesteSchedaNuoto.cancellaRichiestaSchedaNuoto(stmt, idRichiesta, emailUser);
+            QueryRichiesteSchedaNuoto.cancellaRichiestaSchedaNuoto(connection, idRichiesta, emailUser);
             cancellata = true;
-
         } catch (UtenteNonPresenteException e) {
             Stampa.println("❌ Utente non presente: " + emailUser);
         } catch (SQLException e) {
-            handleDAOException(e);
+            logger.severe("RichiestaSchedaNuotoDAO: " + e.getMessage());
         }
 
         return cancellata;
@@ -146,30 +79,30 @@ public class RichiestaSchedaNuotoDaoMYSQL implements RichiestaSchedaNuotoDao {
 
     @Override
     public void updateStato(int idRichiesta, StatoRichiestaScheda nuovoStato) throws SQLException {
-        Connection connection;
-        Statement stmt = null;
-
-        try {
-            connection = Connect.getInstance().getDBConnection();
-            stmt = connection.createStatement();
-            QueryRichiesteSchedaNuoto.aggiornaStatoRichiesta(stmt, idRichiesta, nuovoStato);
-
-        } finally {
-            closeResources(stmt, null);
-        }
+        Connection connection = Connect.getInstance().getDBConnection();
+        QueryRichiesteSchedaNuoto.aggiornaStatoRichiesta(connection, idRichiesta, nuovoStato);
     }
 
-    // --- Metodi di supporto per chiudere risorse e gestire eccezioni ---
-    private void closeResources(Statement stmt, ResultSet rs) {
-        try {
-            if (rs != null) rs.close();
-            if (stmt != null) stmt.close();
-        } catch (SQLException e) {
-            handleDAOException(e);
-        }
-    }
+    private RichiestaSchedaNuotoModel mapResultSetToModel(ResultSet rs) throws SQLException {
+        RichiestaSchedaNuotoModel model = new RichiestaSchedaNuotoModel();
+        model.setIdRichiesta(rs.getInt("id_richiesta"));
+        model.setLivelloUtente(rs.getString("livello_utente"));
+        model.setEmailIstruttore(rs.getString("email_istruttore"));
+        model.setEmailUser(rs.getString("email_user"));
+        model.setInfo(rs.getString("info_aggiuntive"));
+        model.setDataRichiesta(rs.getDate("data_richiesta").toLocalDate());
 
-    private void handleDAOException(Exception e) {
-        Stampa.errorPrint(String.format("RichiestaSchedaNuotoDAO: %s", e.getMessage()));
+        String statoDalDB = rs.getString("stato_richiesta");
+        if (statoDalDB != null) {
+            try {
+                model.setStatus(StatoRichiestaScheda.valueOf(statoDalDB.toUpperCase()));
+            } catch (IllegalArgumentException e) {
+                model.setStatus(StatoRichiestaScheda.INCORSO);
+            }
+        } else {
+            model.setStatus(StatoRichiestaScheda.INCORSO);
+        }
+
+        return model;
     }
 }

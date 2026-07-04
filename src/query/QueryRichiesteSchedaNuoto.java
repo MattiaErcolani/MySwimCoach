@@ -5,42 +5,36 @@ import model.RichiestaSchedaNuotoModel;
 import other.Stampa;
 import other.StatoRichiestaScheda;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Locale;
 
 public class QueryRichiesteSchedaNuoto {
 
     private QueryRichiesteSchedaNuoto() { }
 
     // --- Inserisce una nuova richiesta nel DB ---
-    public static void inserisciRichiesta(Statement stmt, RichiestaSchedaNuotoModel richiesta) {
-        try {
-            int idRichiesta = richiesta.getIdRichiesta();
-            String livelloUtente = richiesta.getLivelloUtente();
-            String emailIstruttore = richiesta.getEmailIstruttore();
-            String emailUser = richiesta.getEmailUser();
-            String info = richiesta.getInfo();
-            String dataRichiesta = richiesta.getDataRichiesta().toString();
-            String status = richiesta.getStatus().name();
-
-            String sql = String.format(Locale.US, Query2.INSERISCI_RICHIESTA_SCHEDA,
-                    idRichiesta, emailUser, emailIstruttore, livelloUtente, info, status, dataRichiesta);
-
-            stmt.executeUpdate(sql);
-
-        } catch (SQLException e) {
-            handleException(e);
+    public static void inserisciRichiesta(Connection conn, RichiestaSchedaNuotoModel richiesta) throws SQLException {
+        try (PreparedStatement ps = conn.prepareStatement(Query2.INSERISCI_RICHIESTA_SCHEDA)) {
+            ps.setInt(1, richiesta.getIdRichiesta());
+            ps.setString(2, richiesta.getEmailUser());
+            ps.setString(3, richiesta.getEmailIstruttore());
+            ps.setString(4, richiesta.getLivelloUtente());
+            ps.setString(5, richiesta.getInfo());
+            ps.setString(6, richiesta.getStatus().name());
+            ps.setString(7, richiesta.getDataRichiesta().toString());
+            ps.executeUpdate();
         }
     }
 
     // --- Cerca richieste per utente ---
-    public static ResultSet cercaRichiesteByEmailUser(Statement stmt, String emailUser)
+    public static ResultSet cercaRichiesteByEmailUser(Connection conn, String emailUser)
             throws SQLException, UtenteNonPresenteException {
 
-        String sql = String.format(Query2.CERCA_RICHIESTE_USER, emailUser);
-        ResultSet rs = stmt.executeQuery(sql);
+        PreparedStatement ps = conn.prepareStatement(Query2.CERCA_RICHIESTE_USER);
+        ps.setString(1, emailUser);
+        ResultSet rs = ps.executeQuery();
 
         if (!rs.isBeforeFirst()) {
             throw new UtenteNonPresenteException();
@@ -50,11 +44,12 @@ public class QueryRichiesteSchedaNuoto {
     }
 
     // --- Cerca richieste per istruttore ---
-    public static ResultSet cercaRichiesteByEmailIstruttore(Statement stmt, String emailIstruttore)
+    public static ResultSet cercaRichiesteByEmailIstruttore(Connection conn, String emailIstruttore)
             throws SQLException, UtenteNonPresenteException {
 
-        String sql = String.format(Query2.CERCA_RICHIESTE_ISTRUTTORE, emailIstruttore);
-        ResultSet rs = stmt.executeQuery(sql);
+        PreparedStatement ps = conn.prepareStatement(Query2.CERCA_RICHIESTE_ISTRUTTORE);
+        ps.setString(1, emailIstruttore);
+        ResultSet rs = ps.executeQuery();
 
         if (!rs.isBeforeFirst()) {
             throw new UtenteNonPresenteException();
@@ -64,22 +59,28 @@ public class QueryRichiesteSchedaNuoto {
     }
 
     // --- Cancella richiesta ---
-    public static void cancellaRichiestaSchedaNuoto(Statement stmt, int idRichiesta, String emailUser)
+    public static void cancellaRichiestaSchedaNuoto(Connection conn, int idRichiesta, String emailUser)
             throws SQLException, UtenteNonPresenteException {
 
-        String sql = String.format(Query2.CANCELLA_RICHIESTA_SCHEDA, idRichiesta, emailUser);
-        int rowsAffected = stmt.executeUpdate(sql);
-        if (rowsAffected == 0) {
-            throw new UtenteNonPresenteException();
+        try (PreparedStatement ps = conn.prepareStatement(Query2.CANCELLA_RICHIESTA_SCHEDA)) {
+            ps.setInt(1, idRichiesta);
+            ps.setString(2, emailUser);
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected == 0) {
+                throw new UtenteNonPresenteException();
+            }
         }
     }
 
     // --- Aggiorna stato della richiesta ---
-    public static void aggiornaStatoRichiesta(Statement stmt, int idRichiesta, StatoRichiestaScheda nuovoStato)
+    public static void aggiornaStatoRichiesta(Connection conn, int idRichiesta, StatoRichiestaScheda nuovoStato)
             throws SQLException {
 
-        String sql = String.format(Query2.AGGIORNA_STATO_RICHIESTA, nuovoStato.name(), idRichiesta);
-        stmt.executeUpdate(sql);
+        try (PreparedStatement ps = conn.prepareStatement(Query2.AGGIORNA_STATO_RICHIESTA)) {
+            ps.setString(1, nuovoStato.name());
+            ps.setInt(2, idRichiesta);
+            ps.executeUpdate();
+        }
     }
 
     // --- Gestione eccezioni centralizzata ---
