@@ -2,8 +2,8 @@ package query;
 
 import exceptions.UtenteNonPresenteException;
 import model.RichiestaSchedaNuotoModel;
-import other.Stampa;
-import other.StatoRichiestaScheda;
+import Other.Stampa;
+import Other.StatoRichiestaScheda;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

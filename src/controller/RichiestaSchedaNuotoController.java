@@ -4,8 +4,8 @@ import bean.RichiestaSchedaNuotoBean;
 import dao.RichiestaSchedaNuotoDao;
 import exceptions.UtenteNonPresenteException;
 import model.RichiestaSchedaNuotoModel;
-import other.FactoryDao;
-import other.StatoRichiestaScheda;
+import Other.FactoryDao;
+import Other.StatoRichiestaScheda;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

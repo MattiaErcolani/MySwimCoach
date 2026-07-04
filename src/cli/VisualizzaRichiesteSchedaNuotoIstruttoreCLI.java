@@ -3,10 +3,10 @@ package cli;
 import bean.RichiestaSchedaNuotoBean;
 import bean.UtenteLoggatoBean;
 import controller.RichiestaSchedaNuotoController;
-import other.Stampa;
+import Other.Stampa;
 import pattern.AbstractState;
 import pattern.StateMachineImpl;
-import other.StatoRichiestaScheda;
+import Other.StatoRichiestaScheda;
 
 import java.util.List;
 import java.util.Scanner;

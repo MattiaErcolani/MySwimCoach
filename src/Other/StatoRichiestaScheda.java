@@ -1,4 +1,4 @@
-package other;
+package Other;
 public enum StatoRichiestaScheda {
     INCORSO,
     ACCETTATA,

@@ -1,8 +1,7 @@
 package query;
 
 import model.UtenteLoggatoModel;
-import other.Stampa;
-import exceptions.CredenzialiSbagliateException;
+import Other.Stampa;
 import exceptions.UtenteNonPresenteException;
 import exceptions.EmailGiaInUsoException;
 

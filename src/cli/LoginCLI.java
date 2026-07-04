@@ -7,7 +7,7 @@ import exceptions.CredenzialiSbagliateException;
 import exceptions.UtenteNonPresenteException;
 import pattern.AbstractState;
 import pattern.StateMachineImpl;
-import other.Stampa;
+import Other.Stampa;
 import java.util.Scanner;
 
 public class LoginCLI extends AbstractState {

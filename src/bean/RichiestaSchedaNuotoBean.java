@@ -1,7 +1,7 @@
 package bean;
 
 import java.time.LocalDate;
-import other.StatoRichiestaScheda;
+import Other.StatoRichiestaScheda;
 
 public class RichiestaSchedaNuotoBean {
     private int idRichiesta;

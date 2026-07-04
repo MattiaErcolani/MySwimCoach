@@ -1,4 +1,4 @@
-package other;
+package Other;
 
 
 public class Stampa {

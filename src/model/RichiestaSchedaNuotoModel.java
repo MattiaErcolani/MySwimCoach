@@ -2,7 +2,7 @@ package model;
 
 import bean.SchedaNuotoBean;
 import bean.UtenteLoggatoBean;
-import other.StatoRichiestaScheda;
+import Other.StatoRichiestaScheda;
 
 import java.time.LocalDate;
 

@@ -1,7 +1,7 @@
 package cli;
 
 import bean.UtenteLoggatoBean;
-import other.Stampa;
+import Other.Stampa;
 import pattern.AbstractState;
 import pattern.InitialState;
 import pattern.StateMachineImpl;

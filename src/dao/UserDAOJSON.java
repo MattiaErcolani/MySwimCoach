@@ -4,7 +4,7 @@ import exceptions.UtenteNonPresenteException;
 import exceptions.CredenzialiSbagliateException;
 import model.CredenzialiModel;
 import model.UtenteLoggatoModel;
-import other.Stampa;
+import Other.Stampa;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;

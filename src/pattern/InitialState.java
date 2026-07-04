@@ -1,5 +1,5 @@
 package pattern;
-import other.Stampa;
+import Other.Stampa;
 import cli.LoginCLI;
 import cli.RegistrazioneCLI;
 

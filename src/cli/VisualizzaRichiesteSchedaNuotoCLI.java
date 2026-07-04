@@ -5,8 +5,8 @@ import java.util.List;
 import bean.RichiestaSchedaNuotoBean;
 import bean.UtenteLoggatoBean;
 import controller.RichiestaSchedaNuotoController;
-import other.Stampa;
-import other.StatoRichiestaScheda;
+import Other.Stampa;
+import Other.StatoRichiestaScheda;
 import pattern.AbstractState;
 import pattern.StateMachineImpl;
 

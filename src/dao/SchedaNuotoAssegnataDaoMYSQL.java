@@ -1,8 +1,7 @@
 package dao;
 
 import model.SchedaNuotoAssegnataModel;
-import other.Connect;
-import other.Stampa;
+import Other.Connect;
 
 import java.sql.*;
 import java.util.ArrayList;

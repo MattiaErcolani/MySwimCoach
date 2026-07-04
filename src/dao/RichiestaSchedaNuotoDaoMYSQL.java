@@ -2,9 +2,9 @@ package dao;
 
 import exceptions.UtenteNonPresenteException;
 import model.RichiestaSchedaNuotoModel;
-import other.Connect;
-import other.Stampa;
-import other.StatoRichiestaScheda;
+import Other.Connect;
+import Other.Stampa;
+import Other.StatoRichiestaScheda;
 import query.QueryRichiesteSchedaNuoto;
 
 import java.sql.*;

@@ -3,7 +3,7 @@ package gui;
 import bean.RichiestaSchedaNuotoBean;
 import bean.UtenteLoggatoBean;
 import controller.RichiestaSchedaNuotoController;
-import other.StatoRichiestaScheda;
+import Other.StatoRichiestaScheda;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
