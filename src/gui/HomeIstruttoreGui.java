@@ -61,16 +61,16 @@ public class HomeIstruttoreGui {
             Parent root = loader.load();
 
             Object controller = loader.getController();
-            if (controller instanceof VisualizzaSchedeGui) {
-                ((VisualizzaSchedeGui) controller).setIstruttore(istruttore);
-            } else if (controller instanceof RichiesteSchedeGui) {
-                ((RichiesteSchedeGui) controller).setIstruttore(istruttore);
-            } else if (controller instanceof CreaSchedaGui) {
-                ((CreaSchedaGui) controller).setIstruttore(istruttore);
-            } else if (controller instanceof AssegnaSchedaGui) {
-                ((AssegnaSchedaGui) controller).setIstruttore(istruttore);
-            } else if (controller instanceof RimuoviSchedaGui) {
-                ((RimuoviSchedaGui) controller).setIstruttore(istruttore);
+            if (controller instanceof VisualizzaSchedeGui visualizzaSchedeGui) {
+                visualizzaSchedeGui.setIstruttore(istruttore);
+            } else if (controller instanceof RichiesteSchedeGui richiesteSchedeGui) {
+                richiesteSchedeGui.setIstruttore(istruttore);
+            } else if (controller instanceof CreaSchedaGui creaSchedaGui) {
+                creaSchedaGui.setIstruttore(istruttore);
+            } else if (controller instanceof AssegnaSchedaGui assegnaSchedaGui) {
+                assegnaSchedaGui.setIstruttore(istruttore);
+            } else if (controller instanceof RimuoviSchedaGui rimuoviSchedaGui) {
+                rimuoviSchedaGui.setIstruttore(istruttore);
             }
 
             Stage stage = (Stage) btnLogout.getScene().getWindow();

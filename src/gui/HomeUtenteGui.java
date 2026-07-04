@@ -51,12 +51,12 @@ public class HomeUtenteGui {
             Parent root = loader.load();
 
             Object controller = loader.getController();
-            if (controller instanceof RichiestaSchedaGui) {
-                ((RichiestaSchedaGui) controller).setUtente(utente);
-            } else if (controller instanceof VisualizzaRichiesteUtenteGui) {
-                ((VisualizzaRichiesteUtenteGui) controller).setUtente(utente);
-            } else if (controller instanceof VisualizzaSchedeUtenteGui) {
-                ((VisualizzaSchedeUtenteGui) controller).setUtente(utente);
+            if (controller instanceof RichiestaSchedaGui richiestaSchedaGui) {
+                richiestaSchedaGui.setUtente(utente);
+            } else if (controller instanceof VisualizzaRichiesteUtenteGui visualizzaRichiesteUtenteGui) {
+                visualizzaRichiesteUtenteGui.setUtente(utente);
+            } else if (controller instanceof VisualizzaSchedeUtenteGui visualizzaSchedeUtenteGui) {
+                visualizzaSchedeUtenteGui.setUtente(utente);
             }
 
             Stage stage = (Stage) btnLogout.getScene().getWindow();
