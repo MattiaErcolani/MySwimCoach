@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class QueryRichiesteSchedaNuoto {
 
@@ -29,33 +31,47 @@ public class QueryRichiesteSchedaNuoto {
     }
 
     // --- Cerca richieste per utente ---
-    public static ResultSet cercaRichiesteByEmailUser(Connection conn, String emailUser)
+    public static List<RichiestaSchedaNuotoModel> cercaRichiesteByEmailUser(Connection conn, String emailUser)
             throws SQLException, UtenteNonPresenteException {
 
-        PreparedStatement ps = conn.prepareStatement(Query2.CERCA_RICHIESTE_USER);
-        ps.setString(1, emailUser);
-        ResultSet rs = ps.executeQuery();
+        List<RichiestaSchedaNuotoModel> lista = new ArrayList<>();
 
-        if (!rs.isBeforeFirst()) {
+        try (PreparedStatement ps = conn.prepareStatement(Query2.CERCA_RICHIESTE_USER)) {
+            ps.setString(1, emailUser);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    lista.add(mapResultSetToModel(rs));
+                }
+            }
+        }
+
+        if (lista.isEmpty()) {
             throw new UtenteNonPresenteException();
         }
 
-        return rs;
+        return lista;
     }
 
     // --- Cerca richieste per istruttore ---
-    public static ResultSet cercaRichiesteByEmailIstruttore(Connection conn, String emailIstruttore)
+    public static List<RichiestaSchedaNuotoModel> cercaRichiesteByEmailIstruttore(Connection conn, String emailIstruttore)
             throws SQLException, UtenteNonPresenteException {
 
-        PreparedStatement ps = conn.prepareStatement(Query2.CERCA_RICHIESTE_ISTRUTTORE);
-        ps.setString(1, emailIstruttore);
-        ResultSet rs = ps.executeQuery();
+        List<RichiestaSchedaNuotoModel> lista = new ArrayList<>();
 
-        if (!rs.isBeforeFirst()) {
+        try (PreparedStatement ps = conn.prepareStatement(Query2.CERCA_RICHIESTE_ISTRUTTORE)) {
+            ps.setString(1, emailIstruttore);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    lista.add(mapResultSetToModel(rs));
+                }
+            }
+        }
+
+        if (lista.isEmpty()) {
             throw new UtenteNonPresenteException();
         }
 
-        return rs;
+        return lista;
     }
 
     // --- Cancella richiesta ---
@@ -81,6 +97,30 @@ public class QueryRichiesteSchedaNuoto {
             ps.setInt(2, idRichiesta);
             ps.executeUpdate();
         }
+    }
+
+    // --- Mapping ResultSet -> Model ---
+    private static RichiestaSchedaNuotoModel mapResultSetToModel(ResultSet rs) throws SQLException {
+        RichiestaSchedaNuotoModel model = new RichiestaSchedaNuotoModel();
+        model.setIdRichiesta(rs.getInt("id_richiesta"));
+        model.setLivelloUtente(rs.getString("livello_utente"));
+        model.setEmailIstruttore(rs.getString("email_istruttore"));
+        model.setEmailUser(rs.getString("email_user"));
+        model.setInfo(rs.getString("info_aggiuntive"));
+        model.setDataRichiesta(rs.getDate("data_richiesta").toLocalDate());
+
+        String statoDalDB = rs.getString("stato_richiesta");
+        if (statoDalDB != null) {
+            try {
+                model.setStatus(StatoRichiestaScheda.valueOf(statoDalDB.toUpperCase()));
+            } catch (IllegalArgumentException e) {
+                model.setStatus(StatoRichiestaScheda.INCORSO);
+            }
+        } else {
+            model.setStatus(StatoRichiestaScheda.INCORSO);
+        }
+
+        return model;
     }
 
     // --- Gestione eccezioni centralizzata ---

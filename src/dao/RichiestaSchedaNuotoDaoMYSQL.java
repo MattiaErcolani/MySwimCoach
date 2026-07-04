@@ -30,32 +30,24 @@ public class RichiestaSchedaNuotoDaoMYSQL implements RichiestaSchedaNuotoDao {
     public List<RichiestaSchedaNuotoModel> getRichiesteByEmailUser(String emailUser)
             throws SQLException, UtenteNonPresenteException {
 
-        List<RichiestaSchedaNuotoModel> lista = new ArrayList<>();
-        Connection connection = Connect.getInstance().getDBConnection();
-
-        try (ResultSet rs = QueryRichiesteSchedaNuoto.cercaRichiesteByEmailUser(connection, emailUser)) {
-            while (rs.next()) {
-                lista.add(mapResultSetToModel(rs));
-            }
+        try {
+            Connection connection = Connect.getInstance().getDBConnection();
+            return QueryRichiesteSchedaNuoto.cercaRichiesteByEmailUser(connection, emailUser);
+        } catch (UtenteNonPresenteException e) {
+            return new ArrayList<>();
         }
-
-        return lista;
     }
 
     @Override
     public List<RichiestaSchedaNuotoModel> getRichiesteByEmailIstruttore(String emailIstruttore)
             throws SQLException, UtenteNonPresenteException {
 
-        List<RichiestaSchedaNuotoModel> lista = new ArrayList<>();
-        Connection connection = Connect.getInstance().getDBConnection();
-
-        try (ResultSet rs = QueryRichiesteSchedaNuoto.cercaRichiesteByEmailIstruttore(connection, emailIstruttore)) {
-            while (rs.next()) {
-                lista.add(mapResultSetToModel(rs));
-            }
+        try {
+            Connection connection = Connect.getInstance().getDBConnection();
+            return QueryRichiesteSchedaNuoto.cercaRichiesteByEmailIstruttore(connection, emailIstruttore);
+        } catch (UtenteNonPresenteException e) {
+            return new ArrayList<>();
         }
-
-        return lista;
     }
 
     @Override
@@ -81,28 +73,5 @@ public class RichiestaSchedaNuotoDaoMYSQL implements RichiestaSchedaNuotoDao {
     public void updateStato(int idRichiesta, StatoRichiestaScheda nuovoStato) throws SQLException {
         Connection connection = Connect.getInstance().getDBConnection();
         QueryRichiesteSchedaNuoto.aggiornaStatoRichiesta(connection, idRichiesta, nuovoStato);
-    }
-
-    private RichiestaSchedaNuotoModel mapResultSetToModel(ResultSet rs) throws SQLException {
-        RichiestaSchedaNuotoModel model = new RichiestaSchedaNuotoModel();
-        model.setIdRichiesta(rs.getInt("id_richiesta"));
-        model.setLivelloUtente(rs.getString("livello_utente"));
-        model.setEmailIstruttore(rs.getString("email_istruttore"));
-        model.setEmailUser(rs.getString("email_user"));
-        model.setInfo(rs.getString("info_aggiuntive"));
-        model.setDataRichiesta(rs.getDate("data_richiesta").toLocalDate());
-
-        String statoDalDB = rs.getString("stato_richiesta");
-        if (statoDalDB != null) {
-            try {
-                model.setStatus(StatoRichiestaScheda.valueOf(statoDalDB.toUpperCase()));
-            } catch (IllegalArgumentException e) {
-                model.setStatus(StatoRichiestaScheda.INCORSO);
-            }
-        } else {
-            model.setStatus(StatoRichiestaScheda.INCORSO);
-        }
-
-        return model;
     }
 }
