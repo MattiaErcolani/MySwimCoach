@@ -3,7 +3,6 @@ package dao;
 import model.EsercizioModel;
 import model.SchedaNuotoModel;
 import other.Connect;
-import other.Stampa;
 import query.QuerySchedaNuoto;
 
 import java.sql.*;
@@ -14,6 +13,7 @@ import java.util.logging.Logger;
 public class SchedaNuotoDaoMYSQL implements SchedaNuotoDao {
 
     private static final Logger logger = Logger.getLogger(SchedaNuotoDaoMYSQL.class.getName());
+    private static final String ERRORE_DAO = "SchedaNuotoDAO: ";
 
     @Override
     public void insertScheda(SchedaNuotoModel scheda) {
@@ -27,7 +27,7 @@ public class SchedaNuotoDaoMYSQL implements SchedaNuotoDao {
             Connection connection = Connect.getInstance().getDBConnection();
             QuerySchedaNuoto.aggiornaScheda(connection, scheda);
         } catch (SQLException e) {
-            logger.severe("SchedaNuotoDAO: " + e.getMessage());
+            logger.severe(ERRORE_DAO + e.getMessage());
         }
     }
 
@@ -37,7 +37,7 @@ public class SchedaNuotoDaoMYSQL implements SchedaNuotoDao {
             Connection connection = Connect.getInstance().getDBConnection();
             QuerySchedaNuoto.cancellaScheda(connection, idScheda);
         } catch (SQLException e) {
-            logger.severe("SchedaNuotoDAO: " + e.getMessage());
+            logger.severe(ERRORE_DAO + e.getMessage());
         }
     }
 
@@ -47,7 +47,7 @@ public class SchedaNuotoDaoMYSQL implements SchedaNuotoDao {
             Connection connection = Connect.getInstance().getDBConnection();
             return QuerySchedaNuoto.cercaSchedaById(connection, idScheda);
         } catch (SQLException e) {
-            logger.severe("SchedaNuotoDAO: " + e.getMessage());
+            logger.severe(ERRORE_DAO + e.getMessage());
         }
         return null;
     }
@@ -65,7 +65,7 @@ public class SchedaNuotoDaoMYSQL implements SchedaNuotoDao {
 
             return schede;
         } catch (SQLException e) {
-            logger.severe("SchedaNuotoDAO: " + e.getMessage());
+            logger.severe(ERRORE_DAO + e.getMessage());
         }
         return new ArrayList<>();
     }
@@ -82,11 +82,7 @@ public class SchedaNuotoDaoMYSQL implements SchedaNuotoDao {
             Connection connection = Connect.getInstance().getDBConnection();
             QuerySchedaNuoto.cancellaEsercizio(connection, idScheda, esercizio);
         } catch (SQLException e) {
-            logger.severe("SchedaNuotoDAO: " + e.getMessage());
+            logger.severe(ERRORE_DAO + e.getMessage());
         }
-    }
-
-    private void handleDAOException(Exception e) {
-        Stampa.errorPrint(String.format("SchedaNuotoDAO: %s", e.getMessage()));
     }
 }

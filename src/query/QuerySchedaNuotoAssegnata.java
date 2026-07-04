@@ -11,6 +11,8 @@ import java.util.List;
 
 public class QuerySchedaNuotoAssegnata {
 
+    private static final String SELECT_SCHEDE = "SELECT idScheda, emailUser, distanzaTotale, durata FROM scheda_nuoto_assegnata";
+
     private QuerySchedaNuotoAssegnata() {}
 
     public static void inserisciAssegnazione(Connection conn, SchedaNuotoAssegnataModel scheda) throws SQLException {
@@ -24,8 +26,7 @@ public class QuerySchedaNuotoAssegnata {
 
     public static List<SchedaNuotoAssegnataModel> getAllAssegnazioni(Connection conn) throws SQLException {
         List<SchedaNuotoAssegnataModel> lista = new ArrayList<>();
-        String sql = "SELECT * FROM scheda_nuoto_assegnata";
-        try (PreparedStatement ps = conn.prepareStatement(sql);
+        try (PreparedStatement ps = conn.prepareStatement(SELECT_SCHEDE);
              ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
                 lista.add(mapResultSetToModel(rs));
@@ -36,7 +37,7 @@ public class QuerySchedaNuotoAssegnata {
 
     public static List<SchedaNuotoAssegnataModel> cercaSchedeByEmailUser(Connection conn, String emailUser) throws SQLException {
         List<SchedaNuotoAssegnataModel> lista = new ArrayList<>();
-        String sql = "SELECT * FROM scheda_nuoto_assegnata WHERE emailUser = ?";
+        String sql = SELECT_SCHEDE + " WHERE emailUser = ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, emailUser);
             try (ResultSet rs = ps.executeQuery()) {

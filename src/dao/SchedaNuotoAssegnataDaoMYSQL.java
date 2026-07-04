@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 public class SchedaNuotoAssegnataDaoMYSQL implements SchedaNuotoAssegnataDao {
 
     private static final Logger logger = Logger.getLogger(SchedaNuotoAssegnataDaoMYSQL.class.getName());
+    private static final String SELECT_SCHEDE = "SELECT idScheda, emailUser, distanzaTotale, durata FROM scheda_nuoto_assegnata";
 
     @Override
     public void assegnaScheda(SchedaNuotoAssegnataModel scheda) {
@@ -33,10 +34,9 @@ public class SchedaNuotoAssegnataDaoMYSQL implements SchedaNuotoAssegnataDao {
     @Override
     public List<SchedaNuotoAssegnataModel> getAllSchedeAssegnate() {
         List<SchedaNuotoAssegnataModel> lista = new ArrayList<>();
-        String sql = "SELECT * FROM scheda_nuoto_assegnata";
 
         try (Connection conn = Connect.getInstance().getDBConnection();
-             PreparedStatement ps = conn.prepareStatement(sql);
+             PreparedStatement ps = conn.prepareStatement(SELECT_SCHEDE);
              ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
@@ -53,16 +53,16 @@ public class SchedaNuotoAssegnataDaoMYSQL implements SchedaNuotoAssegnataDao {
     @Override
     public List<SchedaNuotoAssegnataModel> getSchedeByEmailUser(String emailUser) {
         List<SchedaNuotoAssegnataModel> lista = new ArrayList<>();
-        String sql = "SELECT * FROM scheda_nuoto_assegnata WHERE emailUser = ?";
+        String sql = SELECT_SCHEDE + " WHERE emailUser = ?";
 
         try (Connection conn = Connect.getInstance().getDBConnection();
-             PreparedStatement ps = conn.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
+             PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setString(1, emailUser);
-
-            while (rs.next()) {
-                lista.add(mapResultSetToModel(rs));
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    lista.add(mapResultSetToModel(rs));
+                }
             }
 
         } catch (SQLException e) {

@@ -12,6 +12,10 @@ public class Config {
 
     private static String persistenceType;
 
+    private Config(){
+        throw new IllegalStateException("Utility class");
+    }
+
     public static void loadFromFile() {
         Properties props = new Properties();
         try (FileInputStream fis = new FileInputStream(CONFIG_FILE)) {
