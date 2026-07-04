@@ -1,4 +1,5 @@
 package pattern;
+
 import other.Stampa;
 import cli.LoginCLI;
 import cli.RegistrazioneCLI;
@@ -18,11 +19,11 @@ public class InitialState extends AbstractState {
         switch (scelta) {
             case "1":
                 nextState = new LoginCLI();
-                goNext(context,nextState);
+                goNext(context, nextState);
                 break;
             case "2":
                 nextState = new RegistrazioneCLI();
-                goNext(context,nextState);
+                goNext(context, nextState);
                 break;
             case "0":
                 Stampa.println("Uscita dall'applicazione...");
@@ -30,7 +31,6 @@ public class InitialState extends AbstractState {
                 break;
             default:
                 Stampa.println("Scelta non valida. Riprova.");
-                // Ricomincia dallo stesso stato
                 break;
         }
     }
@@ -45,7 +45,7 @@ public class InitialState extends AbstractState {
 
     @Override
     public void stampaBenvenuto() {
-        System.out.println("Ciao! Benvenuto nella schermata iniziale!");
+        Stampa.println("Ciao! Benvenuto nella schermata iniziale!");
     }
 
     @Override
@@ -55,7 +55,6 @@ public class InitialState extends AbstractState {
 
     @Override
     public void exit(StateMachineImpl context) {
-        System.out.println("Uscita dalla schermata iniziale...");
+        Stampa.println("Uscita dalla schermata iniziale...");
     }
 }
-
