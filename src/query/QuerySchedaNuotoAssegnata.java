@@ -2,35 +2,67 @@ package query;
 
 import model.SchedaNuotoAssegnataModel;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Locale;
+import java.util.ArrayList;
+import java.util.List;
 
 public class QuerySchedaNuotoAssegnata {
 
     private QuerySchedaNuotoAssegnata() {}
 
-    public static void inserisciAssegnazione(Statement stmt, SchedaNuotoAssegnataModel scheda) throws SQLException {
-        String sql = String.format(Locale.US,
-                "INSERT INTO scheda_nuoto_assegnata (idScheda, emailUser) VALUES ('%s', '%s')",
-                scheda.getIdScheda(), scheda.getEmailUser());
-        stmt.executeUpdate(sql);
+    public static void inserisciAssegnazione(Connection conn, SchedaNuotoAssegnataModel scheda) throws SQLException {
+        String sql = "INSERT INTO scheda_nuoto_assegnata (idScheda, emailUser) VALUES (?, ?)";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, scheda.getIdScheda());
+            ps.setString(2, scheda.getEmailUser());
+            ps.executeUpdate();
+        }
     }
 
-    public static ResultSet getAllAssegnazioni(Statement stmt) throws SQLException {
+    public static List<SchedaNuotoAssegnataModel> getAllAssegnazioni(Connection conn) throws SQLException {
+        List<SchedaNuotoAssegnataModel> lista = new ArrayList<>();
         String sql = "SELECT * FROM scheda_nuoto_assegnata";
-        return stmt.executeQuery(sql);
+        try (PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                lista.add(mapResultSetToModel(rs));
+            }
+        }
+        return lista;
     }
 
-    public static ResultSet cercaSchedeByEmailUser(Statement stmt, String emailUser) throws SQLException {
-        String sql = String.format("SELECT * FROM scheda_nuoto_assegnata WHERE emailUser = '%s'", emailUser);
-        return stmt.executeQuery(sql);
+    public static List<SchedaNuotoAssegnataModel> cercaSchedeByEmailUser(Connection conn, String emailUser) throws SQLException {
+        List<SchedaNuotoAssegnataModel> lista = new ArrayList<>();
+        String sql = "SELECT * FROM scheda_nuoto_assegnata WHERE emailUser = ?";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, emailUser);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    lista.add(mapResultSetToModel(rs));
+                }
+            }
+        }
+        return lista;
     }
 
-    public static void rimuoviAssegnazione(Statement stmt, String idScheda, String emailUser) throws SQLException {
-        String sql = String.format("DELETE FROM scheda_nuoto_assegnata WHERE idScheda = '%s' AND emailUser = '%s'",
-                idScheda, emailUser);
-        stmt.executeUpdate(sql);
+    public static void rimuoviAssegnazione(Connection conn, String idScheda, String emailUser) throws SQLException {
+        String sql = "DELETE FROM scheda_nuoto_assegnata WHERE idScheda = ? AND emailUser = ?";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, idScheda);
+            ps.setString(2, emailUser);
+            ps.executeUpdate();
+        }
+    }
+
+    private static SchedaNuotoAssegnataModel mapResultSetToModel(ResultSet rs) throws SQLException {
+        return new SchedaNuotoAssegnataModel(
+                rs.getString("idScheda"),
+                rs.getString("emailUser"),
+                rs.getInt("distanzaTotale"),
+                rs.getInt("durata")
+        );
     }
 }
