@@ -23,31 +23,36 @@ public class Query2 {
 
     // Inserisce una nuova scheda
     public static final String INSERISCI_SCHEDA =
-            "INSERT INTO schede_nuoto (id_scheda, distanza_totale, durata, livello, id_richiesta, email_istruttore) VALUES ('%s', %d, %d, '%s', %d, '%s')";
+            "INSERT INTO schede_nuoto (id_scheda, distanza_totale, durata, livello, id_richiesta, email_istruttore) VALUES (?, ?, ?, ?, ?, ?)";
 
-    // Cerca scheda tramite ID
-    public static final String CERCA_SCHEDA_BY_ID =
-            "SELECT * FROM schede_nuoto WHERE id_scheda = '%s'";
 
     // Recupera tutte le schede
     public static final String CERCA_TUTTE_LE_SCHEDE =
             "SELECT * FROM schede_nuoto";
 
+    // Cerca scheda tramite ID
+    public static final String CERCA_SCHEDA_BY_ID =
+            "SELECT * FROM schede_nuoto WHERE id_scheda = ?";
+
     // Aggiorna una scheda
     public static final String AGGIORNA_SCHEDA =
-            "UPDATE schede_nuoto SET distanza_totale = %d, durata = %d, livello = '%s' WHERE id_scheda = '%s'";
+            "UPDATE schede_nuoto SET distanza_totale = ?, durata = ?, livello = ? WHERE id_scheda = ?";
 
     // Cancella una scheda
     public static final String CANCELLA_SCHEDA =
-            "DELETE FROM schede_nuoto WHERE id_scheda = '%s'";
+            "DELETE FROM schede_nuoto WHERE id_scheda = ?";
 
     // Recupera tutti gli esercizi di una scheda
     public static final String CERCA_ESERCIZI_BY_SCHEDA =
-            "SELECT * FROM esercizi_scheda WHERE id_scheda = '%s'";
+            "SELECT * FROM esercizi_scheda WHERE id_scheda = ?";
 
     // Elimina un esercizio specifico
     public static final String CANCELLA_ESERCIZIO =
-            "DELETE FROM esercizi_scheda WHERE id_scheda = '%s' AND nome = '%s' AND stile = '%s' AND distanza = %d AND info = '%s'";
+            "DELETE FROM esercizi_scheda WHERE id_scheda = ? AND nome = ? AND stile = ? AND distanza = ? AND info = ?";
+
+    // Inserisce un esercizio nella scheda
+    public static final String INSERISCI_ESERCIZIO =
+            "INSERT INTO esercizi_scheda (id_scheda, nome, stile, distanza, info) VALUES (?, ?, ?, ?, ?)";
 
 
     public static final String INSERISCI_ASSEGNAZIONE =
@@ -74,11 +79,5 @@ public class Query2 {
     // tutte le schede assegnate
     public static final String CERCA_TUTTE_SCHEDE_ASSEGNATE =
             "SELECT * FROM schede_nuoto_assegnate";
-
-    // Inserisce un esercizio nella scheda
-    public static final String INSERISCI_ESERCIZIO =
-            "INSERT INTO esercizi_scheda (id_scheda, nome, stile, distanza, info) VALUES ('%s', '%s', '%s', %d, '%s')";
-
-
 
 }

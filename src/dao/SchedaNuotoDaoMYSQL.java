@@ -1,187 +1,92 @@
 package dao;
 
+import model.EsercizioModel;
 import model.SchedaNuotoModel;
 import other.Connect;
 import other.Stampa;
 import query.QuerySchedaNuoto;
-import model.EsercizioModel;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class SchedaNuotoDaoMYSQL implements SchedaNuotoDao {
 
+    private static final Logger logger = Logger.getLogger(SchedaNuotoDaoMYSQL.class.getName());
+
     @Override
     public void insertScheda(SchedaNuotoModel scheda) {
-        Connection connection = null;
-        Statement stmt = null;
-        try {
-            connection = Connect.getInstance().getDBConnection();
-            stmt = connection.createStatement();
-
-            // La query effettiva è in QuerySchedaNuoto
-            QuerySchedaNuoto.inserisciScheda(stmt, scheda);
-
-        } catch (SQLException e) {
-            handleDAOException(e);
-        } finally {
-            closeResources(stmt, null);
-        }
+        Connection connection = Connect.getInstance().getDBConnection();
+        QuerySchedaNuoto.inserisciScheda(connection, scheda);
     }
 
     @Override
     public void updateScheda(SchedaNuotoModel scheda) {
-        Connection connection = null;
-        Statement stmt = null;
         try {
-            connection = Connect.getInstance().getDBConnection();
-            stmt = connection.createStatement();
-            QuerySchedaNuoto.aggiornaScheda(stmt, scheda);
+            Connection connection = Connect.getInstance().getDBConnection();
+            QuerySchedaNuoto.aggiornaScheda(connection, scheda);
         } catch (SQLException e) {
-            handleDAOException(e);
-        } finally {
-            closeResources(stmt, null);
+            logger.severe("SchedaNuotoDAO: " + e.getMessage());
         }
     }
 
     @Override
     public void deleteScheda(String idScheda) {
-        Connection connection = null;
-        Statement stmt = null;
         try {
-            connection = Connect.getInstance().getDBConnection();
-            stmt = connection.createStatement();
-            QuerySchedaNuoto.cancellaScheda(stmt, idScheda);
+            Connection connection = Connect.getInstance().getDBConnection();
+            QuerySchedaNuoto.cancellaScheda(connection, idScheda);
         } catch (SQLException e) {
-            handleDAOException(e);
-        } finally {
-            closeResources(stmt, null);
+            logger.severe("SchedaNuotoDAO: " + e.getMessage());
         }
     }
 
     @Override
     public SchedaNuotoModel getSchedaById(String idScheda) {
-        Connection connection = null;
-        Statement stmt = null;
-        ResultSet rs = null;
-        SchedaNuotoModel scheda = null;
-
         try {
-            connection = Connect.getInstance().getDBConnection();
-            stmt = connection.createStatement();
-            rs = QuerySchedaNuoto.cercaSchedaById(stmt, idScheda);
-
-            if (rs.next()) {
-                scheda = new SchedaNuotoModel(
-                        rs.getString("id_scheda"),
-                        rs.getInt("distanza_totale"),
-                        rs.getInt("durata"),
-                        rs.getString("livello")
-                );
-                scheda.setEmailIstruttore(rs.getString("email_istruttore"));
-            }
-
+            Connection connection = Connect.getInstance().getDBConnection();
+            return QuerySchedaNuoto.cercaSchedaById(connection, idScheda);
         } catch (SQLException e) {
-            handleDAOException(e);
-        } finally {
-            closeResources(stmt, rs);
+            logger.severe("SchedaNuotoDAO: " + e.getMessage());
         }
-
-        return scheda;
+        return null;
     }
 
     @Override
     public List<SchedaNuotoModel> getAllSchede() {
-        Connection connection = null;
-        Statement stmt = null;
-        ResultSet rs = null;
-        List<SchedaNuotoModel> schede = new ArrayList<>();
-
         try {
-            connection = Connect.getInstance().getDBConnection();
-            stmt = connection.createStatement();
-            rs = QuerySchedaNuoto.getAllSchede(stmt);
+            Connection connection = Connect.getInstance().getDBConnection();
+            List<SchedaNuotoModel> schede = QuerySchedaNuoto.getAllSchede(connection);
 
-            while (rs.next()) {
-                SchedaNuotoModel s = new SchedaNuotoModel(
-                        rs.getString("id_scheda"),
-                        rs.getInt("distanza_totale"),
-                        rs.getInt("durata"),
-                        rs.getString("livello")
-                );
-                s.setEmailIstruttore(rs.getString("email_istruttore"));
-
-                // Carica esercizi della scheda
-                Statement stmt2 = connection.createStatement();
-                ResultSet rsEs = QuerySchedaNuoto.getEserciziByScheda(stmt2, s.getIdScheda());
-                while (rsEs.next()) {
-                    EsercizioModel es = new EsercizioModel(
-                            rsEs.getString("nome"),
-                            rsEs.getString("stile"),
-                            rsEs.getInt("distanza"),
-                            rsEs.getString("info")
-                    );
-                    s.getEsercizi().add(es);
-                }
-                rsEs.close();
-                stmt2.close();
-
-                schede.add(s);
+            for (SchedaNuotoModel s : schede) {
+                List<EsercizioModel> esercizi = QuerySchedaNuoto.getEserciziByScheda(connection, s.getIdScheda());
+                s.setEsercizi(esercizi);
             }
 
+            return schede;
         } catch (SQLException e) {
-            handleDAOException(e);
-        } finally {
-            closeResources(stmt, rs);
+            logger.severe("SchedaNuotoDAO: " + e.getMessage());
         }
-
-        return schede;
-    }
-
-
-
-    // --- Metodi di supporto ---
-    private void closeResources(Statement stmt, ResultSet rs) {
-        try {
-            if (rs != null) rs.close();
-            if (stmt != null) stmt.close();
-        } catch (SQLException e) {
-            handleDAOException(e);
-        }
-    }
-
-    private void handleDAOException(Exception e) {
-        Stampa.errorPrint("SchedaNuotoDAO: " + e.getMessage());
+        return new ArrayList<>();
     }
 
     @Override
     public void insertEsercizio(String idScheda, EsercizioModel esercizio) {
-        Connection connection = null;
-        Statement stmt = null;
-        try {
-            connection = Connect.getInstance().getDBConnection();
-            stmt = connection.createStatement();
-            QuerySchedaNuoto.inserisciEsercizio(stmt, idScheda, esercizio);
-        } catch (SQLException e) {
-            handleDAOException(e);
-        } finally {
-            closeResources(stmt, null);
-        }
+        Connection connection = Connect.getInstance().getDBConnection();
+        QuerySchedaNuoto.inserisciEsercizio(connection, idScheda, esercizio);
     }
 
     @Override
     public void deleteEsercizio(String idScheda, EsercizioModel esercizio) {
-        Connection connection = null;
-        Statement stmt = null;
         try {
-            connection = Connect.getInstance().getDBConnection();
-            stmt = connection.createStatement();
-            QuerySchedaNuoto.cancellaEsercizio(stmt, idScheda, esercizio);
+            Connection connection = Connect.getInstance().getDBConnection();
+            QuerySchedaNuoto.cancellaEsercizio(connection, idScheda, esercizio);
         } catch (SQLException e) {
-            handleDAOException(e);
-        } finally {
-            closeResources(stmt, null);
+            logger.severe("SchedaNuotoDAO: " + e.getMessage());
         }
     }
-}
 
+    private void handleDAOException(Exception e) {
+        Stampa.errorPrint(String.format("SchedaNuotoDAO: %s", e.getMessage()));
+    }
+}
