@@ -1,7 +1,5 @@
 package model;
 
-import bean.SchedaNuotoBean;
-import bean.UtenteLoggatoBean;
 import other.StatoRichiestaScheda;
 
 import java.time.LocalDate;
@@ -13,25 +11,12 @@ public class RichiestaSchedaNuotoModel {
     private String livelloUtente;
     private String emailIstruttore;
     private String emailUser;
-    private SchedaNuotoBean scheda;
     private StatoRichiestaScheda status;
     private LocalDate dataRichiesta;
     private String info;
 
     public RichiestaSchedaNuotoModel() {}
-    public RichiestaSchedaNuotoModel(UtenteLoggatoBean istruttore, int idRichiesta, String nome, String cognome,
-                                     String livelloUtente, String emailIstruttore, String emailUser, String info, StatoRichiestaScheda status) {
-        this.idRichiesta = idRichiesta;
-        this.nome = istruttore.getNome();
-        this.cognome = istruttore.getCognome();
-        this.livelloUtente = livelloUtente;
-        this.emailIstruttore = istruttore.getCredenziali().getEmail();
-        this.emailUser = emailUser;
-        this.scheda = null;
-        this.dataRichiesta = LocalDate.now(java.time.ZoneId.systemDefault());
-        this.info = info;
-        this.status = status;
-    }
+
     public void setIdRichiesta(int idRichiesta) {
         this.idRichiesta = idRichiesta;
     }
@@ -39,6 +24,7 @@ public class RichiestaSchedaNuotoModel {
     public int getIdRichiesta() {
         return idRichiesta;
     }
+
     public String getNome() {
         return nome;
     }
@@ -47,7 +33,7 @@ public class RichiestaSchedaNuotoModel {
         this.nome = nome;
     }
 
-    public String getCognome(){
+    public String getCognome() {
         return cognome;
     }
 
@@ -55,11 +41,11 @@ public class RichiestaSchedaNuotoModel {
         this.cognome = cognome;
     }
 
-    public void setLivelloUtente(String livelloUtente){
+    public void setLivelloUtente(String livelloUtente) {
         this.livelloUtente = livelloUtente;
     }
 
-    public String getLivelloUtente(){
+    public String getLivelloUtente() {
         return livelloUtente;
     }
 
@@ -77,14 +63,6 @@ public class RichiestaSchedaNuotoModel {
 
     public void setEmailUser(String emailUser) {
         this.emailUser = emailUser;
-    }
-
-    public SchedaNuotoBean getScheda() {
-        return scheda;
-    }
-
-    public void setScheda(SchedaNuotoBean scheda) {
-        this.scheda = scheda;
     }
 
     public LocalDate getDataRichiesta() {

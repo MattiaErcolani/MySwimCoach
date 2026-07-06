@@ -2,7 +2,6 @@ package query;
 
 import exceptions.UtenteNonPresenteException;
 import model.RichiestaSchedaNuotoModel;
-import other.Stampa;
 import other.StatoRichiestaScheda;
 
 import java.sql.Connection;
@@ -121,10 +120,5 @@ public class QueryRichiesteSchedaNuoto {
         }
 
         return model;
-    }
-
-    // --- Gestione eccezioni centralizzata ---
-    private static void handleException(Exception e) {
-        Stampa.errorPrint(String.format("QueryRichiesteSchedaNuoto: %s", e.getMessage()));
     }
 }

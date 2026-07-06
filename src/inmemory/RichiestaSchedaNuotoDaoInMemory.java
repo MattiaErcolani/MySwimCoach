@@ -12,14 +12,14 @@ public class RichiestaSchedaNuotoDaoInMemory implements RichiestaSchedaNuotoDao 
 
     // ⚠️ SOLO MODEL nella lista
     private static final List<RichiestaSchedaNuotoModel> richieste = new ArrayList<>();
-    private final AtomicInteger ID_GENERATOR = new AtomicInteger(1);
+    private final AtomicInteger idGenerator = new AtomicInteger(1);
 
     // --- Inserisce una nuova richiesta ---
     @Override
     public void insertRichiesta(RichiestaSchedaNuotoModel model) {
 
         // Assegna ID se non presente
-        model.setIdRichiesta(ID_GENERATOR.getAndIncrement());
+        model.setIdRichiesta(idGenerator.getAndIncrement());
 
         // Stato di default
         if (model.getStatus() == null) {
