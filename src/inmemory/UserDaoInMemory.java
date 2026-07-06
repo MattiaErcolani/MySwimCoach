@@ -15,16 +15,13 @@ public class UserDaoInMemory implements UserDao {
 
     private static final Logger logger = Logger.getLogger(UserDaoInMemory.class.getName());
 
-    // "Database" in memoria
     private static final Map<String, UtenteLoggatoModel> databaseUtenti = new HashMap<>();
 
     static {
-        // Utente normale
         CredenzialiModel cred1 = new CredenzialiModel("user1@example.com", "password1");
         UtenteLoggatoModel utente1 = new UtenteLoggatoModel(cred1, "Mario", "Rossi", false);
         databaseUtenti.put(cred1.getEmail(), utente1);
 
-        // Istruttore
         CredenzialiModel cred2 = new CredenzialiModel("istruttore@example.com", "password2");
         UtenteLoggatoModel utente2 = new UtenteLoggatoModel(cred2, "Luigi", "Verdi", true);
         databaseUtenti.put(cred2.getEmail(), utente2);
@@ -42,16 +39,15 @@ public class UserDaoInMemory implements UserDao {
 
         String email = credenzialiModel.getEmail();
         String password = credenzialiModel.getPassword();
-        logger.info("EMAIL CERCATA: [" + credenzialiModel.getEmail() + "]");
-        logger.info("UTENTI DISPONIBILI: " + databaseUtenti.keySet());
-        // 1. Controlla se l'utente esiste
+        logger.log(java.util.logging.Level.INFO, "EMAIL CERCATA: [{0}]", credenzialiModel.getEmail());
+        logger.log(java.util.logging.Level.INFO, "UTENTI DISPONIBILI: {0}", databaseUtenti.keySet());
+
         if (!databaseUtenti.containsKey(email)) {
             throw new UtenteNonPresenteException();
         }
 
         UtenteLoggatoModel utente = databaseUtenti.get(email);
 
-        // 2. Controlla password
         if (!utente.getCredenziali().getPassword().equals(password)) {
             throw new CredenzialiSbagliateException();
         }
@@ -59,20 +55,15 @@ public class UserDaoInMemory implements UserDao {
         return utente;
     }
 
-
-
     @Override
     public void registrazioneMethod(UtenteLoggatoModel registrazioneModel) {
         String email = registrazioneModel.getCredenziali().getEmail();
-
         databaseUtenti.put(email, registrazioneModel);
-
-        logger.info("Utente registrato correttamente in memoria: " + email);
+        logger.log(java.util.logging.Level.INFO, "Utente registrato correttamente in memoria: {0}", email);
     }
 
     public void controllaEmailMethod(UtenteLoggatoModel registrazioneModel) throws EmailGiaInUsoException {
         String email = registrazioneModel.getCredenziali().getEmail();
-
         if (databaseUtenti.containsKey(email)) {
             throw new EmailGiaInUsoException();
         }
@@ -80,7 +71,7 @@ public class UserDaoInMemory implements UserDao {
 
     public void registraIstruttoreMethod(String email, String nome, String cognome) {
         if (!databaseUtenti.containsKey(email)) {
-            logger.severe("Utente non trovato per diventare istruttore: " + email);
+            logger.log(java.util.logging.Level.SEVERE, "Utente non trovato per diventare istruttore: {0}", email);
             return;
         }
 
@@ -89,10 +80,9 @@ public class UserDaoInMemory implements UserDao {
         utente.setCognome(cognome);
         utente.setIstructor(true);
 
-        logger.info("Utente promosso a istruttore: " + email);
+        logger.log(java.util.logging.Level.INFO, "Utente promosso a istruttore: {0}", email);
     }
 
-    // Metodo utile per test/debug
     public Map<String, UtenteLoggatoModel> getAllUsers() {
         return databaseUtenti;
     }
