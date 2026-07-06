@@ -90,14 +90,15 @@ public class VisualizzaRichiesteUtenteGui {
         }
     }
 
+
     @FXML
     private void tornaMenu() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/homeUtente.fxml"));
             Parent root = loader.load();
 
-            HomeUtenteGui controller = loader.getController();
-            controller.setUtente(utente);
+            HomeUtenteGui homeController = loader.getController();
+            homeController.setUtente(utente);
 
             Stage stage = (Stage) btnTornaMenu.getScene().getWindow();
             stage.setScene(new Scene(root));

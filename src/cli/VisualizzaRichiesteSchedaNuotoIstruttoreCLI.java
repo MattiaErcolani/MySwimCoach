@@ -62,14 +62,16 @@ public class VisualizzaRichiesteSchedaNuotoIstruttoreCLI extends AbstractState {
                     Stampa.print("Scelta: ");
                     int azione = Integer.parseInt(scan.nextLine());
 
-                    if (azione == 1) {
-                        controller.aggiornaStatoRichiesta(selezionata.getIdRichiesta(), StatoRichiestaScheda.ACCETTATA);
-                        Stampa.println("✅ Richiesta accettata!");
-                    } else if (azione == 2) {
-                        controller.aggiornaStatoRichiesta(selezionata.getIdRichiesta(), StatoRichiestaScheda.RIFIUTATA);
-                        Stampa.println("❌ Richiesta rifiutata.");
-                    } else {
-                        Stampa.println("Operazione annullata.");
+                    switch (azione) {
+                        case 1 -> {
+                            controller.aggiornaStatoRichiesta(selezionata.getIdRichiesta(), StatoRichiestaScheda.ACCETTATA);
+                            Stampa.println("✅ Richiesta accettata!");
+                        }
+                        case 2 -> {
+                            controller.aggiornaStatoRichiesta(selezionata.getIdRichiesta(), StatoRichiestaScheda.RIFIUTATA);
+                            Stampa.println("❌ Richiesta rifiutata.");
+                        }
+                        default -> Stampa.println("Operazione annullata.");
                     }
                 }
             }

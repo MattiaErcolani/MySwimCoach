@@ -93,7 +93,7 @@ public class SchedaNuotoController {
      */
     public List<EsercizioModel> getEsercizi(String idScheda) {
         SchedaNuotoModel scheda = schedaDao.getSchedaById(idScheda);
-        if (scheda == null) return null;
+        if (scheda == null) return new java.util.ArrayList<>();
         return scheda.getEsercizi();
     }
 

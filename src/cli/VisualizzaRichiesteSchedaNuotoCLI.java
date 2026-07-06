@@ -42,14 +42,12 @@ public class VisualizzaRichiesteSchedaNuotoCLI extends AbstractState {
 
                     // --- VISUALIZZAZIONE STATO ---
                     StatoRichiestaScheda stato = r.getStatus();
-                    if (stato == StatoRichiestaScheda.ACCETTATA) {
-                        Stampa.println("✅ STATO: " + stato);
-                    } else if (stato == StatoRichiestaScheda.RIFIUTATA) {
-                        Stampa.println("❌ STATO: " + stato);
-                    } else {
-                        Stampa.println("⏳ STATO: " + stato + " (In attesa)");
+                    switch (stato) {
+                        case ACCETTATA -> Stampa.println("✅ STATO: " + stato);
+                        case RIFIUTATA -> Stampa.println("❌ STATO: " + stato);
+                        default -> Stampa.println("⏳ STATO: " + stato + " (In attesa)");
                     }
-                    // ----------------------------
+// ----------------------------
 
                     Stampa.println("👤 Nome: " + user.getNome() + " " + user.getCognome());
                     Stampa.println("🏊 Livello: " + r.getLivelloUtente());
