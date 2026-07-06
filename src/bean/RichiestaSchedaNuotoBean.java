@@ -16,8 +16,10 @@ public class RichiestaSchedaNuotoBean {
     private String info;
 
     public RichiestaSchedaNuotoBean() {}
-    public RichiestaSchedaNuotoBean(UtenteLoggatoBean istruttore, int idRichiesta, String nome, String cognome,
-                                    String livelloUtente, String emailIstruttore, String emailUser, String info, StatoRichiestaScheda status) {
+
+    public RichiestaSchedaNuotoBean(UtenteLoggatoBean istruttore, int idRichiesta,
+                                    String livelloUtente, String emailUser,
+                                    String info, StatoRichiestaScheda status) {
         this.idRichiesta = idRichiesta;
         this.nome = istruttore.getNome();
         this.cognome = istruttore.getCognome();
@@ -29,6 +31,7 @@ public class RichiestaSchedaNuotoBean {
         this.info = info;
         this.status = status;
     }
+
     public void setIdRichiesta(int idRichiesta) {
         this.idRichiesta = idRichiesta;
     }
@@ -36,6 +39,7 @@ public class RichiestaSchedaNuotoBean {
     public int getIdRichiesta() {
         return idRichiesta;
     }
+
     public String getNome() {
         return nome;
     }
@@ -44,7 +48,7 @@ public class RichiestaSchedaNuotoBean {
         this.nome = nome;
     }
 
-    public String getCognome(){
+    public String getCognome() {
         return cognome;
     }
 
@@ -52,11 +56,11 @@ public class RichiestaSchedaNuotoBean {
         this.cognome = cognome;
     }
 
-    public void setLivelloUtente(String livelloUtente){
+    public void setLivelloUtente(String livelloUtente) {
         this.livelloUtente = livelloUtente;
     }
 
-    public String getLivelloUtente(){
+    public String getLivelloUtente() {
         return livelloUtente;
     }
 

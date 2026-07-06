@@ -25,7 +25,6 @@ public class GestioneRichiesteSchedaNuotoCLI extends AbstractState {
     public void action(StateMachineImpl context) {
         Scanner scan = new Scanner(System.in);
 
-        // Recupero richieste IN_CORSO per questo istruttore
         List<RichiestaSchedaNuotoBean> lista;
         try {
             lista = controller.getRichiesteByEmailIstruttore(istruttore.getCredenziali().getEmail());
@@ -39,7 +38,6 @@ public class GestioneRichiesteSchedaNuotoCLI extends AbstractState {
             return;
         }
 
-        // Stampa elenco richieste
         Stampa.println("Seleziona una richiesta da gestire:");
         for (int i = 0; i < lista.size(); i++) {
             RichiestaSchedaNuotoBean r = lista.get(i);
@@ -83,16 +81,19 @@ public class GestioneRichiesteSchedaNuotoCLI extends AbstractState {
         }
 
         try {
-            if (azione == 1) {
-                controller.aggiornaStatoRichiesta(r.getIdRichiesta(), StatoRichiestaScheda.ACCETTATA);
-                r.setStatus(StatoRichiestaScheda.ACCETTATA);
-                Stampa.println("✅ Richiesta accettata!");
-            } else if (azione == 2) {
-                controller.aggiornaStatoRichiesta(r.getIdRichiesta(), StatoRichiestaScheda.RIFIUTATA);
-                r.setStatus(StatoRichiestaScheda.RIFIUTATA);
-                Stampa.println("❌ Richiesta rifiutata.");
-            } else {
-                Stampa.println("Operazione annullata.");
+            switch (azione) {
+                case 1:
+                    controller.aggiornaStatoRichiesta(r.getIdRichiesta(), StatoRichiestaScheda.ACCETTATA);
+                    r.setStatus(StatoRichiestaScheda.ACCETTATA);
+                    Stampa.println("✅ Richiesta accettata!");
+                    break;
+                case 2:
+                    controller.aggiornaStatoRichiesta(r.getIdRichiesta(), StatoRichiestaScheda.RIFIUTATA);
+                    r.setStatus(StatoRichiestaScheda.RIFIUTATA);
+                    Stampa.println("❌ Richiesta rifiutata.");
+                    break;
+                default:
+                    Stampa.println("Operazione annullata.");
             }
         } catch (Exception e) {
             Stampa.errorPrint("Errore nell'aggiornamento dello stato: " + e.getMessage());
