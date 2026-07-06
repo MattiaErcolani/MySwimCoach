@@ -91,7 +91,7 @@ public class UserDaoInMemory implements UserDao {
     public List<UtenteLoggatoModel> getIstruttori() {
         return databaseUtenti.values().stream()
                 .filter(UtenteLoggatoModel::getIsIstructor)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override

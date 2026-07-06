@@ -104,7 +104,7 @@ public class UserDAOJSON implements UserDao {
     public List<UtenteLoggatoModel> getIstruttori() {
         return users.values().stream()
                 .filter(u -> u.getIsIstructor())
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override

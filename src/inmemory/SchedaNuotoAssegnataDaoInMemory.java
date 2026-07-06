@@ -24,7 +24,7 @@ public class SchedaNuotoAssegnataDaoInMemory implements SchedaNuotoAssegnataDao 
     public List<SchedaNuotoAssegnataModel> getSchedeByEmailUser(String emailUser) {
         return assegnate.stream()
                 .filter(s -> s.getEmailUser().equals(emailUser))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
