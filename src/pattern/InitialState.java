@@ -37,7 +37,7 @@ public class InitialState extends AbstractState {
 
     @Override
     public void mostraSchermata() {
-        Stampa.println("\n--- Benvenuto nell'applicazione SwimApp! ---");
+        Stampa.println("\n--- Benvenuto nell'applicazione MySwimCoach! ---");
         Stampa.println("1. Effettua il Login");
         Stampa.println("2. Registrati");
         Stampa.println("0. Esci");
@@ -51,6 +51,7 @@ public class InitialState extends AbstractState {
     @Override
     public void entry(StateMachineImpl context) {
         stampaBenvenuto();
+
     }
 
     @Override

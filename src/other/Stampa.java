@@ -36,4 +36,25 @@ public class Stampa {
     public static void errorPrint(String message) {
         System.out.println(ANSI_RED + message + ANSI_RESET);
     }
+
+    // Aggiungi questo metodo dentro la classe Stampa esistente (in fondo)
+    public static int leggiInteroSicuro(java.util.Scanner scan, Runnable mostraSchermata) {
+        try {
+            if (scan.hasNextInt()) {
+                int valore = scan.nextInt();
+                scan.nextLine(); // Consuma il newline residuo
+                return valore;
+            } else {
+                errorPrint("Input non valido. Per favore, inserisci un numero intero: ");
+                scan.nextLine(); // Svuota il buffer dell'input errato
+                mostraSchermata.run();
+                return -1;
+            }
+        } catch (Exception e) {
+            errorPrint("Errore durante la lettura dell'input.");
+            scan.nextLine(); // Protezione da loop infiniti
+            mostraSchermata.run();
+            return -1;
+        }
+    }
 }
