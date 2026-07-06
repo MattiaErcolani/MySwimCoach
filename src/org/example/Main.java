@@ -1,3 +1,5 @@
+package org.example;
+
 import other.Config;
 import other.Connect;
 import other.Stampa;
