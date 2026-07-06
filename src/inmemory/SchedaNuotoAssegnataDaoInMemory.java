@@ -5,7 +5,7 @@ import model.SchedaNuotoAssegnataModel;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 public class SchedaNuotoAssegnataDaoInMemory implements SchedaNuotoAssegnataDao {
     private static final List<SchedaNuotoAssegnataModel> assegnate = new ArrayList<>();
