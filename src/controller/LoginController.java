@@ -40,10 +40,8 @@ public class LoginController {
                 return null;
             }
 
-        } catch (UtenteNonPresenteException un) {
-            return null;
-        } catch (CredenzialiSbagliateException cl) {
-            return null;
-        }
+        }  catch (UtenteNonPresenteException | CredenzialiSbagliateException e) {
+        return null;
+    }
     }
 }

@@ -15,7 +15,9 @@ public class RichiestaSchedaNuotoModel {
     private LocalDate dataRichiesta;
     private String info;
 
-    public RichiestaSchedaNuotoModel() {}
+    public RichiestaSchedaNuotoModel() {
+        // Costruttore vuoto necessario per la deserializzazione e l'inizializzazione tramite setter
+    }
 
     public void setIdRichiesta(int idRichiesta) {
         this.idRichiesta = idRichiesta;
