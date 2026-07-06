@@ -14,24 +14,18 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Scanner;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main extends Application{
-    private static String persistenceType; // "mysql", "json" o "memory"
+public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
-    public void start(Stage stage) throws IOException{
-        // Inizializza i mapper
+    public void start(Stage stage) throws IOException {
         Config.loadFromFile();
 
-        // Scanner per input utente
         Scanner scanner = new Scanner(System.in);
 
-        // 1️⃣ Prima scelta: versione DB o Memory
         boolean validChoice = false;
         while (!validChoice) {
             Stampa.println("Scegli la versione dell'applicazione:");
@@ -41,38 +35,29 @@ public class Main extends Application{
 
             try {
                 int choice = scanner.nextInt();
-                scanner.nextLine(); // consuma newline
-                if (choice == 1) {
-                    Config.setPersistenceType("mysql");
-                    validChoice = true;
-                } else if (choice == 2) {
-                    Config.setPersistenceType("memory");
-                    validChoice = true;
-                } else if (choice == 3) {
-                    Config.setPersistenceType("json");
-                    validChoice = true;
-                } else {
-                    Stampa.println("Scelta non valida, riprova.");
+                scanner.nextLine();
+                switch (choice) {
+                    case 1 -> { Config.setPersistenceType("mysql"); validChoice = true; }
+                    case 2 -> { Config.setPersistenceType("memory"); validChoice = true; }
+                    case 3 -> { Config.setPersistenceType("json"); validChoice = true; }
+                    default -> Stampa.println("Scelta non valida, riprova.");
                 }
             } catch (Exception e) {
                 Stampa.println("Errore input: " + e.getMessage());
-                scanner.nextLine(); // pulisce input
+                scanner.nextLine();
             }
         }
-
-
 
         if ("mysql".equalsIgnoreCase(Config.getPersistenceType())) {
             testDatabaseConnection();
         }
-
 
         boolean validInput = false;
         while (!validInput) {
             try {
                 mostraMenu();
                 int choice = scanner.nextInt();
-                scanner.nextLine();  // Consuma newline
+                scanner.nextLine();
                 switch (choice) {
                     case 1:
                         Stampa.println("ciao");
@@ -88,10 +73,11 @@ public class Main extends Application{
                 }
             } catch (Exception e) {
                 Stampa.errorPrint("Errore: " + e.getMessage());
-                scanner.nextLine();  // Pulisce input in caso di errore
+                scanner.nextLine();
             }
         }
     }
+
     public void interfacciaGrafica(Stage stage) throws IOException {
         URL fxmlUrl = Main.class.getResource("/Fxml/login.fxml");
         if (fxmlUrl == null) {
@@ -105,22 +91,22 @@ public class Main extends Application{
         stage.show();
     }
 
-    public  void interfaceCLI(){
-        StateMachineImpl context= new StateMachineImpl();
-        while(context.getState()!=null) {
+    public void interfaceCLI() {
+        StateMachineImpl context = new StateMachineImpl();
+        while (context.getState() != null) {
             context.goNext();
-
         }
         Stampa.println("Arrivederci");
     }
+
     public void mostraMenu() {
         Stampa.println(" ");
         Stampa.println("-------------- MySwimCoach --------------");
         Stampa.println("Scegli l'interfaccia da utilizzare:");
         Stampa.println("1. Interfaccia grafica");
         Stampa.println("2. Interfaccia a riga di comando");
-
     }
+
     private void testDatabaseConnection() {
         try {
             Connection conn = Connect.getInstance().getDBConnection();
@@ -138,6 +124,4 @@ public class Main extends Application{
             Stampa.errorPrint("❌ Errore durante il test di connessione: " + e.getMessage());
         }
     }
-
-
 }

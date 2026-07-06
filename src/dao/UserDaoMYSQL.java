@@ -6,7 +6,6 @@ import exceptions.UtenteNonPresenteException;
 import model.CredenzialiModel;
 import model.UtenteLoggatoModel;
 import other.Connect;
-import other.Stampa;
 import query.Query;
 import query.QueryLogin;
 import java.util.List;
@@ -19,6 +18,11 @@ public class UserDaoMYSQL implements UserDao {
     private static final Logger logger = Logger.getLogger(UserDaoMYSQL.class.getName());
     private static final String ERRORE_DAO = "Errore in userDAO: ";
     private static final String SELECT_UTENTE = "SELECT email, password, nome, cognome, ruolo, age, level, certificate FROM utenti";
+    private static final String COL_EMAIL = "email";
+    private static final String COL_PASSWORD = "password";
+    private static final String COL_NOME = "nome";
+    private static final String COL_COGNOME = "cognome";
+    private static final String COL_RUOLO = "ruolo";
 
     @Override
     public UtenteLoggatoModel loginMethod(CredenzialiModel credenzialiModel) throws UtenteNonPresenteException, CredenzialiSbagliateException {
@@ -41,11 +45,11 @@ public class UserDaoMYSQL implements UserDao {
                     if (utenteloggatoModel.getCredenziali() == null) {
                         utenteloggatoModel.setCredenziali(new CredenzialiModel());
                     }
-                    utenteloggatoModel.setNome(rs.getString("nome"));
-                    utenteloggatoModel.setCognome(rs.getString("cognome"));
-                    utenteloggatoModel.getCredenziali().setEmail(rs.getString("email"));
+                    utenteloggatoModel.setNome(rs.getString(COL_NOME));
+                    utenteloggatoModel.setCognome(rs.getString(COL_COGNOME));
+                    utenteloggatoModel.getCredenziali().setEmail(rs.getString(COL_EMAIL));
                     utenteloggatoModel.getCredenziali().setPassword(password);
-                    utenteloggatoModel.setIstructor(rs.getBoolean("ruolo"));
+                    utenteloggatoModel.setIstructor(rs.getBoolean(COL_RUOLO));
                 }
             }
         } catch (SQLException e) {
@@ -89,13 +93,13 @@ public class UserDaoMYSQL implements UserDao {
 
             while (rs.next()) {
                 CredenzialiModel credenziali = new CredenzialiModel(
-                        rs.getString("email"),
-                        rs.getString("password")
+                        rs.getString(COL_EMAIL),
+                        rs.getString(COL_PASSWORD)
                 );
                 UtenteLoggatoModel istruttore = new UtenteLoggatoModel(
                         credenziali,
-                        rs.getString("nome"),
-                        rs.getString("cognome"),
+                        rs.getString(COL_NOME),
+                        rs.getString(COL_COGNOME),
                         true
                 );
                 lista.add(istruttore);
@@ -119,14 +123,14 @@ public class UserDaoMYSQL implements UserDao {
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     CredenzialiModel credenziali = new CredenzialiModel(
-                            rs.getString("email"),
-                            rs.getString("password")
+                            rs.getString(COL_EMAIL),
+                            rs.getString(COL_PASSWORD)
                     );
                     return new UtenteLoggatoModel(
                             credenziali,
-                            rs.getString("nome"),
-                            rs.getString("cognome"),
-                            rs.getInt("ruolo") == 1
+                            rs.getString(COL_NOME),
+                            rs.getString(COL_COGNOME),
+                            rs.getInt(COL_RUOLO) == 1
                     );
                 }
             }
@@ -136,9 +140,5 @@ public class UserDaoMYSQL implements UserDao {
         }
 
         return null;
-    }
-
-    private void handleDAOException(Exception e) {
-        Stampa.errorPrint(String.format("UserDAOMySQL: %s", e.getMessage()));
     }
 }
