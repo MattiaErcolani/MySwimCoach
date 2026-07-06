@@ -28,7 +28,7 @@ public class RichiestaSchedaNuotoModel {
         this.emailIstruttore = istruttore.getCredenziali().getEmail();
         this.emailUser = emailUser;
         this.scheda = null;
-        this.dataRichiesta = LocalDate.now();
+        this.dataRichiesta = LocalDate.now(java.time.ZoneId.systemDefault());
         this.info = info;
         this.status = status;
     }

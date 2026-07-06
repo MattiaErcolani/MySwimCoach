@@ -79,7 +79,7 @@ public class RichiestaSchedaGui {
             bean.setNome(utente.getNome());
             bean.setCognome(utente.getCognome());
             bean.setEmailUser(utente.getCredenziali().getEmail());
-            bean.setDataRichiesta(LocalDate.now());
+            bean.setDataRichiesta(LocalDate.now(java.time.ZoneId.systemDefault()));
             bean.setStatus(StatoRichiestaScheda.INCORSO);
 
             controller.inserisciRichiesta(bean);
