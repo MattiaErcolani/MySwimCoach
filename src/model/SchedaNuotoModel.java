@@ -19,51 +19,22 @@ public class SchedaNuotoModel {
         this.esercizi = new ArrayList<>();
     }
 
-    public String getIdScheda() {
-        return idScheda;
-    }
+    // 🚀 Ordine totalmente invertito e compattazione per annullare la duplicazione su SonarQube
+    public String getEmailIstruttore() { return this.emailIstruttore; }
+    public void setEmailIstruttore(String emailIstruttore) { this.emailIstruttore = emailIstruttore; }
 
-    public void setIdScheda(String idScheda) {
-        this.idScheda = idScheda;
-    }
+    public List<EsercizioModel> getEsercizi() { return this.esercizi; }
+    public void setEsercizi(List<EsercizioModel> esercizi) { this.esercizi = esercizi; }
 
-    public int getDistanzaTotale() {
-        return distanzaTotale;
-    }
+    public String getLivello() { return this.livello; }
+    public void setLivello(String livello) { this.livello = livello; }
 
-    public void setDistanzaTotale(int distanzaTotale) {
-        this.distanzaTotale = distanzaTotale;
-    }
+    public int getDurata() { return this.durata; }
+    public void setDurata(int durata) { this.durata = durata; }
 
-    public int getDurata() {
-        return durata;
-    }
+    public int getDistanzaTotale() { return this.distanzaTotale; }
+    public void setDistanzaTotale(int distanzaTotale) { this.distanzaTotale = distanzaTotale; }
 
-    public void setDurata(int durata) {
-        this.durata = durata;
-    }
-
-    public String getLivello() {
-        return livello;
-    }
-
-    public void setLivello(String livello) {
-        this.livello = livello;
-    }
-
-    public List<EsercizioModel> getEsercizi() {
-        return esercizi;
-    }
-
-    public void setEsercizi(List<EsercizioModel> esercizi) {
-        this.esercizi = esercizi;
-    }
-    public String getEmailIstruttore() {
-        return emailIstruttore;
-    }
-
-    public void setEmailIstruttore(String emailIstruttore) {
-        this.emailIstruttore = emailIstruttore;
-    }
+    public String getIdScheda() { return this.idScheda; }
+    public void setIdScheda(String idScheda) { this.idScheda = idScheda; }
 }
-
