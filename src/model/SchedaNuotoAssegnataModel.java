@@ -10,7 +10,6 @@ public class SchedaNuotoAssegnataModel {
         this.idScheda = idScheda;
         this.emailUser = emailUser;
         this.distanzaTotale = distanzaTotale;
-        this.durata = durata; // Nota: nel tuo costruttore assegnavi a 'durata', corretto!
         this.durata = durata;
     }
 
