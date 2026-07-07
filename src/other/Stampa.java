@@ -37,5 +37,29 @@ public class Stampa {
         System.out.println(ANSI_RED + message + ANSI_RESET);
     }
 
+    /**
+     * Legge un intero da tastiera in modo sicuro per la CLI.
+     * Gestisce l'errore se l'utente inserisce lettere al posto di numeri
+     * e ristampa la schermata corretta grazie al functional interface Runnable.
+     */
+    public static int leggiInteroSicuro(java.util.Scanner scan, Runnable mostraSchermata) {
+        try {
+            if (scan.hasNextInt()) {
+                int valore = scan.nextInt();
+                scan.nextLine(); // Consuma il newline residuo (\n) per evitare bug nei menu successivi
+                return valore;
+            } else {
+                errorPrint("Input non valido. Per favore, inserisci un numero intero.");
+                scan.nextLine(); // Svuota il buffer della tastiera dall'input errato
+                mostraSchermata.run(); // Ristampa il menu specifico della CLI corrente
+                return -1;
+            }
+        } catch (Exception e) {
+            errorPrint("Errore durante la lettura dell'input.");
+            scan.nextLine(); // Svuota il buffer per sicurezza prevenendo loop infiniti
+            mostraSchermata.run();
+            return -1;
+        }
+    }
 
 }

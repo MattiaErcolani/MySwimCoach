@@ -4,8 +4,6 @@ import bean.UtenteLoggatoBean;
 import other.Stampa;
 import pattern.AbstractState;
 import pattern.StateMachineImpl;
-
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class SchedeUtenteMenuCLI extends AbstractState {
@@ -24,35 +22,37 @@ public class SchedeUtenteMenuCLI extends AbstractState {
     @Override
     public void action(StateMachineImpl context){
         Scanner scan = new Scanner(System.in);
-        int choice;
 
         while(true){
-            try{
-                choice = scan.nextInt();
+            // ✅ Usa il metodo centralizzato in Stampa passando il puntatore a mostraSchermata
+            int choice = Stampa.leggiInteroSicuro(scan, this::mostraSchermata);
 
-                switch(choice){
-                    case 0:
-                        goNext(context, new UserCLI(user)); // torna al menù principale
-                        return;
-                    case 1:
-                        goNext(context, new RichiestaSchedaNuotoCLI(user));
-                        return;
-                    case 2:
-                        goNext(context, new VisualizzaRichiesteSchedaNuotoCLI(user));
-                        return;
-                    case 3:
-                        goNext(context, new VisualizzaSchedeNuotoUtenteCLI(user));
-                        return;
-                    default:
-                        Stampa.errorPrint("Input invalido. Scegliere un'opzione valida.");
-                        mostraSchermata();
-                        break;
+            if (choice == -1) {
+                continue; // Input errato, il ciclo ricomincia (l'errore è già stampato da Stampa)
+            }
+
+            // ✅ Switch expression di Java 21: pulito, moderno e senza issue di fall-through
+            switch(choice){
+                case 0 -> {
+                    goNext(context, new UserCLI(user)); // torna al menù principale
+                    return;
                 }
-
-            } catch (InputMismatchException e){
-                Stampa.errorPrint("Input non valido. Inserisci un numero intero.");
-                scan.nextLine();
-                mostraSchermata();
+                case 1 -> {
+                    goNext(context, new RichiestaSchedaNuotoCLI(user));
+                    return;
+                }
+                case 2 -> {
+                    goNext(context, new VisualizzaRichiesteSchedaNuotoCLI(user));
+                    return;
+                }
+                case 3 -> {
+                    goNext(context, new VisualizzaSchedeNuotoUtenteCLI(user));
+                    return;
+                }
+                default -> {
+                    Stampa.errorPrint("Input invalido. Scegliere un'opzione valida.");
+                    mostraSchermata();
+                }
             }
         }
     }

@@ -4,8 +4,6 @@ import bean.UtenteLoggatoBean;
 import other.Stampa;
 import pattern.AbstractState;
 import pattern.StateMachineImpl;
-
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class SchedeIstruttoreMenuCLI extends AbstractState {
@@ -23,43 +21,46 @@ public class SchedeIstruttoreMenuCLI extends AbstractState {
 
     @Override
     public void action(StateMachineImpl context){
-
         Scanner scan = new Scanner(System.in);
-        int choice;
 
         while(true){
-            try{
-                choice = scan.nextInt();
+            // ✅ Sfrutta il metodo centralizzato in Stampa e passa il puntatore alla schermata
+            int choice = Stampa.leggiInteroSicuro(scan, this::mostraSchermata);
 
-                switch(choice){
-                    case 0:
-                        goNext(context, new IstructorCLI(user)); // torna al menù principale
-                        return;
-                    case 1:
-                        goNext(context, new VisualizzaSchedeNuotoIstruttoreCLI(user));
-                        return;
-                    case 2:
-                        goNext(context, new VisualizzaRichiesteSchedaNuotoIstruttoreCLI(user));
-                        return;
-                    case 3:
-                        goNext(context, new CreaSchedaNuotoCLI(user));
-                        return;
-                    case 4:
-                        goNext(context, new AssegnaSchedaNuotoCLI(user));
-                        return;
-                    case 5:
-                        goNext(context, new RimuoviSchedaAssegnataCLI(user));
-                        return;
-                    default:
-                        Stampa.errorPrint("Input invalido. Scegliere un'opzione valida.");
-                        mostraSchermata();
-                        break;
+            if (choice == -1) {
+                continue; // Input errato, ripeti il ciclo (il messaggio di errore è già gestito da Stampa)
+            }
+
+            // ✅ Switch expression di Java 21 senza 'break' ridondanti
+            switch(choice){
+                case 0 -> {
+                    goNext(context, new IstructorCLI(user)); // torna al menù principale
+                    return;
                 }
-
-            } catch (InputMismatchException e){
-                Stampa.errorPrint("Input non valido. Inserisci un numero intero.");
-                scan.nextLine();
-                mostraSchermata();
+                case 1 -> {
+                    goNext(context, new VisualizzaSchedeNuotoIstruttoreCLI(user));
+                    return;
+                }
+                case 2 -> {
+                    goNext(context, new VisualizzaRichiesteSchedaNuotoIstruttoreCLI(user));
+                    return;
+                }
+                case 3 -> {
+                    goNext(context, new CreaSchedaNuotoCLI(user));
+                    return;
+                }
+                case 4 -> {
+                    goNext(context, new AssegnaSchedaNuotoCLI(user));
+                    return;
+                }
+                case 5 -> {
+                    goNext(context, new RimuoviSchedaAssegnataCLI(user));
+                    return;
+                }
+                default -> {
+                    Stampa.errorPrint("Input invalido. Scegliere un'opzione valida.");
+                    mostraSchermata();
+                }
             }
         }
     }
