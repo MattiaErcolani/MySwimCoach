@@ -5,8 +5,6 @@ import other.Stampa;
 import pattern.AbstractState;
 import pattern.InitialState;
 import pattern.StateMachineImpl;
-
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class IstructorCLI extends AbstractState {
@@ -25,31 +23,30 @@ public class IstructorCLI extends AbstractState {
 
     @Override
     public void action(StateMachineImpl context){
-
         Scanner scan = new Scanner(System.in);
-        int choice;
 
         while(true){
-            try{
-                choice = scan.nextInt();
+            // ✅ Usa il metodo sicuro di Stampa passando il riferimento a mostraSchermata
+            int choice = Stampa.leggiInteroSicuro(scan, this::mostraSchermata);
 
-                switch(choice){
-                    case 0:
-                        goNext(context, new InitialState());
-                        return;
-                    case 1:
-                        goNext(context, new SchedeIstruttoreMenuCLI(user));
-                        return;
-                    default:
-                        Stampa.errorPrint("Input invalido. Scegliere un'opzione valida.");
-                        mostraSchermata();
-                        break;
+            if (choice == -1) {
+                continue; // Input errato, ripeti il ciclo (l'errore è già gestito da Stampa)
+            }
+
+            // ✅ Switch expression di Java 21 senza 'break' ridondanti
+            switch(choice){
+                case 0 -> {
+                    goNext(context, new InitialState());
+                    return;
                 }
-
-            } catch (InputMismatchException e){
-                Stampa.errorPrint("Input non valido. Inserisci un numero intero.");
-                scan.nextLine();
-                mostraSchermata();
+                case 1 -> {
+                    goNext(context, new SchedeIstruttoreMenuCLI(user));
+                    return;
+                }
+                default -> {
+                    Stampa.errorPrint("Input invalido. Scegliere un'opzione valida.");
+                    mostraSchermata();
+                }
             }
         }
     }
