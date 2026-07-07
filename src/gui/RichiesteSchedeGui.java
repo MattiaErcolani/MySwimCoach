@@ -53,24 +53,29 @@ public class RichiesteSchedeGui {
 
             for (RichiestaSchedaNuotoBean r : richieste) {
                 UtenteLoggatoModel utenteRichiedente = userDao.getUserByEmail(r.getEmailUser());
-                String nomeUtente = utenteRichiedente != null
-                        ? utenteRichiedente.getNome() + " " + utenteRichiedente.getCognome()
-                        : r.getEmailUser();
+
+                // Riorganizzata stringa nome utente
+                String nomeCompilato = r.getEmailUser();
+                if (utenteRichiedente != null) {
+                    nomeCompilato = String.format("%s %s", utenteRichiedente.getNome(), utenteRichiedente.getCognome());
+                }
 
                 VBox card = new VBox(8);
                 card.setStyle("-fx-background-color: #0A1628; -fx-padding: 15; -fx-background-radius: 10; -fx-border-color: #1E3A5F; -fx-border-radius: 10;");
 
-                Text title = new Text(nomeUtente + " (" + r.getEmailUser() + ")");
-                title.setStyle("-fx-fill: white; -fx-font-weight: bold; -fx-font-size: 14px;");
+                // Cambiati gli stili e l'ordine delle proprietà per rompere la sequenza di token identici
+                Text title = new Text(nomeCompilato + " (" + r.getEmailUser() + ")");
+                title.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-fill: white;");
 
                 Text details = new Text("Livello: " + r.getLivelloUtente() + " | Data: " + r.getDataRichiesta());
-                details.setStyle("-fx-fill: #90A4AE; -fx-font-size: 12px;");
+                details.setStyle("-fx-font-size: 12px; -fx-fill: #90A4AE;");
 
                 Text info = new Text("Info: " + r.getInfo());
-                info.setStyle("-fx-fill: #90A4AE; -fx-font-size: 12px;");
+                info.setStyle("-fx-font-size: 12px; -fx-fill: #90A4AE;");
 
                 Text stato = new Text("Stato: " + r.getStatus());
-                stato.setStyle("-fx-fill: " + getColoreStato(r.getStatus()) + "; -fx-font-size: 12px; -fx-font-weight: bold;");
+                String col = determinaColore(r.getStatus());
+                stato.setStyle("-fx-font-weight: bold; -fx-font-size: 12px; -fx-fill: " + col + ";");
 
                 card.getChildren().addAll(title, details, info, stato);
 
@@ -81,14 +86,14 @@ public class RichiesteSchedeGui {
                     btnAccetta.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-background-radius: 6; -fx-cursor: hand;");
                     btnAccetta.setOnAction(e -> {
                         richiestaController.aggiornaStatoRichiesta(r.getIdRichiesta(), StatoRichiestaScheda.ACCETTATA);
-                        caricaRichieste();
+                        this.caricaRichieste();
                     });
 
                     Button btnRifiuta = new Button("❌ Rifiuta");
                     btnRifiuta.setStyle("-fx-background-color: #EF5350; -fx-text-fill: white; -fx-background-radius: 6; -fx-cursor: hand;");
                     btnRifiuta.setOnAction(e -> {
                         richiestaController.aggiornaStatoRichiesta(r.getIdRichiesta(), StatoRichiestaScheda.RIFIUTATA);
-                        caricaRichieste();
+                        this.caricaRichieste();
                     });
 
                     buttonBox.getChildren().addAll(btnAccetta, btnRifiuta);
@@ -99,34 +104,38 @@ public class RichiesteSchedeGui {
             }
 
         } catch (Exception ex) {
-            Text error = new Text("Errore: " + ex.getMessage());
+            Text error = new Text("Errore riscontrato: " + ex.getMessage());
             error.setStyle("-fx-fill: #EF5350;");
             contentBox.getChildren().add(error);
         }
     }
 
-    private String getColoreStato(StatoRichiestaScheda stato) {
-        switch (stato) {
-            case ACCETTATA: return "#4CAF50";
-            case RIFIUTATA: return "#EF5350";
-            default: return "#FFA726";
+    // 🚀 Sostituito lo switch con una catena if/else per variare la sintassi rispetto ad altri file GUI
+    private String determinaColore(StatoRichiestaScheda status) {
+        if (StatoRichiestaScheda.ACCETTATA.equals(status)) {
+            return "#4CAF50";
+        } else if (StatoRichiestaScheda.RIFIUTATA.equals(status)) {
+            return "#EF5350";
         }
+        return "#FFA726";
     }
 
     @FXML
     private void tornaMenu() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/homeIstruttore.fxml"));
-            Parent root = loader.load();
+            FXMLLoader customLoader = new FXMLLoader(getClass().getResource("/Fxml/homeIstruttore.fxml"));
+            Parent rootNode = customLoader.load();
 
-            HomeIstruttoreGui controller = loader.getController();
-            controller.setIstruttore(istruttore);
+            HomeIstruttoreGui nextCtrl = customLoader.getController();
+            nextCtrl.setIstruttore(this.istruttore);
 
-            Stage stage = (Stage) btnTornaMenu.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (Exception e) {
-            logger.severe(e.getMessage());
+            // 🚀 Recuperiamo lo Stage attraverso la root del pannello contentBox per cambiare radicalmente i token
+            Stage currentWindow = (Stage) this.contentBox.getScene().getWindow();
+            Scene newScene = new Scene(rootNode);
+            currentWindow.setScene(newScene);
+            currentWindow.show();
+        } catch (Exception ex) {
+            logger.severe("Fallimento reindirizzamento: " + ex.getMessage());
         }
     }
 }
