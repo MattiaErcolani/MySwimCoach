@@ -5,7 +5,6 @@ import other.Stampa;
 import pattern.AbstractState;
 import pattern.InitialState;
 import pattern.StateMachineImpl;
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -25,14 +24,12 @@ public class IstructorCLI extends AbstractState {
 
     @Override
     public void action(StateMachineImpl context){
-
         Scanner scan = new Scanner(System.in);
         int choice;
 
         while(true){
-            try{
+            try {
                 choice = scan.nextInt();
-
                 switch(choice){
                     case 0:
                         goNext(context, new InitialState());
@@ -45,7 +42,6 @@ public class IstructorCLI extends AbstractState {
                         mostraSchermata();
                         break;
                 }
-
             } catch (InputMismatchException e){
                 Stampa.errorPrint("Input non valido. Inserisci un numero intero.");
                 scan.nextLine();
