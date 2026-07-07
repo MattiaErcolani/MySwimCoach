@@ -27,19 +27,24 @@ public class UserCLI extends AbstractState {
         Scanner scan = new Scanner(System.in);
         int choice;
 
-        // 🚀 Trasformato in do-while e invertito il controllo dell'eccezione per azzerare la duplicazione dei token
         do {
             try {
                 choice = scan.nextInt();
-                if (choice == 0) {
-                    goNext(context, new InitialState());
-                    return;
-                } else if (choice == 3) {
-                    goNext(context, new SchedeUtenteMenuCLI(user));
-                    return;
-                } else {
-                    Stampa.errorPrint("Input invalido. Scegliere un'opzione tra quelle disponibili: ");
-                    mostraSchermata();
+
+                // 🚀 Usiamo la Switch Expression (con le frecce ->) per risolvere la issue ed evitare la duplicazione
+                switch (choice) {
+                    case 0 -> {
+                        goNext(context, new InitialState());
+                        return;
+                    }
+                    case 3 -> {
+                        goNext(context, new SchedeUtenteMenuCLI(user));
+                        return;
+                    }
+                    default -> {
+                        Stampa.errorPrint("Input invalido. Scegliere un'opzione tra quelle disponibili: ");
+                        mostraSchermata();
+                    }
                 }
             } catch (InputMismatchException ex) {
                 scan.nextLine();
