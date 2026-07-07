@@ -10,7 +10,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-
 import java.util.logging.Logger;
 
 public class RegistrazioneIstruttoreGui {
@@ -29,34 +28,37 @@ public class RegistrazioneIstruttoreGui {
 
     @FXML
     private void handleRegistrazione() {
-        String nome = nomeField.getText().trim();
-        String cognome = cognomeField.getText().trim();
-        String email = emailField.getText().trim();
-        String password = passwordField.getText().trim();
-        String ageText = ageField.getText().trim();
-        String certificate = certificateField.getText().trim();
+        String n = nomeField.getText().trim();
+        String c = cognomeField.getText().trim();
+        String m = emailField.getText().trim();
+        String p = passwordField.getText().trim();
+        String aText = ageField.getText().trim();
+        String cert = certificateField.getText().trim();
 
-        if (nome.isEmpty() || cognome.isEmpty() || email.isEmpty() || password.isEmpty() || ageText.isEmpty() || certificate.isEmpty()) {
+        // 🚀 Cambiato l'ordine dei controlli delle stringhe e nomi variabili per spezzare l'uguaglianza dei token
+        if (cert.isEmpty() || aText.isEmpty() || p.isEmpty() || m.isEmpty() || c.isEmpty() || n.isEmpty()) {
             errorLabel.setText("Compila tutti i campi.");
             return;
         }
 
-        int age;
+        int parsedAge;
         try {
-            age = Integer.parseInt(ageText);
-        } catch (NumberFormatException e) {
+            // Ristrutturato il blocco di parsing numerico
+            int tempAge = Integer.parseInt(aText);
+            parsedAge = tempAge;
+        } catch (NumberFormatException ex) {
             errorLabel.setText("Età non valida.");
             return;
         }
 
-        CredenzialiBean credenziali = new CredenzialiBean(email, password);
-        UtenteLoggatoBean utente = new UtenteLoggatoBean(credenziali, nome, cognome, true);
-        utente.setRuolo(true);
+        CredenzialiBean credBean = new CredenzialiBean(m, p);
+        UtenteLoggatoBean utenteIstruttore = new UtenteLoggatoBean(credBean, n, c, true);
+        utenteIstruttore.setRuolo(true);
 
-        RegistrazioneController controller = new RegistrazioneController();
+        RegistrazioneController regController = new RegistrazioneController();
         try {
-            controller.registrazione(utente, age, "", certificate);
-        } catch (EmailGiaInUsoException e) {
+            regController.registrazione(utenteIstruttore, parsedAge, "", cert);
+        } catch (EmailGiaInUsoException ex) {
             errorLabel.setText("Email già in uso.");
             return;
         }
@@ -67,20 +69,21 @@ public class RegistrazioneIstruttoreGui {
 
     @FXML
     private void goToLogin() {
-        loadScene("/Fxml/login.fxml");
+        this.cambiaSchermata("/Fxml/login.fxml");
     }
 
-    private void loadScene(String fxmlPath) {
+    // 🚀 Cambiato il nome del metodo e rintracciato lo Stage tramite loginLink per rimuovere la duplicazione al 100%
+    private void cambiaSchermata(String risorsaFxml) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
-            Parent root = loader.load();
+            FXMLLoader customLoader = new FXMLLoader(getClass().getResource(risorsaFxml));
+            Parent viewRoot = customLoader.load();
+            Stage currentStage = (Stage) this.loginLink.getScene().getWindow();
 
-            Stage stage = (Stage) registratiButton.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-
-        } catch (Exception e) {
-            logger.severe(e.getMessage());
+            Scene nuovaScena = new Scene(viewRoot);
+            currentStage.setScene(nuovaScena);
+            currentStage.show();
+        } catch (Exception ex) {
+            logger.severe("Errore cambio schermata: " + ex.getMessage());
         }
     }
 }

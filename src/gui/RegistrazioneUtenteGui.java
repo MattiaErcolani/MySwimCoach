@@ -10,7 +10,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-
 import java.util.logging.Logger;
 
 public class RegistrazioneUtenteGui {
@@ -80,11 +79,9 @@ public class RegistrazioneUtenteGui {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Parent root = loader.load();
-
             Stage stage = (Stage) registratiButton.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
-
         } catch (Exception e) {
             logger.severe(e.getMessage());
         }
