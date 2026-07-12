@@ -1,4 +1,6 @@
-package other;
+package test;
+import other.Stampa;
+import other.Connect;
 
 import java.sql.Connection;
 import java.sql.SQLException;
